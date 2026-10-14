@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1250" viewBox="0 0 1200 1250" role="img" aria-labelledby="title desc">
+  <title id="title">teum. 시스템 아키텍처 — 실행 상태를 기록하는 Workflow와 격리된 Sandbox</title>
+  <desc id="desc">브라우저는 Next.js의 권한 검사와 입력 검증을 거쳐 Supabase Auth, PostgreSQL, private Storage를 사용합니다. run과 outbox는 DB에 저장합니다. Vercel Workflow가 GitHub App의 선택 범위에서 고정 커밋을 수집하고 private Storage에 보관한 뒤, 네트워크를 차단한 Sandbox로 입력을 전달합니다. Sandbox는 Semgrep, Gitleaks와 의존성 좌표 추출을 실행하며 고객 코드는 설치하거나 실행하지 않습니다. OSV에는 공개 패키지 좌표만, 선택한 OpenAI 검토에는 동의한 제한 코드를 전달합니다. 분석 결과와 AI 후보는 별도로 DB에 저장하고 브라우저에서 확인합니다. 선은 데이터 이동 경로를 나타내며 모든 단계가 동시에 실행된다는 의미는 아닙니다.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L7 5L1 9" fill="none" stroke="#8b95a1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+  </defs>
+  <style>
+    text{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;fill:#191f28}
+    .secondary{fill:#566270}.accent{fill:#1d65d1}
+    .wire{fill:none;stroke:#b0b8c1;stroke-width:2;marker-end:url(#arrow)}
+    .both{marker-start:url(#arrow)}
+    .packet{animation:transfer 9s linear infinite}
+    .second{animation-delay:3s}.third{animation-delay:6s}
+    @keyframes transfer{0%,8%{transform:translateY(0);opacity:0}12%{transform:translateY(0);opacity:1}25%{transform:translateY(74px);opacity:1}29%,100%{transform:translateY(74px);opacity:0}}
+    @media(prefers-reduced-motion:reduce){.packet{animation:quiet .2s cubic-bezier(.23,1,.32,1) both}@keyframes quiet{from{opacity:0}to{opacity:.55}}}
+  </style>
+  <rect x="1" y="1" width="1198" height="1248" rx="16" fill="#fff" stroke="#e5e8eb"/>
+  <text x="56" y="76" font-size="22" font-weight="650" class="accent" letter-spacing="1.2">SYSTEM ARCHITECTURE</text>
+  <text x="56" y="137" font-size="42" font-weight="700" letter-spacing="-1">분석은 격리하고, 진행 상태는 기록합니다.</text>
+  <text x="56" y="183" font-size="24" class="secondary">고정 커밋 수집 → 격리 분석 → 근거 저장 → 사용자 확인</text>
+
+  <g fill="#fff" stroke="#e5e8eb" stroke-width="2">
+    <rect x="56" y="232" width="296" height="200" rx="12"/>
+    <rect x="452" y="232" width="296" height="200" rx="12"/>
+    <rect x="848" y="232" width="296" height="200" rx="12"/>
+  </g>
+  <g font-size="32" font-weight="700">
+    <text x="82" y="285">브라우저</text><text x="478" y="285">Next.js</text><text x="874" y="285">Supabase</text>
+  </g>
+  <g font-size="23" class="secondary">
+    <text x="82" y="335" class="secondary">범위·동의 선택</text><text x="82" y="372" class="secondary">근거·리포트 확인</text>
+    <text x="478" y="335" class="secondary">로그인·권한 확인</text><text x="478" y="372" class="secondary">입력 검증 · API</text>
+    <text x="874" y="328" class="secondary">Auth · PostgreSQL</text><text x="874" y="363" class="secondary">private Storage</text><text x="874" y="398" class="secondary">run · outbox · 결과</text>
+  </g>
+  <path class="wire both" d="M365 332H439"/><path class="wire both" d="M761 332H835"/>
+  <path class="wire" d="M600 444V526"/>
+  <text x="622" y="490" font-size="22" class="secondary">작업 시작</text>
+  <path class="wire both" d="M996 444V622H986"/>
+  <text x="1018" y="488" font-size="22" class="secondary">입력·상태</text>
+  <text x="1018" y="523" font-size="22" class="secondary">결과 저장</text>
+
+  <rect x="226" y="538" width="748" height="180" rx="12" fill="#f7f8fa" stroke="#e5e8eb" stroke-width="2"/>
+  <rect x="226" y="562" width="4" height="52" rx="2" fill="#1d65d1"/>
+  <text x="260" y="591" font-size="34" font-weight="700">Vercel Workflow</text>
+  <text x="260" y="639" font-size="24" class="secondary">수집 · 분석 · AI 검토 · 정리 단계를 이어갑니다.</text>
+  <text x="260" y="677" font-size="23" class="secondary">작업 ID · 재전달 · 실행권 확인 · 취소·삭제 상태 검사</text>
+
+  <path class="wire both" d="M290 730V766H204V852"/>
+  <path class="wire both" d="M600 730V852"/>
+  <path class="wire both" d="M910 730V766H996V852"/>
+  <circle class="packet" cx="204" cy="772" r="5" fill="#1d65d1" opacity="0"/>
+  <circle class="packet second" cx="600" cy="772" r="5" fill="#1d65d1" opacity="0"/>
+  <circle class="packet third" cx="996" cy="772" r="5" fill="#1d65d1" opacity="0"/>
+  <rect x="112" y="790" width="184" height="28" fill="#fff"/>
+  <rect x="532" y="790" width="136" height="28" fill="#fff"/>
+  <rect x="890" y="790" width="212" height="28" fill="#fff"/>
+  <g font-size="22" class="secondary" text-anchor="middle">
+    <text x="204" y="811" class="secondary">선택 범위 수집</text>
+    <text x="600" y="811" class="secondary">격리 분석</text>
+    <text x="996" y="811" class="secondary">제한된 외부 전송</text>
+  </g>
+
+  <g fill="#fff" stroke="#e5e8eb" stroke-width="2">
+    <rect x="56" y="864" width="296" height="270" rx="12"/>
+    <rect x="412" y="864" width="376" height="270" rx="12"/>
+    <rect x="848" y="864" width="296" height="270" rx="12"/>
+  </g>
+  <text x="82" y="916" font-size="31" font-weight="700">GitHub App</text>
+  <text x="82" y="965" font-size="23" class="secondary">선택한 저장소·폴더</text>
+  <text x="82" y="1003" font-size="23" class="secondary">고정 커밋에서 수집</text>
+  <text x="82" y="1053" font-size="22" class="secondary">Workflow가 수집 후</text>
+  <text x="82" y="1087" font-size="22" class="secondary">private Storage에 저장</text>
+
+  <text x="438" y="916" font-size="31" font-weight="700">Vercel Sandbox</text>
+  <text x="438" y="965" font-size="23" class="secondary">네트워크 차단</text>
+  <text x="438" y="1003" font-size="23" class="secondary">Semgrep · Gitleaks</text>
+  <text x="438" y="1041" font-size="23" class="secondary">의존성 좌표 추출</text>
+  <text x="438" y="1093" font-size="23" font-weight="650" class="accent">고객 코드 설치·실행 없음</text>
+
+  <text x="874" y="916" font-size="31" font-weight="700">OSV · OpenAI</text>
+  <text x="874" y="962" font-size="22" class="secondary">OSV: 공개 패키지 좌표</text>
+  <path d="M874 983H1118" stroke="#e5e8eb"/>
+  <text x="874" y="1018" font-size="22" font-weight="650">OpenAI: 선택·별도 동의</text>
+  <text x="874" y="1053" font-size="22" class="secondary">동의한 제한 코드</text>
+  <text x="874" y="1088" font-size="22" class="secondary">독립 후보·방어 근거 검토</text>
+
+  <text x="56" y="1194" font-size="23" class="secondary">분석 결과와 AI 후보는 출처·처리 상태를 나누어 저장합니다.</text>
+  <text x="56" y="1226" font-size="22" class="secondary">화살표는 데이터 경로이며, 모든 작업을 동시에 실행한다는 의미는 아닙니다.</text>
+</svg>

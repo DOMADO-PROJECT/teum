@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="930" viewBox="0 0 1200 930" role="img" aria-labelledby="title desc">
+  <title id="title">teum. 사용 흐름 — 범위 선택부터 수정 후 재점검까지</title>
+  <desc id="desc">1. GitHub App에서 저장소와 폴더를 선택하고 커밋을 고정합니다. 2. 정적 분석, 비밀정보, 의존성을 기본 점검하고 선택한 AI 검토는 독립 후보와 반증을 별도로 기록합니다. 3. 코드 근거와 영향을 확인하고 처리 상태를 남깁니다. 4. 새 커밋으로 재점검하고 비교 조건을 확인하며 HTML 또는 JSON 리포트를 내보냅니다.</desc>
+  <style>
+    text{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;fill:#191f28}
+    .secondary{fill:#566270}.accent{fill:#1d65d1}
+    .traveler{animation:steps 12s linear infinite}
+    @keyframes steps{0%,4%{transform:translateY(0);opacity:0}8%,18%{transform:translateY(0);opacity:1}30%,40%{transform:translateY(164px);opacity:1}52%,62%{transform:translateY(328px);opacity:1}74%,94%{transform:translateY(492px);opacity:1}100%{transform:translateY(492px);opacity:0}}
+    @media(prefers-reduced-motion:reduce){.traveler{animation:quiet .2s cubic-bezier(.23,1,.32,1) both}@keyframes quiet{from{opacity:0}to{opacity:.55}}}
+  </style>
+  <rect x="1" y="1" width="1198" height="928" rx="16" fill="#fff" stroke="#e5e8eb"/>
+  <text x="56" y="76" font-size="22" font-weight="650" class="accent" letter-spacing="1.2">REVIEW FLOW</text>
+  <text x="56" y="137" font-size="42" font-weight="700" letter-spacing="-1">한 번 찾는 데서, 고친 뒤 확인하는 데까지.</text>
+  <text x="56" y="183" font-size="24" class="secondary">점검할 코드를 정하고, 근거를 읽고, 다음 커밋에서 다시 확인합니다.</text>
+  <path d="M84 272V764" fill="none" stroke="#e5e8eb" stroke-width="2"/>
+  <g fill="#fff" stroke="#c9cfd6" stroke-width="2">
+    <circle cx="84" cy="272" r="10"/><circle cx="84" cy="436" r="10"/>
+    <circle cx="84" cy="600" r="10"/><circle cx="84" cy="764" r="10"/>
+  </g>
+  <circle class="traveler" cx="84" cy="272" r="7" fill="#1d65d1"/>
+  <g font-size="22" font-weight="600" class="accent">
+    <text x="132" y="258" class="accent">01</text><text x="132" y="422" class="accent">02</text>
+    <text x="132" y="586" class="accent">03</text><text x="132" y="750" class="accent">04</text>
+  </g>
+  <g font-size="32" font-weight="700" letter-spacing="-.5">
+    <text x="183" y="260">점검할 범위를 고릅니다.</text>
+    <text x="183" y="424">기본 점검과 선택한 AI 검토를 진행합니다.</text>
+    <text x="183" y="588">발견한 위험의 근거를 읽습니다.</text>
+    <text x="183" y="752">수정한 커밋에서 다시 점검합니다.</text>
+  </g>
+  <g font-size="24" class="secondary">
+    <text x="183" y="306" class="secondary">GitHub App 연결 · 저장소와 폴더 선택 · 커밋 고정</text>
+    <text x="183" y="342" class="secondary">어떤 코드를 확인했는지, 다음 점검에서도 추적할 수 있도록.</text>
+    <text x="183" y="470" class="secondary">기본 점검: 정적 분석 · 비밀정보 · 의존성 공개 취약점</text>
+    <text x="183" y="506" class="secondary">선택 AI: 별도 동의 후 독립 후보와 방어 근거 검토</text>
+    <text x="183" y="634" class="secondary">파일·코드 근거·영향을 확인하고 담당자와 처리 상태를 기록합니다.</text>
+    <text x="183" y="670" class="secondary">스캐너 결과와 AI 후보는 출처와 처리 상태를 나누어 봅니다.</text>
+    <text x="183" y="798" class="secondary">새 커밋으로 재점검 · 비교 조건 확인 · HTML / JSON 리포트</text>
+    <text x="183" y="834" class="secondary">검사한 범위와 남은 불확실성을 함께 남깁니다.</text>
+  </g>
+  <g stroke="#e5e8eb">
+    <path d="M132 375H1144"/><path d="M132 539H1144"/><path d="M132 703H1144"/>
+  </g>
+  <text x="56" y="894" font-size="22" class="secondary">발견 0건이 전체 안전을 의미하지 않습니다. 점검 범위와 완료 상태를 함께 확인합니다.</text>
+</svg>

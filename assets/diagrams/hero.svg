@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" role="img" aria-labelledby="title desc">
+  <title id="title">teum. — 당신이 만든 것의 위험을, 세상에 내놓기 전에 알게 됩니다.</title>
+  <desc id="desc">GitHub 코드의 위험을 찾고, 근거를 검토하고, 수정 전후를 비교하는 서비스. 코드 선택, 격리 분석, 근거 검토, 다시 점검의 순서를 작은 파란 점으로 안내합니다.</desc>
+  <style>
+    text{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;fill:#191f28}
+    .secondary{fill:#566270}.accent{fill:#1d65d1}
+    .traveler{animation:journey 10s linear infinite}
+    @keyframes journey{0%,6%{transform:translateX(0);opacity:0}10%,19%{transform:translateX(0);opacity:1}35%,44%{transform:translateX(328px);opacity:1}60%,69%{transform:translateX(656px);opacity:1}85%,94%{transform:translateX(984px);opacity:1}100%{transform:translateX(984px);opacity:0}}
+    @media(prefers-reduced-motion:reduce){.traveler{animation:quiet .2s cubic-bezier(.23,1,.32,1) both}@keyframes quiet{from{opacity:0}to{opacity:.55}}}
+  </style>
+  <rect width="1200" height="600" fill="#fff"/>
+  <path d="M64 32H1136" stroke="#e5e8eb"/>
+  <g transform="translate(64 65) scale(.55)" fill="#191f28">
+    <path d="M28 2H29Q32 2 32 6V37Q32 43 36 47L38 49Q42 53 42 59V94Q42 98 38 98H27C10 98 2 90 2 73V27C2 10 10 2 28 2Z"/>
+    <path d="M46 2H72C90 2 98 10 98 28V72C98 90 90 98 72 98H56Q52 98 52 94V58Q52 48 47 43L46 42Q42 38 42 32V6Q42 2 46 2Z"/>
+  </g>
+  <text x="136" y="108" font-size="56" font-weight="750" letter-spacing="-2">teum.</text>
+  <text x="1136" y="101" text-anchor="end" font-size="22" class="secondary" letter-spacing="2">CODE REVIEW, BEFORE RELEASE</text>
+  <text x="64" y="235" font-size="56" font-weight="700" letter-spacing="-1.8">당신이 만든 것의 위험을,</text>
+  <text x="64" y="311" font-size="56" font-weight="700" letter-spacing="-1.8">세상에 내놓기 전에 알게 됩니다.</text>
+  <text x="66" y="378" font-size="26" class="secondary">GitHub 코드의 위험을 찾고, 근거를 검토하고, 수정 전후를 비교합니다.</text>
+  <path d="M64 438H1136" stroke="#e5e8eb"/>
+  <g font-size="24" font-weight="600">
+    <text x="64" y="490">코드 선택</text>
+    <text x="392" y="490">격리 분석</text>
+    <text x="720" y="490">근거 검토</text>
+    <text x="1048" y="490">다시 점검</text>
+  </g>
+  <path d="M108 534H1092" stroke="#e5e8eb" stroke-width="2"/>
+  <g fill="#fff" stroke="#c9cfd6" stroke-width="2">
+    <circle cx="108" cy="534" r="7"/><circle cx="436" cy="534" r="7"/>
+    <circle cx="764" cy="534" r="7"/><circle cx="1092" cy="534" r="7"/>
+  </g>
+  <circle class="traveler" cx="108" cy="534" r="7" fill="#1d65d1"/>
+  <path d="M64 578H1136" stroke="#e5e8eb"/>
+</svg>

@@ -1,11 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" role="img" aria-labelledby="title desc">
   <title id="title">teum. — 당신이 만든 것의 위험을, 세상에 내놓기 전에 알게 됩니다.</title>
-  <desc id="desc">GitHub 코드의 위험을 찾고, 근거를 검토하고, 수정 전후를 비교하는 서비스. 코드 선택, 격리 분석, 근거 검토, 다시 점검의 순서를 작은 파란 점으로 안내합니다.</desc>
+  <desc id="desc">GitHub 코드의 위험을 찾고, 근거를 검토하고, 수정 전후를 비교하는 서비스. 코드 선택, 격리 분석, 근거 검토, 다시 점검의 순서를 안내합니다. 단계에 머무를 때는 파란 원으로, 연결선을 지날 때는 선보다 두꺼운 파란 막대로 표시합니다.</desc>
+  <defs>
+    <clipPath id="hero-track" clipPathUnits="userSpaceOnUse">
+      <rect x="108" y="531" width="984" height="6"/>
+      <circle cx="108" cy="534" r="7"/><circle cx="436" cy="534" r="7"/>
+      <circle cx="764" cy="534" r="7"/><circle cx="1092" cy="534" r="7"/>
+    </clipPath>
+  </defs>
   <style>
     text{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;fill:#191f28}
     .secondary{fill:#566270}.accent{fill:#1d65d1}
     .traveler{animation:journey 10s linear infinite}
-    @keyframes journey{0%,6%{transform:translateX(0);opacity:0}10%,19%{transform:translateX(0);opacity:1}35%,44%{transform:translateX(328px);opacity:1}60%,69%{transform:translateX(656px);opacity:1}85%,94%{transform:translateX(984px);opacity:1}100%{transform:translateX(984px);opacity:0}}
+    @keyframes journey{0%,6%{transform:translateX(0);opacity:0;rx:7px}10%,19%{transform:translateX(0);opacity:1;rx:7px}35%,44%{transform:translateX(328px);opacity:1;rx:7px}60%,69%{transform:translateX(656px);opacity:1;rx:7px}85%,94%{transform:translateX(984px);opacity:1;rx:7px}100%{transform:translateX(984px);opacity:0;rx:7px}21%,33%,46%,58%,71%,83%{rx:17px}}
     @media(prefers-reduced-motion:reduce){.traveler{animation:quiet .2s cubic-bezier(.23,1,.32,1) both}@keyframes quiet{from{opacity:0}to{opacity:.55}}}
   </style>
   <rect width="1200" height="600" fill="#fff"/>
@@ -31,6 +38,8 @@
     <circle cx="108" cy="534" r="7"/><circle cx="436" cy="534" r="7"/>
     <circle cx="764" cy="534" r="7"/><circle cx="1092" cy="534" r="7"/>
   </g>
-  <circle class="traveler" cx="108" cy="534" r="7" fill="#1d65d1"/>
+  <g clip-path="url(#hero-track)">
+    <ellipse class="traveler" cx="108" cy="534" rx="7" ry="7" fill="#1d65d1"/>
+  </g>
   <path d="M64 578H1136" stroke="#e5e8eb"/>
 </svg>

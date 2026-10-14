@@ -1,12 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="930" viewBox="0 0 1200 930" role="img" aria-labelledby="title desc">
   <title id="title">teum. 사용 흐름 — 범위 선택부터 수정 후 재점검까지</title>
-  <desc id="desc">1. GitHub App에서 저장소와 폴더를 선택하고 커밋을 고정합니다. 2. 정적 분석, 비밀정보, 의존성을 기본 점검하고 선택한 AI 검토는 독립 후보와 반증을 별도로 기록합니다. 3. 코드 근거와 영향을 확인하고 처리 상태를 남깁니다. 4. 새 커밋으로 재점검하고 비교 조건을 확인하며 HTML 또는 JSON 리포트를 내보냅니다.</desc>
+  <desc id="desc">1. GitHub App에서 저장소와 폴더를 선택하고 커밋을 고정합니다. 2. 정적 분석, 비밀정보, 의존성을 기본 점검하고 선택한 AI 검토는 독립 후보와 반증을 별도로 기록합니다. 3. 코드 근거와 영향을 확인하고 처리 상태를 남깁니다. 4. 새 커밋으로 재점검하고 비교 조건을 확인하며 HTML 또는 JSON 리포트를 내보냅니다. 단계에 머무를 때는 파란 원으로, 연결선을 지날 때는 선보다 두꺼운 파란 막대로 표시합니다.</desc>
+  <defs>
+    <clipPath id="review-track" clipPathUnits="userSpaceOnUse">
+      <rect x="81" y="272" width="6" height="492"/>
+      <circle cx="84" cy="272" r="7"/><circle cx="84" cy="436" r="7"/>
+      <circle cx="84" cy="600" r="7"/><circle cx="84" cy="764" r="7"/>
+    </clipPath>
+  </defs>
   <style>
     text{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;fill:#191f28}
     .secondary{fill:#566270}.accent{fill:#1d65d1}
     .traveler{animation:steps 10s linear infinite}
     /* 각 단계 정지는 0.5초씩 줄이고, 이동과 처음·끝의 페이드 시간은 유지합니다. */
-    @keyframes steps{0%,4.8%{transform:translateY(0);opacity:0}9.6%,16.6%{transform:translateY(0);opacity:1}31%,38%{transform:translateY(164px);opacity:1}52.4%,59.4%{transform:translateY(328px);opacity:1}73.8%,92.8%{transform:translateY(492px);opacity:1}100%{transform:translateY(492px);opacity:0}}
+    @keyframes steps{0%,4.8%{transform:translateY(0);opacity:0;ry:7px}9.6%,16.6%{transform:translateY(0);opacity:1;ry:7px}31%,38%{transform:translateY(164px);opacity:1;ry:7px}52.4%,59.4%{transform:translateY(328px);opacity:1;ry:7px}73.8%,92.8%{transform:translateY(492px);opacity:1;ry:7px}100%{transform:translateY(492px);opacity:0;ry:7px}18.6%,29%,40%,50.4%,61.4%,71.8%{ry:13px}}
     @media(prefers-reduced-motion:reduce){.traveler{animation:quiet .2s cubic-bezier(.23,1,.32,1) both}@keyframes quiet{from{opacity:0}to{opacity:.55}}}
   </style>
   <rect x="1" y="1" width="1198" height="928" rx="16" fill="#fff" stroke="#e5e8eb"/>
@@ -18,7 +25,9 @@
     <circle cx="84" cy="272" r="10"/><circle cx="84" cy="436" r="10"/>
     <circle cx="84" cy="600" r="10"/><circle cx="84" cy="764" r="10"/>
   </g>
-  <circle class="traveler" cx="84" cy="272" r="7" fill="#1d65d1"/>
+  <g clip-path="url(#review-track)">
+    <ellipse class="traveler" cx="84" cy="272" rx="7" ry="7" fill="#1d65d1"/>
+  </g>
   <g font-size="22" font-weight="600" class="accent">
     <text x="132" y="258" class="accent">01</text><text x="132" y="422" class="accent">02</text>
     <text x="132" y="586" class="accent">03</text><text x="132" y="750" class="accent">04</text>

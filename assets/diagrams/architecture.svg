@@ -1,28 +1,42 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1250" viewBox="0 0 1200 1250" role="img" aria-labelledby="title desc">
   <title id="title">teum. 시스템 아키텍처 — 실행 상태를 기록하는 Workflow와 격리된 Sandbox</title>
-  <desc id="desc">브라우저는 Next.js의 권한 검사와 입력 검증을 거쳐 Supabase Auth, PostgreSQL, private Storage를 사용합니다. run과 outbox는 DB에 저장합니다. Vercel Workflow가 GitHub App의 선택 범위에서 고정 커밋을 수집하고 private Storage에 보관한 뒤, 네트워크를 차단한 Sandbox로 입력을 전달합니다. Sandbox는 Semgrep, Gitleaks와 의존성 좌표 추출을 실행하며 고객 코드는 설치하거나 실행하지 않습니다. OSV에는 공개 패키지 좌표만, 선택한 OpenAI 검토에는 동의한 제한 코드를 전달합니다. 분석 결과와 AI 후보는 별도로 DB에 저장하고 브라우저에서 확인합니다. 선은 데이터 이동 경로를 나타내며 모든 단계가 동시에 실행된다는 의미는 아닙니다.</desc>
+  <desc id="desc">브라우저는 Next.js의 권한 검사와 입력 검증을 거쳐 Supabase Auth, PostgreSQL, private Storage를 사용합니다. run과 outbox는 DB에 저장합니다. GitHub 수집용 Workflow가 고정 커밋의 파일을 최대 8개씩 병렬로 수집해 private Storage에 저장합니다. 준비된 입력으로 분석용 Workflow를 시작하면 Sandbox 분석, OSV 조회와 규칙 결과 저장, 선택 AI 검토와 후보 저장, 정리를 순서대로 실행합니다. Sandbox는 네트워크를 차단하고 Semgrep, Gitleaks와 의존성 좌표 추출을 실행하며 고객 코드는 설치하거나 실행하지 않습니다. OSV에는 공개 패키지 좌표만 보내며 최대 4개 요청을 병렬로 처리합니다. OpenAI에는 별도로 동의한 제한 코드를 보냅니다. 시작 요청에는 접수 응답을 반환하고, 분석 결과는 저장 후 브라우저가 Next.js를 통해 별도로 조회합니다. 화살표의 몸통에서 머리로 색이 차오르며, 양방향 연결만 응답 방향으로 돌아옵니다. 애니메이션은 상단 요청·접수, 하단 세 연결의 동시 왕복, Workflow에서 Supabase로 결과 저장, 상단 결과 조회 왕복 순서로 표시합니다. 하단은 카드마다 한 선으로 연결합니다. 설명을 위해 구간을 나눈 것이며, 실제 작업의 동시 실행 여부나 소요 시간, 진행률을 나타내지 않습니다.</desc>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L7 5L1 9" fill="none" stroke="#8b95a1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <filter id="card-shadow" x="-10%" y="-15%" width="120%" height="135%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#191f28" flood-opacity=".07"/>
+    </filter>
   </defs>
   <style>
     text{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;fill:#191f28}
     .secondary{fill:#566270}.accent{fill:#1d65d1}
-    .wire{fill:none;stroke:#b0b8c1;stroke-width:2;marker-end:url(#arrow)}
+    .card{filter:url(#card-shadow)}
+    .wire{fill:none;stroke:#b0b8c1;stroke-width:2;stroke-linejoin:round;marker-end:url(#arrow)}
     .both{marker-start:url(#arrow)}
-    .packet{animation:transfer 9s linear infinite}
-    .second{animation-delay:3s}.third{animation-delay:6s}
-    @keyframes transfer{0%,8%{transform:translateY(0);opacity:0}12%{transform:translateY(0);opacity:1}25%{transform:translateY(74px);opacity:1}29%,100%{transform:translateY(74px);opacity:0}}
-    @media(prefers-reduced-motion:reduce){.packet{animation:quiet .2s cubic-bezier(.23,1,.32,1) both}@keyframes quiet{from{opacity:0}to{opacity:.55}}}
+    .exchange{--cycle:12s;--phase:0s;--leg:0s}
+    .lower{--phase:3s}
+    .return{--leg:1.5s}
+    .storage .return{--leg:6s}
+    .trace,.tip{fill:none;stroke:#1d65d1;stroke-width:2.6;stroke-linejoin:round;opacity:0;animation-duration:var(--cycle);animation-delay:calc(var(--phase) + var(--leg) - var(--cycle));animation-timing-function:linear;animation-iteration-count:infinite;animation-fill-mode:both}
+    .trace{stroke-dasharray:1;stroke-dashoffset:1;animation-name:fill-stage}
+    .tip{stroke-linecap:round;animation-name:tip-stage}
+    .web .trace{animation-name:fill-web}.web .tip{animation-name:tip-web}
+    /* 12초 주기: 0~3초 요청·접수, 3~6초 하단 동시 왕복, 6~7.5초 결과 저장, 7.5~10.5초 조회 왕복. */
+    @keyframes fill-stage{0%{stroke-dashoffset:1;opacity:0}1%{opacity:1}9%,10%{stroke-dashoffset:0;opacity:1}12.5%,100%{stroke-dashoffset:0;opacity:0}}
+    @keyframes tip-stage{0%,8%{opacity:0}9%,10%{opacity:1}12.5%,100%{opacity:0}}
+    @keyframes fill-web{0%{stroke-dashoffset:1;opacity:0}1%{opacity:1}9%,10%{stroke-dashoffset:0;opacity:1}12.5%{stroke-dashoffset:0;opacity:0}62.5%{stroke-dashoffset:1;opacity:0}63.5%{opacity:1}71.5%,72.5%{stroke-dashoffset:0;opacity:1}75%,100%{stroke-dashoffset:0;opacity:0}}
+    @keyframes tip-web{0%,8%{opacity:0}9%,10%{opacity:1}12.5%,70.5%{opacity:0}71.5%,72.5%{opacity:1}75%,100%{opacity:0}}
+    @media(prefers-reduced-motion:reduce){.exchange .trace,.exchange .tip{animation:none;opacity:0}}
   </style>
   <rect x="1" y="1" width="1198" height="1248" rx="16" fill="#fff" stroke="#e5e8eb"/>
   <text x="56" y="76" font-size="22" font-weight="650" class="accent" letter-spacing="1.2">SYSTEM ARCHITECTURE</text>
   <text x="56" y="137" font-size="42" font-weight="700" letter-spacing="-1">분석은 격리하고, 진행 상태는 기록합니다.</text>
   <text x="56" y="183" font-size="24" class="secondary">고정 커밋 수집 → 격리 분석 → 근거 저장 → 사용자 확인</text>
 
-  <g fill="#fff" stroke="#e5e8eb" stroke-width="2">
-    <rect x="56" y="232" width="296" height="200" rx="12"/>
-    <rect x="452" y="232" width="296" height="200" rx="12"/>
-    <rect x="848" y="232" width="296" height="200" rx="12"/>
+  <g fill="#fff">
+    <rect class="card" x="56" y="232" width="296" height="200" rx="12"/>
+    <rect class="card" x="452" y="232" width="296" height="200" rx="12"/>
+    <rect class="card" x="848" y="232" width="296" height="200" rx="12"/>
   </g>
   <g font-size="32" font-weight="700">
     <text x="82" y="285">브라우저</text><text x="478" y="285">Next.js</text><text x="874" y="285">Supabase</text>
@@ -32,44 +46,64 @@
     <text x="478" y="335" class="secondary">로그인·권한 확인</text><text x="478" y="372" class="secondary">입력 검증 · API</text>
     <text x="874" y="328" class="secondary">Auth · PostgreSQL</text><text x="874" y="363" class="secondary">private Storage</text><text x="874" y="398" class="secondary">run · outbox · 결과</text>
   </g>
-  <path class="wire both" d="M365 332H439"/><path class="wire both" d="M761 332H835"/>
-  <path class="wire" d="M600 444V526"/>
+  <g class="exchange web" aria-hidden="true">
+    <path class="wire both" d="M365 332H439"/>
+    <path class="trace" pathLength="1" d="M365 332H439"/><path class="tip" d="M431 326L439 332L431 338"/>
+    <g class="return"><path class="trace" pathLength="1" d="M439 332H365"/><path class="tip" d="M373 326L365 332L373 338"/></g>
+    <path class="wire both" d="M761 332H835"/>
+    <path class="trace" pathLength="1" d="M761 332H835"/><path class="tip" d="M827 326L835 332L827 338"/>
+    <g class="return"><path class="trace" pathLength="1" d="M835 332H761"/><path class="tip" d="M769 326L761 332L769 338"/></g>
+  </g>
+  <g class="exchange launch" aria-hidden="true">
+    <path class="wire" d="M600 444V526"/>
+    <path class="trace" pathLength="1" d="M600 444V526"/><path class="tip" d="M594 518L600 526L606 518"/>
+  </g>
   <text x="622" y="490" font-size="22" class="secondary">작업 시작</text>
-  <path class="wire both" d="M996 444V622H986"/>
-  <text x="1018" y="488" font-size="22" class="secondary">입력·상태</text>
-  <text x="1018" y="523" font-size="22" class="secondary">결과 저장</text>
+  <g class="exchange storage" aria-hidden="true">
+    <path class="wire both" d="M1048 444V604Q1048 622 1030 622H986"/>
+    <path class="trace" pathLength="1" d="M1048 444V604Q1048 622 1030 622H986"/><path class="tip" d="M994 616L986 622L994 628"/>
+    <g class="return"><path class="trace" pathLength="1" d="M986 622H1030Q1048 622 1048 604V444"/><path class="tip" d="M1042 452L1048 444L1054 452"/></g>
+  </g>
+  <text x="1024" y="488" text-anchor="end" font-size="22" class="secondary">입력·상태</text>
+  <text x="1024" y="523" text-anchor="end" font-size="22" class="secondary">결과 저장</text>
 
-  <rect x="226" y="538" width="748" height="180" rx="12" fill="#f7f8fa" stroke="#e5e8eb" stroke-width="2"/>
+  <rect class="card" x="226" y="538" width="748" height="180" rx="12" fill="#f7f8fa"/>
   <rect x="226" y="562" width="4" height="52" rx="2" fill="#1d65d1"/>
   <text x="260" y="591" font-size="34" font-weight="700">Vercel Workflow</text>
-  <text x="260" y="639" font-size="24" class="secondary">수집 · 분석 · AI 검토 · 정리 단계를 이어갑니다.</text>
+  <text x="260" y="639" font-size="24" class="secondary">수집·분석을 별도 Workflow로 실행합니다.</text>
   <text x="260" y="677" font-size="23" class="secondary">작업 ID · 재전달 · 실행권 확인 · 취소·삭제 상태 검사</text>
 
-  <path class="wire both" d="M290 730V766H204V852"/>
-  <path class="wire both" d="M600 730V852"/>
-  <path class="wire both" d="M910 730V766H996V852"/>
-  <circle class="packet" cx="204" cy="772" r="5" fill="#1d65d1" opacity="0"/>
-  <circle class="packet second" cx="600" cy="772" r="5" fill="#1d65d1" opacity="0"/>
-  <circle class="packet third" cx="996" cy="772" r="5" fill="#1d65d1" opacity="0"/>
-  <rect x="112" y="790" width="184" height="28" fill="#fff"/>
-  <rect x="532" y="790" width="136" height="28" fill="#fff"/>
-  <rect x="890" y="790" width="212" height="28" fill="#fff"/>
-  <g font-size="22" class="secondary" text-anchor="middle">
-    <text x="204" y="811" class="secondary">선택 범위 수집</text>
-    <text x="600" y="811" class="secondary">격리 분석</text>
-    <text x="996" y="811" class="secondary">제한된 외부 전송</text>
+  <g class="exchange lower github" aria-hidden="true">
+    <path class="wire both" d="M290 730V754Q290 766 278 766H216Q204 766 204 778V852"/>
+    <path class="trace" pathLength="1" d="M290 730V754Q290 766 278 766H216Q204 766 204 778V852"/><path class="tip" d="M198 844L204 852L210 844"/>
+    <g class="return"><path class="trace" pathLength="1" d="M204 852V778Q204 766 216 766H278Q290 766 290 754V730"/><path class="tip" d="M284 738L290 730L296 738"/></g>
+  </g>
+  <g class="exchange lower sandbox" aria-hidden="true">
+    <path class="wire both" d="M600 730V852"/>
+    <path class="trace" pathLength="1" d="M600 730V852"/><path class="tip" d="M594 844L600 852L606 844"/>
+    <g class="return"><path class="trace" pathLength="1" d="M600 852V730"/><path class="tip" d="M594 738L600 730L606 738"/></g>
+  </g>
+  <g class="exchange lower external" aria-hidden="true">
+    <path class="wire both" d="M910 730V754Q910 766 922 766H984Q996 766 996 778V852"/>
+    <path class="trace" pathLength="1" d="M910 730V754Q910 766 922 766H984Q996 766 996 778V852"/><path class="tip" d="M990 844L996 852L1002 844"/>
+    <g class="return"><path class="trace" pathLength="1" d="M996 852V778Q996 766 984 766H922Q910 766 910 754V730"/><path class="tip" d="M904 738L910 730L916 738"/></g>
+  </g>
+  <g font-size="20" class="secondary">
+    <text x="68" y="792" class="secondary">선택 범위</text><text x="68" y="824" class="secondary">수집</text>
+    <text x="576" y="811" text-anchor="end" class="secondary">격리 분석</text>
+    <text x="1018" y="792" class="secondary">제한된</text><text x="1018" y="824" class="secondary">외부 전송</text>
   </g>
 
-  <g fill="#fff" stroke="#e5e8eb" stroke-width="2">
-    <rect x="56" y="864" width="296" height="270" rx="12"/>
-    <rect x="412" y="864" width="376" height="270" rx="12"/>
-    <rect x="848" y="864" width="296" height="270" rx="12"/>
+  <g fill="#fff">
+    <rect class="card" x="56" y="864" width="296" height="270" rx="12"/>
+    <rect class="card" x="412" y="864" width="376" height="270" rx="12"/>
+    <rect class="card" x="848" y="864" width="296" height="270" rx="12"/>
   </g>
   <text x="82" y="916" font-size="31" font-weight="700">GitHub App</text>
   <text x="82" y="965" font-size="23" class="secondary">선택한 저장소·폴더</text>
   <text x="82" y="1003" font-size="23" class="secondary">고정 커밋에서 수집</text>
-  <text x="82" y="1053" font-size="22" class="secondary">Workflow가 수집 후</text>
-  <text x="82" y="1087" font-size="22" class="secondary">private Storage에 저장</text>
+  <text x="82" y="1053" font-size="21" class="secondary">파일 수집 최대 8개 병렬</text>
+  <text x="82" y="1087" font-size="21" class="secondary">수집 후 private Storage 저장</text>
 
   <text x="438" y="916" font-size="31" font-weight="700">Vercel Sandbox</text>
   <text x="438" y="965" font-size="23" class="secondary">네트워크 차단</text>
@@ -78,12 +112,13 @@
   <text x="438" y="1093" font-size="23" font-weight="650" class="accent">고객 코드 설치·실행 없음</text>
 
   <text x="874" y="916" font-size="31" font-weight="700">OSV · OpenAI</text>
-  <text x="874" y="962" font-size="22" class="secondary">OSV: 공개 패키지 좌표</text>
-  <path d="M874 983H1118" stroke="#e5e8eb"/>
-  <text x="874" y="1018" font-size="22" font-weight="650">OpenAI: 선택·별도 동의</text>
-  <text x="874" y="1053" font-size="22" class="secondary">동의한 제한 코드</text>
-  <text x="874" y="1088" font-size="22" class="secondary">독립 후보·방어 근거 검토</text>
+  <text x="874" y="958" font-size="21" class="secondary">OSV: 공개 패키지 좌표</text>
+  <text x="874" y="987" font-size="19" class="secondary">최대 4개 요청 병렬</text>
+  <path d="M874 1006H1118" stroke="#e5e8eb"/>
+  <text x="874" y="1038" font-size="22" font-weight="650">OpenAI: 선택·별도 동의</text>
+  <text x="874" y="1073" font-size="22" class="secondary">동의한 제한 코드</text>
+  <text x="874" y="1108" font-size="22" class="secondary">독립 후보·방어 근거 검토</text>
 
-  <text x="56" y="1194" font-size="23" class="secondary">분석 결과와 AI 후보는 출처·처리 상태를 나누어 저장합니다.</text>
-  <text x="56" y="1226" font-size="22" class="secondary">화살표는 데이터 경로이며, 모든 작업을 동시에 실행한다는 의미는 아닙니다.</text>
+  <text x="56" y="1194" font-size="18" class="secondary">수집 → Sandbox 분석 → OSV 조회 → 선택 AI 검토 → 정리 순서로 진행합니다.</text>
+  <text x="56" y="1222" font-size="17" class="secondary">시작 요청에는 접수 응답을 먼저 보내고, 분석 결과는 저장 후 별도로 조회합니다.</text>
 </svg>

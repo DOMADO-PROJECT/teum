@@ -7,6 +7,20 @@
     .secondary{fill:#566270}.accent{fill:#1d65d1}
     .numeric{font-variant-numeric:tabular-nums}.baseline{fill:#8b95a1}.final{fill:#1d65d1}
     .guide{stroke:#e5e8eb;stroke-width:1;stroke-dasharray:4 6}.zero{stroke:#8b95a1;stroke-width:1}
+    .slot-value{display:none}
+    @media(prefers-reduced-motion:no-preference){
+      .settled-value{display:none}
+      .slot-value{display:inline;animation:sdk-cycle 8s linear infinite}
+      .final-bar{transform-box:fill-box;transform-origin:left center;animation:sdk-bar 8s cubic-bezier(.22,1,.36,1) infinite,sdk-cycle 8s linear infinite}
+      .reel-tens{animation:sdk-tens 8s cubic-bezier(.25,.8,.25,1) infinite}
+      .reel-ones{animation:sdk-ones 8s cubic-bezier(.25,.8,.25,1) infinite}
+      .reel-decimal{animation:sdk-decimal 8s cubic-bezier(.25,.8,.25,1) infinite}
+    }
+    @keyframes sdk-bar{0%,8%{transform:scaleX(var(--start-scale))}34%,100%{transform:scaleX(1)}}
+    @keyframes sdk-tens{0%,8%{transform:translateY(0)}29%,100%{transform:translateY(var(--stop))}}
+    @keyframes sdk-ones{0%,8%{transform:translateY(0)}33%,100%{transform:translateY(var(--stop))}}
+    @keyframes sdk-decimal{0%,8%{transform:translateY(0)}37%,100%{transform:translateY(var(--stop))}}
+    @keyframes sdk-cycle{0%,2%,98%,100%{opacity:0}7%,92%{opacity:1}}
   </style>
   <rect x="1" y="1" width="718" height="1398" rx="16" fill="#fff" stroke="#e5e8eb"/>
   <text x="40" y="56" font-size="22" font-weight="650" class="accent">SDK EXPERIMENT</text>
@@ -23,9 +37,22 @@
     <path d="M680 430V506" class="guide"/>
   <text x="40" y="354" font-size="34" font-weight="700">API 요청</text>
   <text x="40" y="410" font-size="30" class="secondary numeric">27회 → 2회</text>
-  <text x="680" y="354" font-size="42" font-weight="700" class="accent numeric" text-anchor="end">92.6% 감소</text>
+  <text x="680" y="354" font-size="42" font-weight="700" class="accent numeric settled-value" text-anchor="end">92.6% 감소</text>
+  <g class="slot-value accent numeric" font-size="42" font-weight="700" aria-hidden="true" data-final-value="92.6% 감소">
+    <svg x="465.8" y="307.8" width="25.2" height="58.8" overflow="hidden">
+      <text x="12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6" y="46.2 105 163.8 222.6 281.4 340.2 399 457.8 516.6 575.4 634.2 693 751.8 810.6 869.4 928.2 987 1045.8 1104.6 1163.4" text-anchor="middle" class="accent numeric reel-tens" style="--stop:-1117.2px" data-final-digit="9">01234567890123456789</text>
+    </svg>
+    <svg x="491" y="307.8" width="25.2" height="58.8" overflow="hidden">
+      <text x="12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6" y="46.2 105 163.8 222.6 281.4 340.2 399 457.8 516.6 575.4 634.2 693 751.8" text-anchor="middle" class="accent numeric reel-ones" style="--stop:-705.6px" data-final-digit="2">0123456789012</text>
+    </svg>
+    <svg x="528.8" y="307.8" width="25.2" height="58.8" overflow="hidden">
+      <text x="12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6" y="46.2 105 163.8 222.6 281.4 340.2 399 457.8 516.6 575.4 634.2 693 751.8 810.6 869.4 928.2 987" text-anchor="middle" class="accent numeric reel-decimal" style="--stop:-940.8px" data-final-digit="6">01234567890123456</text>
+    </svg>
+    <text x="522.5" y="354" text-anchor="middle" class="accent">.</text>
+    <text x="554" y="354" textLength="126" lengthAdjust="spacingAndGlyphs" class="accent">% 감소</text>
+  </g>
     <rect x="40" y="442" width="640" height="18" class="baseline" data-series="r5"/>
-    <rect x="40" y="476" width="47.4074" height="18" class="final" data-series="final-mean"/>
+    <rect x="40" y="476" width="47.4074" height="18" class="final final-bar" style="--start-scale:13.500002109375" data-series="final-mean"/>
   </g>
   <path d="M40 535H680" stroke="#e5e8eb"/>
   <g data-metric="total_tokens">
@@ -34,9 +61,22 @@
     <path d="M680 655V731" class="guide"/>
   <text x="40" y="579" font-size="34" font-weight="700">총토큰</text>
   <text x="40" y="635" font-size="30" class="secondary numeric">1,738,129개 → 208,733개</text>
-  <text x="680" y="579" font-size="42" font-weight="700" class="accent numeric" text-anchor="end">88.0% 감소</text>
+  <text x="680" y="579" font-size="42" font-weight="700" class="accent numeric settled-value" text-anchor="end">88.0% 감소</text>
+  <g class="slot-value accent numeric" font-size="42" font-weight="700" aria-hidden="true" data-final-value="88.0% 감소">
+    <svg x="465.8" y="532.8" width="25.2" height="58.8" overflow="hidden">
+      <text x="12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6" y="46.2 105 163.8 222.6 281.4 340.2 399 457.8 516.6 575.4 634.2 693 751.8 810.6 869.4 928.2 987 1045.8 1104.6" text-anchor="middle" class="accent numeric reel-tens" style="--stop:-1058.4px" data-final-digit="8">0123456789012345678</text>
+    </svg>
+    <svg x="491" y="532.8" width="25.2" height="58.8" overflow="hidden">
+      <text x="12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6" y="46.2 105 163.8 222.6 281.4 340.2 399 457.8 516.6 575.4 634.2 693 751.8 810.6 869.4 928.2 987 1045.8 1104.6" text-anchor="middle" class="accent numeric reel-ones" style="--stop:-1058.4px" data-final-digit="8">0123456789012345678</text>
+    </svg>
+    <svg x="528.8" y="532.8" width="25.2" height="58.8" overflow="hidden">
+      <text x="12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6" y="46.2 105 163.8 222.6 281.4 340.2 399 457.8 516.6 575.4 634.2" text-anchor="middle" class="accent numeric reel-decimal" style="--stop:-588px" data-final-digit="0">01234567890</text>
+    </svg>
+    <text x="522.5" y="579" text-anchor="middle" class="accent">.</text>
+    <text x="554" y="579" textLength="126" lengthAdjust="spacingAndGlyphs" class="accent">% 감소</text>
+  </g>
     <rect x="40" y="667" width="640" height="18" class="baseline" data-series="r5"/>
-    <rect x="40" y="701" width="76.8580" height="18" class="final" data-series="final-mean"/>
+    <rect x="40" y="701" width="76.8580" height="18" class="final final-bar" style="--start-scale:8.327044679799" data-series="final-mean"/>
   </g>
   <path d="M40 760H680" stroke="#e5e8eb"/>
   <g data-metric="elapsed_ms">
@@ -45,9 +85,22 @@
     <path d="M680 880V956" class="guide"/>
   <text x="40" y="804" font-size="34" font-weight="700">전체 시간 (분:초)</text>
   <text x="40" y="860" font-size="30" class="secondary numeric">26:51.974 → 18:13.274</text>
-  <text x="680" y="804" font-size="42" font-weight="700" class="accent numeric" text-anchor="end">32.2% 감소</text>
+  <text x="680" y="804" font-size="42" font-weight="700" class="accent numeric settled-value" text-anchor="end">32.2% 감소</text>
+  <g class="slot-value accent numeric" font-size="42" font-weight="700" aria-hidden="true" data-final-value="32.2% 감소">
+    <svg x="465.8" y="757.8" width="25.2" height="58.8" overflow="hidden">
+      <text x="12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6" y="46.2 105 163.8 222.6 281.4 340.2 399 457.8 516.6 575.4 634.2 693 751.8 810.6" text-anchor="middle" class="accent numeric reel-tens" style="--stop:-764.4px" data-final-digit="3">01234567890123</text>
+    </svg>
+    <svg x="491" y="757.8" width="25.2" height="58.8" overflow="hidden">
+      <text x="12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6" y="46.2 105 163.8 222.6 281.4 340.2 399 457.8 516.6 575.4 634.2 693 751.8" text-anchor="middle" class="accent numeric reel-ones" style="--stop:-705.6px" data-final-digit="2">0123456789012</text>
+    </svg>
+    <svg x="528.8" y="757.8" width="25.2" height="58.8" overflow="hidden">
+      <text x="12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6" y="46.2 105 163.8 222.6 281.4 340.2 399 457.8 516.6 575.4 634.2 693 751.8" text-anchor="middle" class="accent numeric reel-decimal" style="--stop:-705.6px" data-final-digit="2">0123456789012</text>
+    </svg>
+    <text x="522.5" y="804" text-anchor="middle" class="accent">.</text>
+    <text x="554" y="804" textLength="126" lengthAdjust="spacingAndGlyphs" class="accent">% 감소</text>
+  </g>
     <rect x="40" y="892" width="640" height="18" class="baseline" data-series="r5"/>
-    <rect x="40" y="926" width="434.0610" height="18" class="final" data-series="final-mean"/>
+    <rect x="40" y="926" width="434.0610" height="18" class="final final-bar" style="--start-scale:1.474447139918" data-series="final-mean"/>
   </g>
   <path d="M40 985H680" stroke="#e5e8eb"/>
   <g data-metric="known_usage_cost_usd">
@@ -56,9 +109,22 @@
     <path d="M680 1105V1181" class="guide"/>
   <text x="40" y="1029" font-size="34" font-weight="700">usage 추정 비용</text>
   <text x="40" y="1085" font-size="30" class="secondary numeric">USD $1.4790 → $0.9958</text>
-  <text x="680" y="1029" font-size="42" font-weight="700" class="accent numeric" text-anchor="end">32.7% 감소</text>
+  <text x="680" y="1029" font-size="42" font-weight="700" class="accent numeric settled-value" text-anchor="end">32.7% 감소</text>
+  <g class="slot-value accent numeric" font-size="42" font-weight="700" aria-hidden="true" data-final-value="32.7% 감소">
+    <svg x="465.8" y="982.8" width="25.2" height="58.8" overflow="hidden">
+      <text x="12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6" y="46.2 105 163.8 222.6 281.4 340.2 399 457.8 516.6 575.4 634.2 693 751.8 810.6" text-anchor="middle" class="accent numeric reel-tens" style="--stop:-764.4px" data-final-digit="3">01234567890123</text>
+    </svg>
+    <svg x="491" y="982.8" width="25.2" height="58.8" overflow="hidden">
+      <text x="12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6" y="46.2 105 163.8 222.6 281.4 340.2 399 457.8 516.6 575.4 634.2 693 751.8" text-anchor="middle" class="accent numeric reel-ones" style="--stop:-705.6px" data-final-digit="2">0123456789012</text>
+    </svg>
+    <svg x="528.8" y="982.8" width="25.2" height="58.8" overflow="hidden">
+      <text x="12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6 12.6" y="46.2 105 163.8 222.6 281.4 340.2 399 457.8 516.6 575.4 634.2 693 751.8 810.6 869.4 928.2 987 1045.8" text-anchor="middle" class="accent numeric reel-decimal" style="--stop:-999.6px" data-final-digit="7">012345678901234567</text>
+    </svg>
+    <text x="522.5" y="1029" text-anchor="middle" class="accent">.</text>
+    <text x="554" y="1029" textLength="126" lengthAdjust="spacingAndGlyphs" class="accent">% 감소</text>
+  </g>
     <rect x="40" y="1117" width="640" height="18" class="baseline" data-series="r5"/>
-    <rect x="40" y="1151" width="430.9226" height="18" class="final" data-series="final-mean"/>
+    <rect x="40" y="1151" width="430.9226" height="18" class="final final-bar" style="--start-scale:1.485185506632" data-series="final-mean"/>
   </g>
   <text x="40" y="1218" font-size="24" class="secondary numeric" text-anchor="middle">0</text>
   <text x="360.0" y="1218" font-size="24" class="secondary numeric" text-anchor="middle">50</text>

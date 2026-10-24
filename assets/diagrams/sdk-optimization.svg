@@ -7,6 +7,20 @@
     .secondary{fill:#566270}.accent{fill:#1d65d1}
     .numeric{font-variant-numeric:tabular-nums}.baseline{fill:#8b95a1}.final{fill:#1d65d1}
     .guide{stroke:#e5e8eb;stroke-width:1;stroke-dasharray:4 6}.zero{stroke:#8b95a1;stroke-width:1}
+    .slot-value{display:none}
+    @media(prefers-reduced-motion:no-preference){
+      .settled-value{display:none}
+      .slot-value{display:inline;animation:sdk-cycle 8s linear infinite}
+      .final-bar{transform-box:fill-box;transform-origin:left center;animation:sdk-bar 8s cubic-bezier(.22,1,.36,1) infinite,sdk-cycle 8s linear infinite}
+      .reel-tens{animation:sdk-tens 8s cubic-bezier(.25,.8,.25,1) infinite}
+      .reel-ones{animation:sdk-ones 8s cubic-bezier(.25,.8,.25,1) infinite}
+      .reel-decimal{animation:sdk-decimal 8s cubic-bezier(.25,.8,.25,1) infinite}
+    }
+    @keyframes sdk-bar{0%,8%{transform:scaleX(var(--start-scale))}34%,100%{transform:scaleX(1)}}
+    @keyframes sdk-tens{0%,8%{transform:translateY(0)}29%,100%{transform:translateY(var(--stop))}}
+    @keyframes sdk-ones{0%,8%{transform:translateY(0)}33%,100%{transform:translateY(var(--stop))}}
+    @keyframes sdk-decimal{0%,8%{transform:translateY(0)}37%,100%{transform:translateY(var(--stop))}}
+    @keyframes sdk-cycle{0%,2%,98%,100%{opacity:0}7%,92%{opacity:1}}
   </style>
   <rect x="1" y="1" width="1198" height="898" rx="16" fill="#fff" stroke="#e5e8eb"/>
   <text x="56" y="72" font-size="22" font-weight="650" class="accent">SDK EXPERIMENT</text>
@@ -23,30 +37,82 @@
   <g data-metric="requests">
   <text x="56" y="308" font-size="30" font-weight="700">API 요청</text>
   <text x="56" y="344" font-size="24" class="secondary numeric">27회 → 2회</text>
-  <text x="1144" y="320" font-size="40" font-weight="700" class="accent numeric" text-anchor="end">92.6% 감소</text>
+  <text x="1144" y="320" font-size="40" font-weight="700" class="accent numeric settled-value" text-anchor="end">92.6% 감소</text>
+  <g class="slot-value accent numeric" font-size="40" font-weight="700" aria-hidden="true" data-final-value="92.6% 감소">
+    <svg x="940" y="276" width="24" height="56" overflow="hidden">
+      <text x="12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12" y="44 100 156 212 268 324 380 436 492 548 604 660 716 772 828 884 940 996 1052 1108" text-anchor="middle" class="accent numeric reel-tens" style="--stop:-1064px" data-final-digit="9">01234567890123456789</text>
+    </svg>
+    <svg x="964" y="276" width="24" height="56" overflow="hidden">
+      <text x="12 12 12 12 12 12 12 12 12 12 12 12 12" y="44 100 156 212 268 324 380 436 492 548 604 660 716" text-anchor="middle" class="accent numeric reel-ones" style="--stop:-672px" data-final-digit="2">0123456789012</text>
+    </svg>
+    <svg x="1000" y="276" width="24" height="56" overflow="hidden">
+      <text x="12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12" y="44 100 156 212 268 324 380 436 492 548 604 660 716 772 828 884 940" text-anchor="middle" class="accent numeric reel-decimal" style="--stop:-896px" data-final-digit="6">01234567890123456</text>
+    </svg>
+    <text x="994" y="320" text-anchor="middle" class="accent">.</text>
+    <text x="1024" y="320" textLength="120" lengthAdjust="spacingAndGlyphs" class="accent">% 감소</text>
+  </g>
     <rect x="420" y="284" width="470" height="14" class="baseline" data-series="r5"/>
-    <rect x="420" y="318" width="34.8148" height="14" class="final" data-series="final-mean"/>
+    <rect x="420" y="318" width="34.8148" height="14" class="final final-bar" style="--start-scale:13.500005744683" data-series="final-mean"/>
   </g>
   <g data-metric="total_tokens">
   <text x="56" y="453" font-size="30" font-weight="700">총토큰</text>
   <text x="56" y="489" font-size="24" class="secondary numeric">1,738,129개 → 208,733개</text>
-  <text x="1144" y="465" font-size="40" font-weight="700" class="accent numeric" text-anchor="end">88.0% 감소</text>
+  <text x="1144" y="465" font-size="40" font-weight="700" class="accent numeric settled-value" text-anchor="end">88.0% 감소</text>
+  <g class="slot-value accent numeric" font-size="40" font-weight="700" aria-hidden="true" data-final-value="88.0% 감소">
+    <svg x="940" y="421" width="24" height="56" overflow="hidden">
+      <text x="12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12" y="44 100 156 212 268 324 380 436 492 548 604 660 716 772 828 884 940 996 1052" text-anchor="middle" class="accent numeric reel-tens" style="--stop:-1008px" data-final-digit="8">0123456789012345678</text>
+    </svg>
+    <svg x="964" y="421" width="24" height="56" overflow="hidden">
+      <text x="12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12" y="44 100 156 212 268 324 380 436 492 548 604 660 716 772 828 884 940 996 1052" text-anchor="middle" class="accent numeric reel-ones" style="--stop:-1008px" data-final-digit="8">0123456789012345678</text>
+    </svg>
+    <svg x="1000" y="421" width="24" height="56" overflow="hidden">
+      <text x="12 12 12 12 12 12 12 12 12 12 12" y="44 100 156 212 268 324 380 436 492 548 604" text-anchor="middle" class="accent numeric reel-decimal" style="--stop:-560px" data-final-digit="0">01234567890</text>
+    </svg>
+    <text x="994" y="465" text-anchor="middle" class="accent">.</text>
+    <text x="1024" y="465" textLength="120" lengthAdjust="spacingAndGlyphs" class="accent">% 감소</text>
+  </g>
     <rect x="420" y="429" width="470" height="14" class="baseline" data-series="r5"/>
-    <rect x="420" y="463" width="56.4426" height="14" class="final" data-series="final-mean"/>
+    <rect x="420" y="463" width="56.4426" height="14" class="final final-bar" style="--start-scale:8.327043757729" data-series="final-mean"/>
   </g>
   <g data-metric="elapsed_ms">
   <text x="56" y="598" font-size="30" font-weight="700">전체 시간 (분:초)</text>
   <text x="56" y="634" font-size="24" class="secondary numeric">26:51.974 → 18:13.274</text>
-  <text x="1144" y="610" font-size="40" font-weight="700" class="accent numeric" text-anchor="end">32.2% 감소</text>
+  <text x="1144" y="610" font-size="40" font-weight="700" class="accent numeric settled-value" text-anchor="end">32.2% 감소</text>
+  <g class="slot-value accent numeric" font-size="40" font-weight="700" aria-hidden="true" data-final-value="32.2% 감소">
+    <svg x="940" y="566" width="24" height="56" overflow="hidden">
+      <text x="12 12 12 12 12 12 12 12 12 12 12 12 12 12" y="44 100 156 212 268 324 380 436 492 548 604 660 716 772" text-anchor="middle" class="accent numeric reel-tens" style="--stop:-728px" data-final-digit="3">01234567890123</text>
+    </svg>
+    <svg x="964" y="566" width="24" height="56" overflow="hidden">
+      <text x="12 12 12 12 12 12 12 12 12 12 12 12 12" y="44 100 156 212 268 324 380 436 492 548 604 660 716" text-anchor="middle" class="accent numeric reel-ones" style="--stop:-672px" data-final-digit="2">0123456789012</text>
+    </svg>
+    <svg x="1000" y="566" width="24" height="56" overflow="hidden">
+      <text x="12 12 12 12 12 12 12 12 12 12 12 12 12" y="44 100 156 212 268 324 380 436 492 548 604 660 716" text-anchor="middle" class="accent numeric reel-decimal" style="--stop:-672px" data-final-digit="2">0123456789012</text>
+    </svg>
+    <text x="994" y="610" text-anchor="middle" class="accent">.</text>
+    <text x="1024" y="610" textLength="120" lengthAdjust="spacingAndGlyphs" class="accent">% 감소</text>
+  </g>
     <rect x="420" y="574" width="470" height="14" class="baseline" data-series="r5"/>
-    <rect x="420" y="608" width="318.7635" height="14" class="final" data-series="final-mean"/>
+    <rect x="420" y="608" width="318.7635" height="14" class="final final-bar" style="--start-scale:1.474447356739" data-series="final-mean"/>
   </g>
   <g data-metric="known_usage_cost_usd">
   <text x="56" y="743" font-size="30" font-weight="700">usage 추정 비용</text>
   <text x="56" y="779" font-size="24" class="secondary numeric">USD $1.4790 → $0.9958</text>
-  <text x="1144" y="755" font-size="40" font-weight="700" class="accent numeric" text-anchor="end">32.7% 감소</text>
+  <text x="1144" y="755" font-size="40" font-weight="700" class="accent numeric settled-value" text-anchor="end">32.7% 감소</text>
+  <g class="slot-value accent numeric" font-size="40" font-weight="700" aria-hidden="true" data-final-value="32.7% 감소">
+    <svg x="940" y="711" width="24" height="56" overflow="hidden">
+      <text x="12 12 12 12 12 12 12 12 12 12 12 12 12 12" y="44 100 156 212 268 324 380 436 492 548 604 660 716 772" text-anchor="middle" class="accent numeric reel-tens" style="--stop:-728px" data-final-digit="3">01234567890123</text>
+    </svg>
+    <svg x="964" y="711" width="24" height="56" overflow="hidden">
+      <text x="12 12 12 12 12 12 12 12 12 12 12 12 12" y="44 100 156 212 268 324 380 436 492 548 604 660 716" text-anchor="middle" class="accent numeric reel-ones" style="--stop:-672px" data-final-digit="2">0123456789012</text>
+    </svg>
+    <svg x="1000" y="711" width="24" height="56" overflow="hidden">
+      <text x="12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12" y="44 100 156 212 268 324 380 436 492 548 604 660 716 772 828 884 940 996" text-anchor="middle" class="accent numeric reel-decimal" style="--stop:-952px" data-final-digit="7">012345678901234567</text>
+    </svg>
+    <text x="994" y="755" text-anchor="middle" class="accent">.</text>
+    <text x="1024" y="755" textLength="120" lengthAdjust="spacingAndGlyphs" class="accent">% 감소</text>
+  </g>
     <rect x="420" y="719" width="470" height="14" class="baseline" data-series="r5"/>
-    <rect x="420" y="753" width="316.4588" height="14" class="final" data-series="final-mean"/>
+    <rect x="420" y="753" width="316.4588" height="14" class="final final-bar" style="--start-scale:1.485185433301" data-series="final-mean"/>
   </g>
   <text x="420" y="815" font-size="20" class="secondary numeric" text-anchor="middle">0</text>
   <text x="655.0" y="815" font-size="20" class="secondary numeric" text-anchor="middle">50</text>

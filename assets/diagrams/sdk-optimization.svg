@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="sdk-title sdk-desc" xml:lang="ko">
+  <title id="sdk-title">teum. AI SDK 실험 — 첫 4/4 성공본과 최종 두 회차 비교</title>
+  <desc id="sdk-desc">고정한 자사 코드 26개 파일·2,277줄의 개발용 SDK 실험입니다. 첫 4/4 성공본 r5와 최종 두 회차 r14/r15의 평균을 비교합니다. API 요청은 27회에서 2회로 92.6%, 총토큰은 1,738,129개에서 208,733개로 88.0%, 전체 시간은 26:51.974에서 18:13.274로 32.2%, usage 추정 비용은 USD 1.4790에서 0.9958로 32.7% 감소했습니다. 최종 두 회차는 각각 핵심 4/4·세부 16/16을 충족했습니다. 각 지표의 r5를 100으로 놓고 막대를 0에서 시작합니다. 현재 서비스 경로와 별도이며 비용은 실제 청구액과 구분합니다.</desc>
+  <metadata id="sdk-data">{&quot;baseline_run&quot;:&quot;r5&quot;,&quot;final_runs&quot;:[&quot;r14&quot;,&quot;r15&quot;],&quot;final_aggregation&quot;:&quot;arithmetic mean of two runs&quot;,&quot;fixed_files&quot;:26,&quot;fixed_lines&quot;:2277,&quot;final_core_complete_each&quot;:&quot;4/4&quot;,&quot;final_detailed_complete_each&quot;:&quot;16/16&quot;,&quot;bar_scale&quot;:&quot;each metric normalized to r5 = 100, zero origin&quot;,&quot;source&quot;:&quot;docs/AI_SDK_R1_R15.md&quot;,&quot;metrics&quot;:[{&quot;id&quot;:&quot;requests&quot;,&quot;label&quot;:&quot;API 요청&quot;,&quot;baseline&quot;:&quot;27&quot;,&quot;final_mean&quot;:&quot;2.0&quot;,&quot;reduction_percent&quot;:&quot;92.59259259259259259259259259&quot;,&quot;display_reduction&quot;:&quot;92.6% 감소&quot;,&quot;display_values&quot;:&quot;27회 → 2회&quot;},{&quot;id&quot;:&quot;total_tokens&quot;,&quot;label&quot;:&quot;총토큰&quot;,&quot;baseline&quot;:&quot;1738129&quot;,&quot;final_mean&quot;:&quot;208733.0&quot;,&quot;reduction_percent&quot;:&quot;87.99093738151771243676389957&quot;,&quot;display_reduction&quot;:&quot;88.0% 감소&quot;,&quot;display_values&quot;:&quot;1,738,129개 → 208,733개&quot;},{&quot;id&quot;:&quot;elapsed_ms&quot;,&quot;label&quot;:&quot;전체 시간 (분:초)&quot;,&quot;baseline&quot;:&quot;1611974&quot;,&quot;final_mean&quot;:&quot;1093273.5&quot;,&quot;reduction_percent&quot;:&quot;32.17796937171443211863218638&quot;,&quot;display_reduction&quot;:&quot;32.2% 감소&quot;,&quot;display_values&quot;:&quot;26:51.974 → 18:13.274&quot;},{&quot;id&quot;:&quot;known_usage_cost_usd&quot;,&quot;label&quot;:&quot;usage 추정 비용&quot;,&quot;baseline&quot;:&quot;1.4789971&quot;,&quot;final_mean&quot;:&quot;0.99583325&quot;,&quot;reduction_percent&quot;:&quot;32.66834329830667010773719570&quot;,&quot;display_reduction&quot;:&quot;32.7% 감소&quot;,&quot;display_values&quot;:&quot;USD $1.4790 → $0.9958&quot;}]}</metadata>
+  <style>
+    text{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;fill:#191f28}
+    .secondary{fill:#566270}.accent{fill:#1d65d1}
+    .numeric{font-variant-numeric:tabular-nums}.baseline{fill:#8b95a1}.final{fill:#1d65d1}
+    .guide{stroke:#e5e8eb;stroke-width:1;stroke-dasharray:4 6}.zero{stroke:#8b95a1;stroke-width:1}
+  </style>
+  <rect x="1" y="1" width="1198" height="898" rx="16" fill="#fff" stroke="#e5e8eb"/>
+  <text x="56" y="72" font-size="22" font-weight="650" class="accent">SDK EXPERIMENT</text>
+  <text x="56" y="134" font-size="42" font-weight="700">핵심 검토 조건 4/4, 두 회차 모두 유지</text>
+  <text x="56" y="180" font-size="24" class="secondary">고정 자사 코드 26개 파일·2,277줄 · r5와 r14/r15 평균 비교</text>
+  <text x="56" y="228" font-size="21" class="secondary">지표별 r5 = 100</text>
+  <rect x="420" y="212" width="16" height="16" class="baseline"/>
+  <text x="446" y="228" font-size="22" class="secondary">r5</text>
+  <rect x="560" y="212" width="16" height="16" class="final"/>
+  <text x="586" y="228" font-size="22" class="secondary">r14/r15 평균</text>
+  <path d="M420 264V800" class="zero"/>
+  <path d="M655.0 264V800" class="guide"/>
+  <path d="M890 264V800" class="guide"/>
+  <g data-metric="requests">
+  <text x="56" y="308" font-size="30" font-weight="700">API 요청</text>
+  <text x="56" y="344" font-size="24" class="secondary numeric">27회 → 2회</text>
+  <text x="1144" y="320" font-size="40" font-weight="700" class="accent numeric" text-anchor="end">92.6% 감소</text>
+    <rect x="420" y="284" width="470" height="14" class="baseline" data-series="r5"/>
+    <rect x="420" y="318" width="34.8148" height="14" class="final" data-series="final-mean"/>
+  </g>
+  <g data-metric="total_tokens">
+  <text x="56" y="453" font-size="30" font-weight="700">총토큰</text>
+  <text x="56" y="489" font-size="24" class="secondary numeric">1,738,129개 → 208,733개</text>
+  <text x="1144" y="465" font-size="40" font-weight="700" class="accent numeric" text-anchor="end">88.0% 감소</text>
+    <rect x="420" y="429" width="470" height="14" class="baseline" data-series="r5"/>
+    <rect x="420" y="463" width="56.4426" height="14" class="final" data-series="final-mean"/>
+  </g>
+  <g data-metric="elapsed_ms">
+  <text x="56" y="598" font-size="30" font-weight="700">전체 시간 (분:초)</text>
+  <text x="56" y="634" font-size="24" class="secondary numeric">26:51.974 → 18:13.274</text>
+  <text x="1144" y="610" font-size="40" font-weight="700" class="accent numeric" text-anchor="end">32.2% 감소</text>
+    <rect x="420" y="574" width="470" height="14" class="baseline" data-series="r5"/>
+    <rect x="420" y="608" width="318.7635" height="14" class="final" data-series="final-mean"/>
+  </g>
+  <g data-metric="known_usage_cost_usd">
+  <text x="56" y="743" font-size="30" font-weight="700">usage 추정 비용</text>
+  <text x="56" y="779" font-size="24" class="secondary numeric">USD $1.4790 → $0.9958</text>
+  <text x="1144" y="755" font-size="40" font-weight="700" class="accent numeric" text-anchor="end">32.7% 감소</text>
+    <rect x="420" y="719" width="470" height="14" class="baseline" data-series="r5"/>
+    <rect x="420" y="753" width="316.4588" height="14" class="final" data-series="final-mean"/>
+  </g>
+  <text x="420" y="815" font-size="20" class="secondary numeric" text-anchor="middle">0</text>
+  <text x="655.0" y="815" font-size="20" class="secondary numeric" text-anchor="middle">50</text>
+  <text x="890" y="815" font-size="20" class="secondary numeric" text-anchor="middle">100</text>
+  <text x="56" y="860" font-size="21" class="secondary">최종 두 회차 모두 4/4 · 16/16 · 현재 서비스와 별도의 SDK 실험</text>
+</svg>

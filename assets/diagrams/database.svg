@@ -1,0 +1,249 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="2230" viewBox="0 0 1200 2230" role="img" aria-labelledby="database-title database-desc" xml:lang="ko">
+  <title id="database-title">teum. 데이터 모델 — 작업 공간에서 점검과 검토 기록까지</title>
+  <desc id="database-desc">2026년 10월 26일 PostgreSQL 카탈로그에서 확인한 public 테이블 16개와 Supabase Auth의 users 참조입니다. 주요 외래키 20개를 부모에서 자식 방향으로 연결합니다. 작업 공간에 프로젝트와 구성원이 속하고, 프로젝트에 수집 입력, 점검 실행, 규칙 발견 항목과 분석 정책을 연결합니다. 점검에는 정적 분석 근거, 진행 단계, 발견 위치, 작업 전달과 사용량 예약을 연결합니다. AI 검토는 진행 단계에, AI 후보의 검토 기록은 AI 검토에 연결됩니다. 0..N은 부모 한 행에 자식이 없거나 여러 행, 0..1은 없거나 최대 한 행입니다. 재점검의 baseline_id는 같은 scan_runs의 이전 점검을 참조합니다. website_targets는 현재 제공하지 않는 URL 점검 경로입니다. 공통 사용자·작업 공간 참조 등 보조 외래키 12개, 전체 컬럼과 private 및 Auth 내부 구조는 생략합니다. 실제 사용자나 분석 내용은 포함하지 않습니다.</desc>
+  <metadata id="database-data">{"as_of":"2026-10-26","source":"PostgreSQL catalog, read-only","schema":"public","table_count":16,"displayed_foreign_keys":20,"omitted_foreign_keys":12}</metadata>
+  <defs>
+    <marker id="database-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M2 1L8 5L2 9" fill="none" stroke="#8b95a1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="database-arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M2 1L8 5L2 9" fill="none" stroke="#1d65d1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+  </defs>
+  <style>
+    text{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;fill:#191f28}
+    .secondary{fill:#566270}.accent{fill:#1d65d1}
+    .table{fill:#fff;stroke:#e5e8eb;stroke-width:1.5}
+    .core{stroke:#a9c9f5}.reserved{stroke:#c9cfd6;stroke-dasharray:5 5}
+    .role{font-size:18px;fill:#566270}.name{font-size:23px;font-weight:700}
+    .column{font-size:19px;fill:#333d4b}.composite{font-size:17px}
+    .key{font-size:15px;font-weight:650;fill:#1d65d1;text-anchor:end}
+    .divider{stroke:#e5e8eb}.note{font-size:16px;fill:#566270}
+    .wire{fill:none;stroke:#b0b8c1;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;marker-end:url(#database-arrow)}
+    .primary{stroke:#1d65d1;stroke-width:2.2;marker-end:url(#database-arrow-blue)}
+    .inactive{stroke-dasharray:5 5}
+    .cardinality{font-size:17px;fill:#566270;text-anchor:middle;paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round}
+  </style>
+  <rect x="1" y="1" width="1198" height="2228" rx="16" fill="#fff" stroke="#e5e8eb"/>
+  <text x="56" y="72" font-size="22" font-weight="650" letter-spacing="1.2" class="accent">DATABASE RELATIONSHIPS</text>
+  <text x="56" y="134" font-size="42" font-weight="700" letter-spacing="-1">코드 점검의 흐름을 데이터로 연결합니다.</text>
+  <text x="56" y="180" font-size="24" class="secondary">Supabase PostgreSQL · 공간과 권한 → 입력과 실행 → 근거와 검토</text>
+  <text x="56" y="230" font-size="18" class="secondary">부모 → 자식</text>
+  <text x="220" y="230" font-size="18" class="secondary">0..N 여러 행 · 0..1 최대 한 행 · 모두 0개 가능</text>
+  <text x="1144" y="230" font-size="18" text-anchor="end" class="secondary">PK 기본키 · FK 외래키</text>
+
+  <g aria-label="주요 외래키 관계">
+    <path class="wire" data-fk="workspace_members_user_id_fkey" d="M214 300V274H986V300"/>
+    <text x="986" y="262" class="cardinality">user_id · 0..N</text>
+    <path class="wire" data-fk="workspaces_owner_id_fkey" d="M372 390H442"/>
+    <text x="407" y="366" class="cardinality">0..1</text>
+    <path class="wire" data-fk="workspace_members_workspace_id_fkey" d="M758 390H828"/>
+    <text x="793" y="366" class="cardinality">0..N</text>
+    <path class="wire primary" data-fk="projects_workspace_id_fkey" d="M600 480V580"/>
+    <text x="628" y="538" class="cardinality">0..N</text>
+    <path class="wire" data-fk="project_analysis_policies_project_id_workspace_id_fkey" d="M442 680H372"/>
+    <text x="407" y="656" class="cardinality">0..1</text>
+    <path class="wire" data-fk="audit_events_project_id_workspace_id_fkey" d="M758 680H828"/>
+    <text x="793" y="656" class="cardinality">0..N</text>
+    <path class="wire" data-fk="uploads_project_id_workspace_id_fkey" d="M500 780V828H214V880"/>
+    <text x="240" y="858" class="cardinality">0..N</text>
+    <path class="wire inactive" data-fk="website_targets_project_id_workspace_id_fkey" d="M700 780V828H986V880"/>
+    <text x="1014" y="858" class="cardinality">0..N</text>
+    <path class="wire primary" data-fk="scan_runs_project_id_workspace_id_fkey" d="M600 780V880"/>
+    <text x="628" y="852" class="cardinality">0..N</text>
+    <path class="wire" data-fk="findings_project_id_workspace_id_fkey" d="M442 730H398V1330H372"/>
+    <text x="400" y="1304" class="cardinality">0..N</text>
+    <path class="wire" data-fk="scan_runs_upload_id_project_id_workspace_id_fkey" d="M372 990H442"/>
+    <text x="407" y="966" class="cardinality">0..1</text>
+    <path class="wire inactive" data-fk="scan_runs_website_target_fkey" d="M828 990H758"/>
+    <text x="793" y="966" class="cardinality">0..N</text>
+    <path class="wire primary" data-fk="scan_native_analysis_run_id_project_id_workspace_id_fkey" d="M600 1132V1230"/>
+    <text x="628" y="1188" class="cardinality">0..1</text>
+    <path class="wire" data-fk="scan_stages_run_id_project_id_workspace_id_fkey" d="M758 1070H794V1330H828"/>
+    <text x="801" y="1304" class="cardinality">0..N</text>
+    <path class="wire" data-fk="finding_occurrences_run_id_project_id_workspace_id_fkey" d="M442 1090H418V1480H270V1530"/>
+    <text x="300" y="1510" class="cardinality">0..N</text>
+    <path class="wire" data-fk="finding_occurrences_finding_id_project_id_workspace_id_fkey" d="M184 1430V1530"/>
+    <text x="156" y="1488" class="cardinality">0..N</text>
+    <path class="wire primary" data-fk="scan_ai_reviews_run_id_kind_fkey" d="M986 1430V1530"/>
+    <text x="1014" y="1488" class="cardinality">0..1</text>
+    <path class="wire" data-fk="usage_reservations_run_id_fkey" d="M758 1106H778V1950H758"/>
+    <text x="799" y="1924" class="cardinality">0..1</text>
+    <path class="wire" data-fk="dispatch_outbox_run_id_fkey" d="M778 1630H758"/>
+    <circle cx="778" cy="1630" r="3" fill="#b0b8c1"/>
+    <text x="799" y="1604" class="cardinality">0..1</text>
+    <path class="wire primary" data-fk="ai_finding_reviews_run_id_fkey" d="M986 1750V1850"/>
+    <text x="1014" y="1810" class="cardinality">0..N</text>
+  </g>
+
+  <g data-table="auth.users" transform="translate(56 300)">
+    <rect class="table" width="316" height="180" rx="12"/>
+    <text x="22" y="30" class="role">로그인 계정</text>
+    <text x="22" y="64" class="name">auth.users</text>
+    <path class="divider" d="M22 82H294"/>
+    <text x="22" y="112" class="column" data-column="id">id</text><text x="294" y="112" class="key">PK</text>
+    <text x="22" y="148" class="note">Supabase Auth · 참조 테이블</text>
+  </g>
+  <g data-table="public.workspaces" transform="translate(442 300)">
+    <rect class="table core" width="316" height="180" rx="12"/>
+    <text x="22" y="30" class="role">작업 공간</text>
+    <text x="22" y="64" class="name">workspaces</text>
+    <path class="divider" d="M22 82H294"/>
+    <text x="22" y="112" class="column" data-column="id">id</text><text x="294" y="112" class="key">PK</text>
+    <text x="22" y="142" class="column" data-column="owner_id">owner_id</text><text x="294" y="142" class="key">FK · UQ</text>
+  </g>
+  <g data-table="public.workspace_members" transform="translate(828 300)">
+    <rect class="table" width="316" height="180" rx="12"/>
+    <text x="22" y="30" class="role">공간의 구성원</text>
+    <text x="22" y="64" class="name">workspace_members</text>
+    <path class="divider" d="M22 82H294"/>
+    <text x="22" y="112" class="column" data-column="workspace_id">workspace_id</text><text x="294" y="112" class="key">PK · FK</text>
+    <text x="22" y="142" class="column" data-column="user_id">user_id</text><text x="294" y="142" class="key">PK · FK</text>
+  </g>
+
+  <g data-table="public.project_analysis_policies" transform="translate(56 580)">
+    <rect class="table" width="316" height="200" rx="12"/>
+    <text x="22" y="30" class="role">분석에 사용할 선언과 정책</text>
+    <text x="22" y="64" class="name" style="font-size:20px">project_analysis_policies</text>
+    <path class="divider" d="M22 82H294"/>
+    <text x="22" y="112" class="column" data-column="project_id">project_id</text><text x="294" y="112" class="key">PK · FK</text>
+    <text x="22" y="142" class="column" data-column="workspace_id">workspace_id</text><text x="294" y="142" class="key">FK</text>
+    <text x="22" y="178" class="note">프로젝트마다 최대 한 행</text>
+  </g>
+  <g data-table="public.projects" transform="translate(442 580)">
+    <rect class="table core" width="316" height="200" rx="12"/>
+    <text x="22" y="30" class="role">점검할 프로젝트</text>
+    <text x="22" y="64" class="name">projects</text>
+    <path class="divider" d="M22 82H294"/>
+    <text x="22" y="112" class="column" data-column="id">id</text><text x="294" y="112" class="key">PK</text>
+    <text x="22" y="142" class="column" data-column="workspace_id">workspace_id</text><text x="294" y="142" class="key">FK</text>
+    <text x="22" y="178" class="note">입력·점검·발견 항목의 기준</text>
+  </g>
+  <g data-table="public.audit_events" transform="translate(828 580)">
+    <rect class="table" width="316" height="200" rx="12"/>
+    <text x="22" y="30" class="role">작업과 변경의 기록</text>
+    <text x="22" y="64" class="name">audit_events</text>
+    <path class="divider" d="M22 82H294"/>
+    <text x="22" y="112" class="column" data-column="id">id</text><text x="294" y="112" class="key">PK</text>
+    <text x="22" y="142" class="column composite" data-column="project_id workspace_id">project_id · workspace_id</text><text x="294" y="142" class="key">FK</text>
+    <text x="22" y="172" class="column" data-column="actor_id">actor_id</text><text x="294" y="172" class="key">FK</text>
+  </g>
+
+  <g data-table="public.uploads" transform="translate(56 880)">
+    <rect class="table" width="316" height="200" rx="12"/>
+    <text x="22" y="30" class="role">수집한 입력의 보관 기록</text>
+    <text x="22" y="64" class="name">uploads</text>
+    <path class="divider" d="M22 82H294"/>
+    <text x="22" y="112" class="column" data-column="id">id</text><text x="294" y="112" class="key">PK</text>
+    <text x="22" y="142" class="column composite" data-column="project_id workspace_id">project_id · workspace_id</text><text x="294" y="142" class="key">FK</text>
+    <text x="22" y="178" class="note">GitHub 수집 입력 · private Storage</text>
+  </g>
+  <g data-table="public.scan_runs" transform="translate(442 880)">
+    <rect class="table core" width="316" height="252" rx="12"/>
+    <rect x="0" y="20" width="4" height="48" rx="2" fill="#1d65d1"/>
+    <text x="22" y="30" class="role">한 번의 점검 실행</text>
+    <text x="22" y="64" class="name">scan_runs</text>
+    <path class="divider" d="M22 82H294"/>
+    <text x="22" y="112" class="column" data-column="id">id</text><text x="294" y="112" class="key">PK</text>
+    <text x="22" y="142" class="column composite" data-column="project_id workspace_id">project_id · workspace_id</text><text x="294" y="142" class="key">FK</text>
+    <text x="22" y="172" class="column" data-column="upload_id">upload_id</text><text x="294" y="172" class="key">FK · UQ</text>
+    <text x="22" y="202" class="column" data-column="baseline_id">baseline_id</text><text x="294" y="202" class="key">FK</text>
+    <text x="22" y="232" class="column secondary" data-column="website_target_id">website_target_id</text><text x="294" y="232" class="key">FK</text>
+  </g>
+  <g data-table="public.website_targets" transform="translate(828 880)">
+    <rect class="table reserved" width="316" height="200" rx="12"/>
+    <text x="22" y="30" class="role">URL 점검 경로 · 현재 미제공</text>
+    <text x="22" y="64" class="name">website_targets</text>
+    <path class="divider" d="M22 82H294"/>
+    <text x="22" y="112" class="column" data-column="id">id</text><text x="294" y="112" class="key">PK</text>
+    <text x="22" y="142" class="column composite" data-column="project_id workspace_id">project_id · workspace_id</text><text x="294" y="142" class="key">FK</text>
+    <text x="22" y="178" class="note">테이블 존재와 기능 제공은 별개</text>
+  </g>
+
+  <g data-table="public.findings" transform="translate(56 1230)">
+    <rect class="table" width="316" height="200" rx="12"/>
+    <text x="22" y="30" class="role">규칙 발견 항목 · 처리 상태</text>
+    <text x="22" y="64" class="name">findings</text>
+    <path class="divider" d="M22 82H294"/>
+    <text x="22" y="112" class="column" data-column="id">id</text><text x="294" y="112" class="key">PK</text>
+    <text x="22" y="142" class="column composite" data-column="project_id workspace_id">project_id · workspace_id</text><text x="294" y="142" class="key">FK</text>
+    <text x="22" y="172" class="column" data-column="assignee_id">assignee_id</text><text x="294" y="172" class="key">FK</text>
+  </g>
+  <g data-table="public.scan_native_analysis" transform="translate(442 1230)">
+    <rect class="table core" width="316" height="200" rx="12"/>
+    <text x="22" y="30" class="role">정적 분석의 근거와 범위</text>
+    <text x="22" y="64" class="name">scan_native_analysis</text>
+    <path class="divider" d="M22 82H294"/>
+    <text x="22" y="112" class="column" data-column="run_id">run_id</text><text x="294" y="112" class="key">PK · FK</text>
+    <text x="22" y="142" class="column composite" data-column="project_id workspace_id">project_id · workspace_id</text><text x="294" y="142" class="key">FK</text>
+    <text x="22" y="178" class="note">규칙·의존성 분석 근거 보존</text>
+  </g>
+  <g data-table="public.scan_stages" transform="translate(828 1230)">
+    <rect class="table" width="316" height="200" rx="12"/>
+    <text x="22" y="30" class="role">점검의 단계별 진행 상태</text>
+    <text x="22" y="64" class="name">scan_stages</text>
+    <path class="divider" d="M22 82H294"/>
+    <text x="22" y="112" class="column" data-column="run_id">run_id</text><text x="294" y="112" class="key">PK · FK</text>
+    <text x="22" y="142" class="column" data-column="kind">kind</text><text x="294" y="142" class="key">PK</text>
+    <text x="22" y="172" class="column composite" data-column="project_id workspace_id">project_id · workspace_id</text><text x="294" y="172" class="key">FK</text>
+  </g>
+
+  <g data-table="public.finding_occurrences" transform="translate(56 1530)">
+    <rect class="table" width="316" height="220" rx="12"/>
+    <text x="22" y="30" class="role">점검별 발견 위치와 근거</text>
+    <text x="22" y="64" class="name">finding_occurrences</text>
+    <path class="divider" d="M22 82H294"/>
+    <text x="22" y="112" class="column" data-column="id">id</text><text x="294" y="112" class="key">PK</text>
+    <text x="22" y="142" class="column" data-column="finding_id">finding_id</text><text x="294" y="142" class="key">FK</text>
+    <text x="22" y="172" class="column" data-column="run_id">run_id</text><text x="294" y="172" class="key">FK</text>
+    <text x="22" y="202" class="column composite" data-column="project_id workspace_id">project_id · workspace_id</text><text x="294" y="202" class="key">FK</text>
+  </g>
+  <g data-table="public.dispatch_outbox" transform="translate(442 1530)">
+    <rect class="table" width="316" height="220" rx="12"/>
+    <text x="22" y="30" class="role">작업 전달과 재시도</text>
+    <text x="22" y="64" class="name">dispatch_outbox</text>
+    <path class="divider" d="M22 82H294"/>
+    <text x="22" y="112" class="column" data-column="run_id">run_id</text><text x="294" y="112" class="key">PK · FK</text>
+    <text x="22" y="142" class="column" data-column="state">state</text>
+    <text x="22" y="190" class="note">요청이 끊겨도 전달할 작업을 기록</text>
+  </g>
+  <g data-table="public.scan_ai_reviews" transform="translate(828 1530)">
+    <rect class="table core" width="316" height="220" rx="12"/>
+    <text x="22" y="30" class="role">AI 후보와 검토 근거</text>
+    <text x="22" y="64" class="name">scan_ai_reviews</text>
+    <path class="divider" d="M22 82H294"/>
+    <text x="22" y="112" class="column" data-column="run_id">run_id</text><text x="294" y="112" class="key">PK · FK</text>
+    <text x="22" y="142" class="column" data-column="kind">kind</text><text x="294" y="142" class="key">FK</text>
+    <text x="22" y="172" class="column composite" data-column="project_id workspace_id">project_id · workspace_id</text><text x="294" y="172" class="key">FK</text>
+    <text x="22" y="202" class="note">규칙 결과와 별도로 저장</text>
+  </g>
+
+  <g transform="translate(56 1862)">
+    <text x="0" y="0" font-size="23" font-weight="700">재점검은 이전 실행을</text>
+    <text x="0" y="32" font-size="23" font-weight="700">참조합니다.</text>
+    <text x="0" y="74" font-size="21" class="accent">scan_runs.baseline_id</text>
+    <text x="0" y="110" font-size="20" class="secondary">같은 프로젝트의 이전 점검과</text>
+    <text x="0" y="142" font-size="20" class="secondary">수정 후 결과를 연결합니다.</text>
+    <text x="0" y="184" font-size="16" class="secondary">선은 주요 FK만 표시합니다.</text>
+    <text x="0" y="212" font-size="16" class="secondary">FK 표시는 복합 키의 일부를 포함합니다.</text>
+  </g>
+  <g data-table="public.usage_reservations" transform="translate(442 1850)">
+    <rect class="table" width="316" height="200" rx="12"/>
+    <text x="22" y="30" class="role">점검의 사용량 예약</text>
+    <text x="22" y="64" class="name">usage_reservations</text>
+    <path class="divider" d="M22 82H294"/>
+    <text x="22" y="112" class="column" data-column="run_id">run_id</text><text x="294" y="112" class="key">PK · FK</text>
+    <text x="22" y="142" class="column" data-column="workspace_id">workspace_id</text><text x="294" y="142" class="key">FK</text>
+    <text x="22" y="178" class="note">작업 공간별 사용 한도 관리</text>
+  </g>
+  <g data-table="public.ai_finding_reviews" transform="translate(828 1850)">
+    <rect class="table core" width="316" height="200" rx="12"/>
+    <text x="22" y="30" class="role">AI 후보별 담당·처리 기록</text>
+    <text x="22" y="64" class="name">ai_finding_reviews</text>
+    <path class="divider" d="M22 82H294"/>
+    <text x="22" y="112" class="column" data-column="run_id">run_id</text><text x="294" y="112" class="key">PK · FK</text>
+    <text x="22" y="142" class="column" data-column="candidate_id">candidate_id</text><text x="294" y="142" class="key">PK</text>
+    <text x="22" y="172" class="column" data-column="assignee_id">assignee_id</text><text x="294" y="172" class="key">FK</text>
+  </g>
+
+  <path d="M56 2104H1144" class="divider"/>
+  <text x="56" y="2144" font-size="18" class="secondary">2026-10-26 확인 · public 테이블 16개 + Auth 참조 · 주요 외래키 20개 표시</text>
+  <text x="56" y="2176" font-size="17" class="secondary">공통 사용자·공간 참조 등 보조 FK 12개, 전체 컬럼, private 및 Auth 내부 구조는 생략했습니다.</text>
+  <text x="56" y="2204" font-size="17" class="secondary">실제 사용자·분석 내용·운영 설정을 담지 않은 공개용 관계도입니다. UQ는 중복을 허용하지 않는 키입니다.</text>
+</svg>

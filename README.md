@@ -1,5 +1,8 @@
 <p align="center">
-  <img src="assets/diagrams/hero.svg" width="100%" alt="teum.(틈) — 당신이 만든 것의 위험을, 세상에 내놓기 전에 알게 됩니다.">
+  <picture>
+    <source media="(max-width: 640px)" srcset="assets/diagrams/hero-mobile.svg">
+    <img src="assets/diagrams/hero.svg" width="1280" alt="teum.(틈) — 당신이 만든 것의 위험을, 세상에 내놓기 전에 알게 됩니다. 배포 전에 확인하는 GitHub 코드 보안 검토.">
+  </picture>
 </p>
 
 # teum.(틈)

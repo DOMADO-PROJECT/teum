@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1170" viewBox="0 0 1280 1170" role="img" aria-labelledby="database-title database-desc" xml:lang="ko">
   <title id="database-title">teum. PostgreSQL ERD</title>
-  <desc id="database-desc">2026년 10월 27일 실제 카탈로그와 대조한 서비스의 public 테이블 15개와 auth.users 참조입니다. 주요 외래키 19개를 같은 색과 두께의 선 및 Crow’s Foot 기호로 표시합니다. 선 양끝의 막대는 하나, 원은 선택, 갈래는 여러 개를 뜻합니다. PK는 기본키, FK는 외래키, PK/FK는 두 역할을 겸하는 컬럼입니다. 키 표시는 같은 열에 정렬하고 테이블은 헤더 배경과 옅은 행 구분선으로 묶었습니다. workspaces에서 projects와 scan_runs로 이어지며, 점검의 입력·규칙 결과·AI 검토·작업 기록을 연결합니다. baseline_id의 자기 참조도 선으로 표시합니다. 공통 작업 공간 컬럼과 일부 외래키 13개, 전체 컬럼, private 및 Auth 내부 구조는 생략합니다.</desc>
+  <desc id="database-desc">2026년 10월 27일 실제 카탈로그와 대조한 서비스의 public 테이블 15개와 auth.users 참조입니다. 각 테이블 이름 아래에 역할을 한글 한 줄로 설명합니다. 주요 외래키 19개를 같은 색과 두께의 선 및 Crow’s Foot 기호로 표시합니다. 외래키의 모든 컬럼이 자식 기본키에 포함되는 식별 관계는 실선, 나머지 비식별 관계는 파선입니다. 생략한 복합 외래키 컬럼도 판정에 포함합니다. 선 양끝의 막대는 하나, 원은 선택, 갈래는 여러 개를 뜻합니다. PK는 기본키, FK는 외래키, PK/FK는 두 역할을 겸하는 컬럼입니다. 키 표시는 같은 열에 정렬하고 테이블은 헤더 배경·옅은 행 구분선·은은한 그림자로 묶었습니다. workspaces에서 projects와 scan_runs로 이어지며, 점검의 입력·규칙 결과·AI 검토·작업 기록을 연결합니다. baseline_id의 자기 참조도 선으로 표시합니다. 공통 작업 공간 컬럼과 일부 외래키 13개, 전체 컬럼, private 및 Auth 내부 구조는 생략합니다.</desc>
   <metadata id="database-data">{"as_of":"2026-10-27","source":"PostgreSQL catalog, read-only","schema":"public","displayed_public_tables":15,"displayed_foreign_keys":19,"omitted_foreign_keys":13,"notation":"Crow's Foot"}</metadata>
   <defs>
     <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#eef1f5" stroke-width=".6"/></pattern>
@@ -12,10 +12,12 @@
     .edge-halo{fill:none;stroke:#fff;stroke-width:4;stroke-linejoin:round}
     .wire,.end{fill:none;stroke:#4b5563;stroke-width:1.8;stroke-linejoin:miter;stroke-linecap:butt}
     [data-fk]>.wire{shape-rendering:crispEdges}
-    .end circle,.optional{fill:#fff}
+    [data-relationship="non-identifying"]>.wire{stroke-dasharray:6 4}
+    .end circle{fill:#fff}
     .outline{fill:#fff;stroke:none;filter:url(#table-shadow)}
     .head{fill:#edf4ff}.focus .head{fill:#1d65d1}
     .name{font-size:20px;font-weight:650}.focus .name{fill:#fff}
+    .purpose{font-size:11.5px;fill:#566270}.focus .purpose{fill:#e5efff}
     .field{font-size:17.5px;fill:#333d4b}.type{font-size:14px;fill:#566270;text-anchor:end}
     .row-line{stroke:#eef1f5;stroke-width:1}
     .key{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;font-size:12.5px;font-weight:650;fill:#4b5563;text-anchor:end}
@@ -23,367 +25,372 @@
   <rect x="1" y="1" width="1278" height="1168" rx="10" fill="#fff" stroke="#e5e8eb"/>
   <text x="40" y="56" font-size="32" font-weight="750" letter-spacing="-1.2">teum.</text>
   <text x="150" y="54" font-size="16" font-weight="650" letter-spacing="1.2" class="blue">DATABASE</text>
-  <text x="1240" y="54" font-size="16" text-anchor="end" class="muted">PostgreSQL · public</text>
+  <text x="1240" y="54" font-size="16" text-anchor="end" class="muted">PostgreSQL</text>
   <path d="M40 80H1240" stroke="#e5e8eb"/>
-  <rect x="16" y="96" width="1248" height="990" fill="url(#grid)"/>
+  <rect x="16" y="96" width="1248" height="1058" fill="url(#grid)"/>
 
-  <g data-fk="workspaces_owner_id_fkey" data-parent="auth.users" data-child="public.workspaces">
-    <title>auth.users — public.workspaces</title>
+  <g data-fk="workspaces_owner_id_fkey" data-parent="auth.users" data-child="public.workspaces" data-relationship="non-identifying">
+    <title>auth.users — public.workspaces · 비식별 관계</title>
     <path class="edge-halo" d="M280 202L360 202"/><path class="wire" d="M280 202L360 202"/>
     <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(280 202) rotate(0)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
     <g class="end" data-end="child" data-min="0" data-max="one" transform="translate(360 202) rotate(180)"><path d="M5-4V4"/><circle cx="15" cy="0" r="2.5"/></g>
   </g>
-  <g data-fk="workspace_members_user_id_fkey" data-parent="auth.users" data-child="public.workspace_members">
-    <title>auth.users — public.workspace_members</title>
+  <g data-fk="workspace_members_user_id_fkey" data-parent="auth.users" data-child="public.workspace_members" data-relationship="identifying">
+    <title>auth.users — public.workspace_members · 식별 관계</title>
     <path class="edge-halo" d="M160 224L160 400"/><path class="wire" d="M160 224L160 400"/>
     <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(160 224) rotate(90)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
     <g class="end" data-end="child" data-min="0" data-max="many" transform="translate(160 400) rotate(-90)"><path d="M1-4L10 0L1 4M1 0H10"/><circle cx="15" cy="0" r="2.5"/></g>
   </g>
-  <g data-fk="workspace_members_workspace_id_fkey" data-parent="public.workspaces" data-child="public.workspace_members">
-    <title>public.workspaces — public.workspace_members</title>
-    <path class="edge-halo" d="M360 230L320 230L320 454L280 454"/><path class="wire" d="M360 230L320 230L320 454L280 454"/>
+  <g data-fk="workspace_members_workspace_id_fkey" data-parent="public.workspaces" data-child="public.workspace_members" data-relationship="identifying">
+    <title>public.workspaces — public.workspace_members · 식별 관계</title>
+    <path class="edge-halo" d="M360 230L320 230L320 474L280 474"/><path class="wire" d="M360 230L320 230L320 474L280 474"/>
     <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(360 230) rotate(180)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
-    <g class="end" data-end="child" data-min="0" data-max="many" transform="translate(280 454) rotate(0)"><path d="M1-4L10 0L1 4M1 0H10"/><circle cx="15" cy="0" r="2.5"/></g>
+    <g class="end" data-end="child" data-min="0" data-max="many" transform="translate(280 474) rotate(0)"><path d="M1-4L10 0L1 4M1 0H10"/><circle cx="15" cy="0" r="2.5"/></g>
   </g>
-  <g data-fk="projects_workspace_id_fkey" data-parent="public.workspaces" data-child="public.projects">
-    <title>public.workspaces — public.projects</title>
+  <g data-fk="projects_workspace_id_fkey" data-parent="public.workspaces" data-child="public.projects" data-relationship="non-identifying">
+    <title>public.workspaces — public.projects · 비식별 관계</title>
     <path class="edge-halo" d="M480 252L480 400"/><path class="wire" d="M480 252L480 400"/>
     <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(480 252) rotate(90)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
     <g class="end" data-end="child" data-min="0" data-max="many" transform="translate(480 400) rotate(-90)"><path d="M1-4L10 0L1 4M1 0H10"/><circle cx="15" cy="0" r="2.5"/></g>
   </g>
-  <g data-fk="project_analysis_policies_project_id_workspace_id_fkey" data-parent="public.projects" data-child="public.project_analysis_policies">
-    <title>public.projects — public.project_analysis_policies</title>
-    <path class="edge-halo" d="M480 502L480 670"/><path class="wire" d="M480 502L480 670"/>
-    <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(480 502) rotate(90)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
-    <g class="end" data-end="child" data-min="0" data-max="one" transform="translate(480 670) rotate(-90)"><path d="M5-4V4"/><circle cx="15" cy="0" r="2.5"/></g>
+  <g data-fk="project_analysis_policies_project_id_workspace_id_fkey" data-parent="public.projects" data-child="public.project_analysis_policies" data-relationship="non-identifying">
+    <title>public.projects — public.project_analysis_policies · 비식별 관계</title>
+    <path class="edge-halo" d="M480 522L480 690"/><path class="wire" d="M480 522L480 690"/>
+    <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(480 522) rotate(90)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
+    <g class="end" data-end="child" data-min="0" data-max="one" transform="translate(480 690) rotate(-90)"><path d="M5-4V4"/><circle cx="15" cy="0" r="2.5"/></g>
   </g>
-  <g data-fk="audit_events_project_id_workspace_id_fkey" data-parent="public.projects" data-child="public.audit_events">
-    <title>public.projects — public.audit_events</title>
-    <path class="edge-halo" d="M540 502L540 550L620 550L620 900L480 900L480 940"/><path class="wire" d="M540 502L540 550L620 550L620 900L480 900L480 940"/>
-    <g class="end" data-end="parent" data-min="0" data-max="one" transform="translate(540 502) rotate(90)"><path d="M5-4V4"/><circle cx="15" cy="0" r="2.5"/></g>
-    <g class="end" data-end="child" data-min="0" data-max="many" transform="translate(480 940) rotate(-90)"><path d="M1-4L10 0L1 4M1 0H10"/><circle cx="15" cy="0" r="2.5"/></g>
+  <g data-fk="audit_events_project_id_workspace_id_fkey" data-parent="public.projects" data-child="public.audit_events" data-relationship="non-identifying">
+    <title>public.projects — public.audit_events · 비식별 관계</title>
+    <path class="edge-halo" d="M540 522L540 570L620 570L620 960L480 960L480 980"/><path class="wire" d="M540 522L540 570L620 570L620 960L480 960L480 980"/>
+    <g class="end" data-end="parent" data-min="0" data-max="one" transform="translate(540 522) rotate(90)"><path d="M5-4V4"/><circle cx="15" cy="0" r="2.5"/></g>
+    <g class="end" data-end="child" data-min="0" data-max="many" transform="translate(480 980) rotate(-90)"><path d="M1-4L10 0L1 4M1 0H10"/><circle cx="15" cy="0" r="2.5"/></g>
   </g>
-  <g data-fk="uploads_project_id_workspace_id_fkey" data-parent="public.projects" data-child="public.uploads">
-    <title>public.projects — public.uploads</title>
-    <path class="edge-halo" d="M560 400L560 300L720 300L720 252"/><path class="wire" d="M560 400L560 300L720 300L720 252"/>
+  <g data-fk="uploads_project_id_workspace_id_fkey" data-parent="public.projects" data-child="public.uploads" data-relationship="non-identifying">
+    <title>public.projects — public.uploads · 비식별 관계</title>
+    <path class="edge-halo" d="M560 400L560 310L720 310L720 252"/><path class="wire" d="M560 400L560 310L720 310L720 252"/>
     <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(560 400) rotate(-90)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
     <g class="end" data-end="child" data-min="0" data-max="many" transform="translate(720 252) rotate(90)"><path d="M1-4L10 0L1 4M1 0H10"/><circle cx="15" cy="0" r="2.5"/></g>
   </g>
-  <g data-fk="scan_runs_project_id_workspace_id_fkey" data-parent="public.projects" data-child="public.scan_runs">
-    <title>public.projects — public.scan_runs</title>
-    <path class="edge-halo" d="M600 482L680 482"/><path class="wire" d="M600 482L680 482"/>
-    <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(600 482) rotate(0)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
-    <g class="end" data-end="child" data-min="0" data-max="many" transform="translate(680 482) rotate(180)"><path d="M1-4L10 0L1 4M1 0H10"/><circle cx="15" cy="0" r="2.5"/></g>
+  <g data-fk="scan_runs_project_id_workspace_id_fkey" data-parent="public.projects" data-child="public.scan_runs" data-relationship="non-identifying">
+    <title>public.projects — public.scan_runs · 비식별 관계</title>
+    <path class="edge-halo" d="M600 502L680 502"/><path class="wire" d="M600 502L680 502"/>
+    <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(600 502) rotate(0)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
+    <g class="end" data-end="child" data-min="0" data-max="many" transform="translate(680 502) rotate(180)"><path d="M1-4L10 0L1 4M1 0H10"/><circle cx="15" cy="0" r="2.5"/></g>
   </g>
-  <g data-fk="findings_project_id_workspace_id_fkey" data-parent="public.projects" data-child="public.findings">
-    <title>public.projects — public.findings</title>
-    <path class="edge-halo" d="M360 490L304 490L304 750L280 750"/><path class="wire" d="M360 490L304 490L304 750L280 750"/>
-    <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(360 490) rotate(180)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
-    <g class="end" data-end="child" data-min="0" data-max="many" transform="translate(280 750) rotate(0)"><path d="M1-4L10 0L1 4M1 0H10"/><circle cx="15" cy="0" r="2.5"/></g>
+  <g data-fk="findings_project_id_workspace_id_fkey" data-parent="public.projects" data-child="public.findings" data-relationship="non-identifying">
+    <title>public.projects — public.findings · 비식별 관계</title>
+    <path class="edge-halo" d="M360 510L304 510L304 790L280 790"/><path class="wire" d="M360 510L304 510L304 790L280 790"/>
+    <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(360 510) rotate(180)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
+    <g class="end" data-end="child" data-min="0" data-max="many" transform="translate(280 790) rotate(0)"><path d="M1-4L10 0L1 4M1 0H10"/><circle cx="15" cy="0" r="2.5"/></g>
   </g>
-  <g data-fk="scan_runs_upload_id_project_id_workspace_id_fkey" data-parent="public.uploads" data-child="public.scan_runs">
-    <title>public.uploads — public.scan_runs</title>
+  <g data-fk="scan_runs_upload_id_project_id_workspace_id_fkey" data-parent="public.uploads" data-child="public.scan_runs" data-relationship="non-identifying">
+    <title>public.uploads — public.scan_runs · 비식별 관계</title>
     <path class="edge-halo" d="M800 252L800 400"/><path class="wire" d="M800 252L800 400"/>
     <g class="end" data-end="parent" data-min="0" data-max="one" transform="translate(800 252) rotate(90)"><path d="M5-4V4"/><circle cx="15" cy="0" r="2.5"/></g>
     <g class="end" data-end="child" data-min="0" data-max="one" transform="translate(800 400) rotate(-90)"><path d="M5-4V4"/><circle cx="15" cy="0" r="2.5"/></g>
   </g>
-  <g data-fk="scan_runs_baseline_id_project_id_workspace_id_fkey" data-parent="public.scan_runs" data-child="public.scan_runs">
-    <title>public.scan_runs — public.scan_runs</title>
-    <path class="edge-halo" d="M920 482L966 482L966 538L920 538"/><path class="wire" d="M920 482L966 482L966 538L920 538"/>
-    <g class="end" data-end="parent" data-min="0" data-max="one" transform="translate(920 482) rotate(0)"><path d="M5-4V4"/><circle cx="15" cy="0" r="2.5"/></g>
-    <g class="end" data-end="child" data-min="0" data-max="many" transform="translate(920 538) rotate(0)"><path d="M1-4L10 0L1 4M1 0H10"/><circle cx="15" cy="0" r="2.5"/></g>
+  <g data-fk="scan_runs_baseline_id_project_id_workspace_id_fkey" data-parent="public.scan_runs" data-child="public.scan_runs" data-relationship="non-identifying">
+    <title>public.scan_runs — public.scan_runs · 비식별 관계</title>
+    <path class="edge-halo" d="M920 502L966 502L966 558L920 558"/><path class="wire" d="M920 502L966 502L966 558L920 558"/>
+    <g class="end" data-end="parent" data-min="0" data-max="one" transform="translate(920 502) rotate(0)"><path d="M5-4V4"/><circle cx="15" cy="0" r="2.5"/></g>
+    <g class="end" data-end="child" data-min="0" data-max="many" transform="translate(920 558) rotate(0)"><path d="M1-4L10 0L1 4M1 0H10"/><circle cx="15" cy="0" r="2.5"/></g>
   </g>
-  <g data-fk="scan_native_analysis_run_id_project_id_workspace_id_fkey" data-parent="public.scan_runs" data-child="public.scan_native_analysis">
-    <title>public.scan_runs — public.scan_native_analysis</title>
-    <path class="edge-halo" d="M800 558L800 670"/><path class="wire" d="M800 558L800 670"/>
-    <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(800 558) rotate(90)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
-    <g class="end" data-end="child" data-min="0" data-max="one" transform="translate(800 670) rotate(-90)"><path d="M5-4V4"/><circle cx="15" cy="0" r="2.5"/></g>
+  <g data-fk="scan_native_analysis_run_id_project_id_workspace_id_fkey" data-parent="public.scan_runs" data-child="public.scan_native_analysis" data-relationship="non-identifying">
+    <title>public.scan_runs — public.scan_native_analysis · 비식별 관계</title>
+    <path class="edge-halo" d="M800 578L800 690"/><path class="wire" d="M800 578L800 690"/>
+    <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(800 578) rotate(90)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
+    <g class="end" data-end="child" data-min="0" data-max="one" transform="translate(800 690) rotate(-90)"><path d="M5-4V4"/><circle cx="15" cy="0" r="2.5"/></g>
   </g>
-  <g data-fk="scan_stages_run_id_project_id_workspace_id_fkey" data-parent="public.scan_runs" data-child="public.scan_stages">
-    <title>public.scan_runs — public.scan_stages</title>
-    <path class="edge-halo" d="M920 454L952 454L952 202L1000 202"/><path class="wire" d="M920 454L952 454L952 202L1000 202"/>
-    <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(920 454) rotate(0)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
+  <g data-fk="scan_stages_run_id_project_id_workspace_id_fkey" data-parent="public.scan_runs" data-child="public.scan_stages" data-relationship="non-identifying">
+    <title>public.scan_runs — public.scan_stages · 비식별 관계</title>
+    <path class="edge-halo" d="M920 474L952 474L952 202L1000 202"/><path class="wire" d="M920 474L952 474L952 202L1000 202"/>
+    <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(920 474) rotate(0)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
     <g class="end" data-end="child" data-min="0" data-max="many" transform="translate(1000 202) rotate(180)"><path d="M1-4L10 0L1 4M1 0H10"/><circle cx="15" cy="0" r="2.5"/></g>
   </g>
-  <g data-fk="finding_occurrences_run_id_project_id_workspace_id_fkey" data-parent="public.scan_runs" data-child="public.finding_occurrences">
-    <title>public.scan_runs — public.finding_occurrences</title>
-    <path class="edge-halo" d="M680 538L644 538L644 882L220 882L220 940"/><path class="wire" d="M680 538L644 538L644 882L220 882L220 940"/>
-    <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(680 538) rotate(180)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
-    <g class="end" data-end="child" data-min="0" data-max="many" transform="translate(220 940) rotate(-90)"><path d="M1-4L10 0L1 4M1 0H10"/><circle cx="15" cy="0" r="2.5"/></g>
+  <g data-fk="finding_occurrences_run_id_project_id_workspace_id_fkey" data-parent="public.scan_runs" data-child="public.finding_occurrences" data-relationship="non-identifying">
+    <title>public.scan_runs — public.finding_occurrences · 비식별 관계</title>
+    <path class="edge-halo" d="M680 558L644 558L644 942L220 942L220 980"/><path class="wire" d="M680 558L644 558L644 942L220 942L220 980"/>
+    <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(680 558) rotate(180)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
+    <g class="end" data-end="child" data-min="0" data-max="many" transform="translate(220 980) rotate(-90)"><path d="M1-4L10 0L1 4M1 0H10"/><circle cx="15" cy="0" r="2.5"/></g>
   </g>
-  <g data-fk="finding_occurrences_finding_id_project_id_workspace_id_fkey" data-parent="public.findings" data-child="public.finding_occurrences">
-    <title>public.findings — public.finding_occurrences</title>
-    <path class="edge-halo" d="M160 800L160 940"/><path class="wire" d="M160 800L160 940"/>
-    <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(160 800) rotate(90)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
-    <g class="end" data-end="child" data-min="0" data-max="many" transform="translate(160 940) rotate(-90)"><path d="M1-4L10 0L1 4M1 0H10"/><circle cx="15" cy="0" r="2.5"/></g>
+  <g data-fk="finding_occurrences_finding_id_project_id_workspace_id_fkey" data-parent="public.findings" data-child="public.finding_occurrences" data-relationship="non-identifying">
+    <title>public.findings — public.finding_occurrences · 비식별 관계</title>
+    <path class="edge-halo" d="M160 840L160 980"/><path class="wire" d="M160 840L160 980"/>
+    <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(160 840) rotate(90)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
+    <g class="end" data-end="child" data-min="0" data-max="many" transform="translate(160 980) rotate(-90)"><path d="M1-4L10 0L1 4M1 0H10"/><circle cx="15" cy="0" r="2.5"/></g>
   </g>
-  <g data-fk="scan_ai_reviews_run_id_kind_fkey" data-parent="public.scan_stages" data-child="public.scan_ai_reviews">
-    <title>public.scan_stages — public.scan_ai_reviews</title>
+  <g data-fk="scan_ai_reviews_run_id_kind_fkey" data-parent="public.scan_stages" data-child="public.scan_ai_reviews" data-relationship="non-identifying">
+    <title>public.scan_stages — public.scan_ai_reviews · 비식별 관계</title>
     <path class="edge-halo" d="M1120 252L1120 400"/><path class="wire" d="M1120 252L1120 400"/>
     <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(1120 252) rotate(90)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
     <g class="end" data-end="child" data-min="0" data-max="one" transform="translate(1120 400) rotate(-90)"><path d="M5-4V4"/><circle cx="15" cy="0" r="2.5"/></g>
   </g>
-  <g data-fk="dispatch_outbox_run_id_fkey" data-parent="public.scan_runs" data-child="public.dispatch_outbox">
-    <title>public.scan_runs — public.dispatch_outbox</title>
-    <path class="edge-halo" d="M850 558L850 600L944 600L944 994L920 994"/><path class="wire" d="M850 558L850 600L944 600L944 994L920 994"/>
-    <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(850 558) rotate(90)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
-    <g class="end" data-end="child" data-min="0" data-max="one" transform="translate(920 994) rotate(0)"><path d="M5-4V4"/><circle cx="15" cy="0" r="2.5"/></g>
+  <g data-fk="dispatch_outbox_run_id_fkey" data-parent="public.scan_runs" data-child="public.dispatch_outbox" data-relationship="identifying">
+    <title>public.scan_runs — public.dispatch_outbox · 식별 관계</title>
+    <path class="edge-halo" d="M850 578L850 630L944 630L944 1054L920 1054"/><path class="wire" d="M850 578L850 630L944 630L944 1054L920 1054"/>
+    <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(850 578) rotate(90)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
+    <g class="end" data-end="child" data-min="0" data-max="one" transform="translate(920 1054) rotate(0)"><path d="M5-4V4"/><circle cx="15" cy="0" r="2.5"/></g>
   </g>
-  <g data-fk="usage_reservations_run_id_fkey" data-parent="public.scan_runs" data-child="public.usage_reservations">
-    <title>public.scan_runs — public.usage_reservations</title>
-    <path class="edge-halo" d="M900 558L900 580L976 580L976 994L1000 994"/><path class="wire" d="M900 558L900 580L976 580L976 994L1000 994"/>
-    <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(900 558) rotate(90)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
-    <g class="end" data-end="child" data-min="0" data-max="one" transform="translate(1000 994) rotate(180)"><path d="M5-4V4"/><circle cx="15" cy="0" r="2.5"/></g>
+  <g data-fk="usage_reservations_run_id_fkey" data-parent="public.scan_runs" data-child="public.usage_reservations" data-relationship="identifying">
+    <title>public.scan_runs — public.usage_reservations · 식별 관계</title>
+    <path class="edge-halo" d="M900 578L900 610L976 610L976 1054L1000 1054"/><path class="wire" d="M900 578L900 610L976 610L976 1054L1000 1054"/>
+    <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(900 578) rotate(90)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
+    <g class="end" data-end="child" data-min="0" data-max="one" transform="translate(1000 1054) rotate(180)"><path d="M5-4V4"/><circle cx="15" cy="0" r="2.5"/></g>
   </g>
-  <g data-fk="ai_finding_reviews_run_id_fkey" data-parent="public.scan_ai_reviews" data-child="public.ai_finding_reviews">
-    <title>public.scan_ai_reviews — public.ai_finding_reviews</title>
-    <path class="edge-halo" d="M1120 502L1120 670"/><path class="wire" d="M1120 502L1120 670"/>
-    <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(1120 502) rotate(90)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
-    <g class="end" data-end="child" data-min="0" data-max="many" transform="translate(1120 670) rotate(-90)"><path d="M1-4L10 0L1 4M1 0H10"/><circle cx="15" cy="0" r="2.5"/></g>
+  <g data-fk="ai_finding_reviews_run_id_fkey" data-parent="public.scan_ai_reviews" data-child="public.ai_finding_reviews" data-relationship="identifying">
+    <title>public.scan_ai_reviews — public.ai_finding_reviews · 식별 관계</title>
+    <path class="edge-halo" d="M1120 522L1120 690"/><path class="wire" d="M1120 522L1120 690"/>
+    <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(1120 522) rotate(90)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
+    <g class="end" data-end="child" data-min="0" data-max="many" transform="translate(1120 690) rotate(-90)"><path d="M1-4L10 0L1 4M1 0H10"/><circle cx="15" cy="0" r="2.5"/></g>
   </g>
-  <g class="" data-table="auth.users" transform="translate(40 150)">
-    <rect class="outline" width="240" height="74" rx="5"/>
-    <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
+  <g class="" data-table="auth.users" transform="translate(40 130)">
+    <rect class="outline" width="240" height="94" rx="5"/>
+    <rect class="head" x=".7" y=".7" width="238.6" height="57.3" rx="4"/><rect class="head" x=".7" y="52" width="238.6" height="6"/>
     <text x="14" y="25" class="name">auth.users</text>
+    <text x="14" y="46" class="purpose">로그인 사용자 계정</text>
     <g data-column="id" data-type="uuid" data-primary="true" data-foreign="false">
-      <text x="48" y="57" class="key">PK</text>
-      <text x="60" y="59" class="field">id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="77" class="key">PK</text>
+      <text x="60" y="79" class="field">id</text><text x="226" y="79" class="type">uuid</text>
     </g>
   </g>
-  <g class="" data-table="public.workspaces" transform="translate(360 150)">
-    <rect class="outline" width="240" height="102" rx="5"/>
-    <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
+  <g class="" data-table="public.workspaces" transform="translate(360 130)">
+    <rect class="outline" width="240" height="122" rx="5"/>
+    <rect class="head" x=".7" y=".7" width="238.6" height="57.3" rx="4"/><rect class="head" x=".7" y="52" width="238.6" height="6"/>
     <text x="14" y="25" class="name">workspaces</text>
+    <text x="14" y="46" class="purpose">프로젝트를 묶는 작업 공간</text>
     <g data-column="id" data-type="uuid" data-primary="true" data-foreign="false">
-      <text x="48" y="57" class="key">PK</text>
-      <text x="60" y="59" class="field">id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="77" class="key">PK</text>
+      <text x="60" y="79" class="field">id</text><text x="226" y="79" class="type">uuid</text>
     </g>
     <g data-column="owner_id" data-type="uuid" data-primary="false" data-foreign="true">
-      <path class="row-line" d="M1 66H239"/>
-      <text x="48" y="85" class="key">FK</text>
-      <text x="60" y="87" class="field">owner_id</text><text x="226" y="87" class="type">uuid</text>
+      <path class="row-line" d="M1 86H239"/>
+      <text x="48" y="105" class="key">FK</text>
+      <text x="60" y="107" class="field">owner_id</text><text x="226" y="107" class="type">uuid</text>
     </g>
   </g>
-  <g class="" data-table="public.uploads" transform="translate(680 150)">
-    <rect class="outline" width="240" height="102" rx="5"/>
-    <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
+  <g class="" data-table="public.uploads" transform="translate(680 130)">
+    <rect class="outline" width="240" height="122" rx="5"/>
+    <rect class="head" x=".7" y=".7" width="238.6" height="57.3" rx="4"/><rect class="head" x=".7" y="52" width="238.6" height="6"/>
     <text x="14" y="25" class="name">uploads</text>
+    <text x="14" y="46" class="purpose">GitHub 수집 코드의 보관 기록</text>
     <g data-column="id" data-type="uuid" data-primary="true" data-foreign="false">
-      <text x="48" y="57" class="key">PK</text>
-      <text x="60" y="59" class="field">id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="77" class="key">PK</text>
+      <text x="60" y="79" class="field">id</text><text x="226" y="79" class="type">uuid</text>
     </g>
     <g data-column="project_id" data-type="uuid" data-primary="false" data-foreign="true">
-      <path class="row-line" d="M1 66H239"/>
-      <text x="48" y="85" class="key">FK</text>
-      <text x="60" y="87" class="field">project_id</text><text x="226" y="87" class="type">uuid</text>
+      <path class="row-line" d="M1 86H239"/>
+      <text x="48" y="105" class="key">FK</text>
+      <text x="60" y="107" class="field">project_id</text><text x="226" y="107" class="type">uuid</text>
     </g>
   </g>
-  <g class="" data-table="public.scan_stages" transform="translate(1000 150)">
-    <rect class="outline" width="240" height="102" rx="5"/>
-    <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
+  <g class="" data-table="public.scan_stages" transform="translate(1000 130)">
+    <rect class="outline" width="240" height="122" rx="5"/>
+    <rect class="head" x=".7" y=".7" width="238.6" height="57.3" rx="4"/><rect class="head" x=".7" y="52" width="238.6" height="6"/>
     <text x="14" y="25" class="name">scan_stages</text>
+    <text x="14" y="46" class="purpose">점검 단계별 상태와 분석 범위</text>
     <g data-column="run_id" data-type="uuid" data-primary="true" data-foreign="true">
-      <text x="48" y="57" class="key">PK/FK</text>
-      <text x="60" y="59" class="field">run_id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="77" class="key">PK/FK</text>
+      <text x="60" y="79" class="field">run_id</text><text x="226" y="79" class="type">uuid</text>
     </g>
     <g data-column="kind" data-type="text" data-primary="true" data-foreign="false">
-      <path class="row-line" d="M1 66H239"/>
-      <text x="48" y="85" class="key">PK</text>
-      <text x="60" y="87" class="field">kind</text><text x="226" y="87" class="type">text</text>
+      <path class="row-line" d="M1 86H239"/>
+      <text x="48" y="105" class="key">PK</text>
+      <text x="60" y="107" class="field">kind</text><text x="226" y="107" class="type">text</text>
     </g>
   </g>
   <g class="" data-table="public.workspace_members" transform="translate(40 400)">
-    <rect class="outline" width="240" height="102" rx="5"/>
-    <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
+    <rect class="outline" width="240" height="122" rx="5"/>
+    <rect class="head" x=".7" y=".7" width="238.6" height="57.3" rx="4"/><rect class="head" x=".7" y="52" width="238.6" height="6"/>
     <text x="14" y="25" class="name">workspace_members</text>
+    <text x="14" y="46" class="purpose">작업 공간의 구성원과 권한</text>
     <g data-column="workspace_id" data-type="uuid" data-primary="true" data-foreign="true">
-      <text x="48" y="57" class="key">PK/FK</text>
-      <text x="60" y="59" class="field">workspace_id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="77" class="key">PK/FK</text>
+      <text x="60" y="79" class="field">workspace_id</text><text x="226" y="79" class="type">uuid</text>
     </g>
     <g data-column="user_id" data-type="uuid" data-primary="true" data-foreign="true">
-      <path class="row-line" d="M1 66H239"/>
-      <text x="48" y="85" class="key">PK/FK</text>
-      <text x="60" y="87" class="field">user_id</text><text x="226" y="87" class="type">uuid</text>
+      <path class="row-line" d="M1 86H239"/>
+      <text x="48" y="105" class="key">PK/FK</text>
+      <text x="60" y="107" class="field">user_id</text><text x="226" y="107" class="type">uuid</text>
     </g>
   </g>
   <g class="" data-table="public.projects" transform="translate(360 400)">
-    <rect class="outline" width="240" height="102" rx="5"/>
-    <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
+    <rect class="outline" width="240" height="122" rx="5"/>
+    <rect class="head" x=".7" y=".7" width="238.6" height="57.3" rx="4"/><rect class="head" x=".7" y="52" width="238.6" height="6"/>
     <text x="14" y="25" class="name">projects</text>
+    <text x="14" y="46" class="purpose">점검 대상과 실행 이력 관리</text>
     <g data-column="id" data-type="uuid" data-primary="true" data-foreign="false">
-      <text x="48" y="57" class="key">PK</text>
-      <text x="60" y="59" class="field">id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="77" class="key">PK</text>
+      <text x="60" y="79" class="field">id</text><text x="226" y="79" class="type">uuid</text>
     </g>
     <g data-column="workspace_id" data-type="uuid" data-primary="false" data-foreign="true">
-      <path class="row-line" d="M1 66H239"/>
-      <text x="48" y="85" class="key">FK</text>
-      <text x="60" y="87" class="field">workspace_id</text><text x="226" y="87" class="type">uuid</text>
+      <path class="row-line" d="M1 86H239"/>
+      <text x="48" y="105" class="key">FK</text>
+      <text x="60" y="107" class="field">workspace_id</text><text x="226" y="107" class="type">uuid</text>
     </g>
   </g>
   <g class="focus" data-table="public.scan_runs" transform="translate(680 400)">
-    <rect class="outline" width="240" height="158" rx="5"/>
-    <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
+    <rect class="outline" width="240" height="178" rx="5"/>
+    <rect class="head" x=".7" y=".7" width="238.6" height="57.3" rx="4"/><rect class="head" x=".7" y="52" width="238.6" height="6"/>
     <text x="14" y="25" class="name">scan_runs</text>
+    <text x="14" y="46" class="purpose">개별 점검 실행과 진행 상태</text>
     <g data-column="id" data-type="uuid" data-primary="true" data-foreign="false">
-      <text x="48" y="57" class="key">PK</text>
-      <text x="60" y="59" class="field">id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="77" class="key">PK</text>
+      <text x="60" y="79" class="field">id</text><text x="226" y="79" class="type">uuid</text>
     </g>
     <g data-column="project_id" data-type="uuid" data-primary="false" data-foreign="true">
-      <path class="row-line" d="M1 66H239"/>
-      <text x="48" y="85" class="key">FK</text>
-      <text x="60" y="87" class="field">project_id</text><text x="226" y="87" class="type">uuid</text>
+      <path class="row-line" d="M1 86H239"/>
+      <text x="48" y="105" class="key">FK</text>
+      <text x="60" y="107" class="field">project_id</text><text x="226" y="107" class="type">uuid</text>
     </g>
     <g data-column="upload_id" data-type="uuid" data-primary="false" data-foreign="true">
-      <path class="row-line" d="M1 94H239"/>
-      <text x="48" y="113" class="key">FK</text>
-      <text x="60" y="115" class="field">upload_id</text><text x="226" y="115" class="type">uuid</text>
+      <path class="row-line" d="M1 114H239"/>
+      <text x="48" y="133" class="key">FK</text>
+      <text x="60" y="135" class="field">upload_id</text><text x="226" y="135" class="type">uuid</text>
     </g>
     <g data-column="baseline_id" data-type="uuid" data-primary="false" data-foreign="true">
-      <path class="row-line" d="M1 122H239"/>
-      <text x="48" y="141" class="key">FK</text>
-      <text x="60" y="143" class="field">baseline_id</text><text x="226" y="143" class="type">uuid</text>
+      <path class="row-line" d="M1 142H239"/>
+      <text x="48" y="161" class="key">FK</text>
+      <text x="60" y="163" class="field">baseline_id</text><text x="226" y="163" class="type">uuid</text>
     </g>
   </g>
   <g class="" data-table="public.scan_ai_reviews" transform="translate(1000 400)">
-    <rect class="outline" width="240" height="102" rx="5"/>
-    <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
+    <rect class="outline" width="240" height="122" rx="5"/>
+    <rect class="head" x=".7" y=".7" width="238.6" height="57.3" rx="4"/><rect class="head" x=".7" y="52" width="238.6" height="6"/>
     <text x="14" y="25" class="name">scan_ai_reviews</text>
+    <text x="14" y="46" class="purpose">AI 검토 보고서와 처리 상태</text>
     <g data-column="run_id" data-type="uuid" data-primary="true" data-foreign="true">
-      <text x="48" y="57" class="key">PK/FK</text>
-      <text x="60" y="59" class="field">run_id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="77" class="key">PK/FK</text>
+      <text x="60" y="79" class="field">run_id</text><text x="226" y="79" class="type">uuid</text>
     </g>
     <g data-column="kind" data-type="text" data-primary="false" data-foreign="true">
-      <path class="row-line" d="M1 66H239"/>
-      <text x="48" y="85" class="key">FK</text>
-      <text x="60" y="87" class="field">kind</text><text x="226" y="87" class="type">text</text>
+      <path class="row-line" d="M1 86H239"/>
+      <text x="48" y="105" class="key">FK</text>
+      <text x="60" y="107" class="field">kind</text><text x="226" y="107" class="type">text</text>
     </g>
   </g>
-  <g class="" data-table="public.findings" transform="translate(40 670)">
-    <rect class="outline" width="240" height="130" rx="5"/>
-    <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
+  <g class="" data-table="public.findings" transform="translate(40 690)">
+    <rect class="outline" width="240" height="150" rx="5"/>
+    <rect class="head" x=".7" y=".7" width="238.6" height="57.3" rx="4"/><rect class="head" x=".7" y="52" width="238.6" height="6"/>
     <text x="14" y="25" class="name">findings</text>
+    <text x="14" y="46" class="purpose">규칙 발견 항목의 처리 상태</text>
     <g data-column="id" data-type="uuid" data-primary="true" data-foreign="false">
-      <text x="48" y="57" class="key">PK</text>
-      <text x="60" y="59" class="field">id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="77" class="key">PK</text>
+      <text x="60" y="79" class="field">id</text><text x="226" y="79" class="type">uuid</text>
     </g>
     <g data-column="project_id" data-type="uuid" data-primary="false" data-foreign="true">
-      <path class="row-line" d="M1 66H239"/>
-      <text x="48" y="85" class="key">FK</text>
-      <text x="60" y="87" class="field">project_id</text><text x="226" y="87" class="type">uuid</text>
+      <path class="row-line" d="M1 86H239"/>
+      <text x="48" y="105" class="key">FK</text>
+      <text x="60" y="107" class="field">project_id</text><text x="226" y="107" class="type">uuid</text>
     </g>
     <g data-column="assignee_id" data-type="uuid" data-primary="false" data-foreign="true">
-      <path class="row-line" d="M1 94H239"/>
-      <text x="48" y="113" class="key">FK</text>
-      <text x="60" y="115" class="field">assignee_id</text><text x="226" y="115" class="type">uuid</text>
+      <path class="row-line" d="M1 114H239"/>
+      <text x="48" y="133" class="key">FK</text>
+      <text x="60" y="135" class="field">assignee_id</text><text x="226" y="135" class="type">uuid</text>
     </g>
   </g>
-  <g class="" data-table="public.project_analysis_policies" transform="translate(360 670)">
-    <rect class="outline" width="240" height="74" rx="5"/>
-    <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
+  <g class="" data-table="public.project_analysis_policies" transform="translate(360 690)">
+    <rect class="outline" width="240" height="94" rx="5"/>
+    <rect class="head" x=".7" y=".7" width="238.6" height="57.3" rx="4"/><rect class="head" x=".7" y="52" width="238.6" height="6"/>
     <text x="14" y="25" class="name" style="font-size:17px">project_analysis_policies</text>
+    <text x="14" y="46" class="purpose">프로젝트별 분석 설정</text>
     <g data-column="project_id" data-type="uuid" data-primary="true" data-foreign="true">
-      <text x="48" y="57" class="key">PK/FK</text>
-      <text x="60" y="59" class="field">project_id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="77" class="key">PK/FK</text>
+      <text x="60" y="79" class="field">project_id</text><text x="226" y="79" class="type">uuid</text>
     </g>
   </g>
-  <g class="" data-table="public.scan_native_analysis" transform="translate(680 670)">
-    <rect class="outline" width="240" height="74" rx="5"/>
-    <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
+  <g class="" data-table="public.scan_native_analysis" transform="translate(680 690)">
+    <rect class="outline" width="240" height="94" rx="5"/>
+    <rect class="head" x=".7" y=".7" width="238.6" height="57.3" rx="4"/><rect class="head" x=".7" y="52" width="238.6" height="6"/>
     <text x="14" y="25" class="name">scan_native_analysis</text>
+    <text x="14" y="46" class="purpose">코드 흐름 분석 결과와 근거</text>
     <g data-column="run_id" data-type="uuid" data-primary="true" data-foreign="true">
-      <text x="48" y="57" class="key">PK/FK</text>
-      <text x="60" y="59" class="field">run_id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="77" class="key">PK/FK</text>
+      <text x="60" y="79" class="field">run_id</text><text x="226" y="79" class="type">uuid</text>
     </g>
   </g>
-  <g class="" data-table="public.ai_finding_reviews" transform="translate(1000 670)">
-    <rect class="outline" width="240" height="130" rx="5"/>
-    <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
+  <g class="" data-table="public.ai_finding_reviews" transform="translate(1000 690)">
+    <rect class="outline" width="240" height="150" rx="5"/>
+    <rect class="head" x=".7" y=".7" width="238.6" height="57.3" rx="4"/><rect class="head" x=".7" y="52" width="238.6" height="6"/>
     <text x="14" y="25" class="name">ai_finding_reviews</text>
+    <text x="14" y="46" class="purpose">AI 후보의 담당자와 처리 상태</text>
     <g data-column="run_id" data-type="uuid" data-primary="true" data-foreign="true">
-      <text x="48" y="57" class="key">PK/FK</text>
-      <text x="60" y="59" class="field">run_id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="77" class="key">PK/FK</text>
+      <text x="60" y="79" class="field">run_id</text><text x="226" y="79" class="type">uuid</text>
     </g>
     <g data-column="candidate_id" data-type="text" data-primary="true" data-foreign="false">
-      <path class="row-line" d="M1 66H239"/>
-      <text x="48" y="85" class="key">PK</text>
-      <text x="60" y="87" class="field">candidate_id</text><text x="226" y="87" class="type">text</text>
+      <path class="row-line" d="M1 86H239"/>
+      <text x="48" y="105" class="key">PK</text>
+      <text x="60" y="107" class="field">candidate_id</text><text x="226" y="107" class="type">text</text>
     </g>
     <g data-column="assignee_id" data-type="uuid" data-primary="false" data-foreign="true">
-      <path class="row-line" d="M1 94H239"/>
-      <text x="48" y="113" class="key">FK</text>
-      <text x="60" y="115" class="field">assignee_id</text><text x="226" y="115" class="type">uuid</text>
+      <path class="row-line" d="M1 114H239"/>
+      <text x="48" y="133" class="key">FK</text>
+      <text x="60" y="135" class="field">assignee_id</text><text x="226" y="135" class="type">uuid</text>
     </g>
   </g>
-  <g class="" data-table="public.finding_occurrences" transform="translate(40 940)">
-    <rect class="outline" width="240" height="130" rx="5"/>
-    <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
+  <g class="" data-table="public.finding_occurrences" transform="translate(40 980)">
+    <rect class="outline" width="240" height="150" rx="5"/>
+    <rect class="head" x=".7" y=".7" width="238.6" height="57.3" rx="4"/><rect class="head" x=".7" y="52" width="238.6" height="6"/>
     <text x="14" y="25" class="name">finding_occurrences</text>
+    <text x="14" y="46" class="purpose">점검별 발견 위치와 코드 근거</text>
     <g data-column="id" data-type="uuid" data-primary="true" data-foreign="false">
-      <text x="48" y="57" class="key">PK</text>
-      <text x="60" y="59" class="field">id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="77" class="key">PK</text>
+      <text x="60" y="79" class="field">id</text><text x="226" y="79" class="type">uuid</text>
     </g>
     <g data-column="run_id" data-type="uuid" data-primary="false" data-foreign="true">
-      <path class="row-line" d="M1 66H239"/>
-      <text x="48" y="85" class="key">FK</text>
-      <text x="60" y="87" class="field">run_id</text><text x="226" y="87" class="type">uuid</text>
+      <path class="row-line" d="M1 86H239"/>
+      <text x="48" y="105" class="key">FK</text>
+      <text x="60" y="107" class="field">run_id</text><text x="226" y="107" class="type">uuid</text>
     </g>
     <g data-column="finding_id" data-type="uuid" data-primary="false" data-foreign="true">
-      <path class="row-line" d="M1 94H239"/>
-      <text x="48" y="113" class="key">FK</text>
-      <text x="60" y="115" class="field">finding_id</text><text x="226" y="115" class="type">uuid</text>
+      <path class="row-line" d="M1 114H239"/>
+      <text x="48" y="133" class="key">FK</text>
+      <text x="60" y="135" class="field">finding_id</text><text x="226" y="135" class="type">uuid</text>
     </g>
   </g>
-  <g class="" data-table="public.audit_events" transform="translate(360 940)">
-    <rect class="outline" width="240" height="130" rx="5"/>
-    <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
+  <g class="" data-table="public.audit_events" transform="translate(360 980)">
+    <rect class="outline" width="240" height="150" rx="5"/>
+    <rect class="head" x=".7" y=".7" width="238.6" height="57.3" rx="4"/><rect class="head" x=".7" y="52" width="238.6" height="6"/>
     <text x="14" y="25" class="name">audit_events</text>
+    <text x="14" y="46" class="purpose">주요 활동과 변경 이력</text>
     <g data-column="id" data-type="bigint" data-primary="true" data-foreign="false">
-      <text x="48" y="57" class="key">PK</text>
-      <text x="60" y="59" class="field">id</text><text x="226" y="59" class="type">bigint</text>
+      <text x="48" y="77" class="key">PK</text>
+      <text x="60" y="79" class="field">id</text><text x="226" y="79" class="type">bigint</text>
     </g>
     <g data-column="project_id" data-type="uuid" data-primary="false" data-foreign="true">
-      <path class="row-line" d="M1 66H239"/>
-      <text x="48" y="85" class="key">FK</text>
-      <text x="60" y="87" class="field">project_id</text><text x="226" y="87" class="type">uuid</text>
+      <path class="row-line" d="M1 86H239"/>
+      <text x="48" y="105" class="key">FK</text>
+      <text x="60" y="107" class="field">project_id</text><text x="226" y="107" class="type">uuid</text>
     </g>
     <g data-column="actor_id" data-type="uuid" data-primary="false" data-foreign="true">
-      <path class="row-line" d="M1 94H239"/>
-      <text x="48" y="113" class="key">FK</text>
-      <text x="60" y="115" class="field">actor_id</text><text x="226" y="115" class="type">uuid</text>
+      <path class="row-line" d="M1 114H239"/>
+      <text x="48" y="133" class="key">FK</text>
+      <text x="60" y="135" class="field">actor_id</text><text x="226" y="135" class="type">uuid</text>
     </g>
   </g>
-  <g class="" data-table="public.dispatch_outbox" transform="translate(680 940)">
-    <rect class="outline" width="240" height="74" rx="5"/>
-    <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
+  <g class="" data-table="public.dispatch_outbox" transform="translate(680 980)">
+    <rect class="outline" width="240" height="94" rx="5"/>
+    <rect class="head" x=".7" y=".7" width="238.6" height="57.3" rx="4"/><rect class="head" x=".7" y="52" width="238.6" height="6"/>
     <text x="14" y="25" class="name">dispatch_outbox</text>
+    <text x="14" y="46" class="purpose">점검 실행 요청의 전달·재시도</text>
     <g data-column="run_id" data-type="uuid" data-primary="true" data-foreign="true">
-      <text x="48" y="57" class="key">PK/FK</text>
-      <text x="60" y="59" class="field">run_id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="77" class="key">PK/FK</text>
+      <text x="60" y="79" class="field">run_id</text><text x="226" y="79" class="type">uuid</text>
     </g>
   </g>
-  <g class="" data-table="public.usage_reservations" transform="translate(1000 940)">
-    <rect class="outline" width="240" height="102" rx="5"/>
-    <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
+  <g class="" data-table="public.usage_reservations" transform="translate(1000 980)">
+    <rect class="outline" width="240" height="122" rx="5"/>
+    <rect class="head" x=".7" y=".7" width="238.6" height="57.3" rx="4"/><rect class="head" x=".7" y="52" width="238.6" height="6"/>
     <text x="14" y="25" class="name">usage_reservations</text>
+    <text x="14" y="46" class="purpose">점검 사용량의 예약·해제 기록</text>
     <g data-column="run_id" data-type="uuid" data-primary="true" data-foreign="true">
-      <text x="48" y="57" class="key">PK/FK</text>
-      <text x="60" y="59" class="field">run_id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="77" class="key">PK/FK</text>
+      <text x="60" y="79" class="field">run_id</text><text x="226" y="79" class="type">uuid</text>
     </g>
     <g data-column="workspace_id" data-type="uuid" data-primary="false" data-foreign="true">
-      <path class="row-line" d="M1 66H239"/>
-      <text x="48" y="85" class="key">FK</text>
-      <text x="60" y="87" class="field">workspace_id</text><text x="226" y="87" class="type">uuid</text>
-    </g>
-  </g>
-  <path d="M40 1100H1240" stroke="#e5e8eb"/>
-  <g aria-label="범례">
-    <text x="56" y="1134" class="key">PK</text><text x="68" y="1136" font-size="15" class="muted">기본키</text>
-    <text x="166" y="1134" class="key">FK</text><text x="178" y="1136" font-size="15" class="muted">외래키</text>
-    <text x="304" y="1134" class="key">PK/FK</text><text x="316" y="1136" font-size="15" class="muted">겸용</text>
-    <g transform="translate(540 0)" aria-label="관계 범례">
-      <path d="M416 1130H444M421 1126V1134M426 1126V1134" class="wire"/><text x="454" y="1136" font-size="15" class="muted">1</text>
-      <path d="M510 1130H538M515 1126V1134" class="wire"/><circle cx="525" cy="1130" r="2.5" class="wire optional"/><text x="548" y="1136" font-size="15" class="muted">0..1</text>
-      <path d="M630 1130H658M631 1126L640 1130L631 1134" class="wire"/><circle cx="645" cy="1130" r="2.5" class="wire optional"/><text x="668" y="1136" font-size="15" class="muted">0..N</text>
+      <path class="row-line" d="M1 86H239"/>
+      <text x="48" y="105" class="key">FK</text>
+      <text x="60" y="107" class="field">workspace_id</text><text x="226" y="107" class="type">uuid</text>
     </g>
   </g>
 </svg>

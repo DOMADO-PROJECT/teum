@@ -31,7 +31,7 @@ teum의 공개 화면과 브랜드 자산으로 만든 문서 자료입니다.<b
 | [hero.svg](../assets/diagrams/hero.svg) | 열린 틈 심벌과 서비스 슬로건 |
 | [review-flow.svg](../assets/diagrams/review-flow.svg) | 연결 → 점검 → 검토 → 재점검 흐름 |
 | [architecture.svg](../assets/diagrams/architecture.svg) | 웹·DB·작업 실행·격리 분석·외부 서비스의 경계 |
-| [database.svg](../assets/diagrams/database.svg) | 실제 public 테이블 16개와 Auth 참조, 점검·결과·검토 기록의 주요 외래키 관계 |
+| [database.svg](../assets/diagrams/database.svg) | 키 아이콘·자료형·Crow’s Foot 기호로 표시한 서비스 테이블 15개와 Auth 참조 |
 | [sdk-optimization.svg](../assets/diagrams/sdk-optimization.svg) · [세로형](../assets/diagrams/sdk-optimization-mobile.svg) | 첫 4/4 성공본과 최종 두 회차의 요청·토큰·시간·usage 추정 비용 비교 |
 
 순수 SVG와 CSS로 구성했습니다. 스크립트·외부 이미지·외부 폰트 요청은 없습니다.<br>
@@ -42,13 +42,13 @@ teum의 공개 화면과 브랜드 자산으로 만든 문서 자료입니다.<b
 시작 요청의 접수 응답과 분석 결과 조회를 구분한 표현입니다. 실제 Workflow 실행과 접수 응답은 겹칠 수 있으며, 하단 세 연결의 동시 움직임이 실제 작업의 병렬 실행을 뜻하지는 않습니다.<br>
 모션 감소 설정에서는 움직이는 장식을 멈추거나 숨깁니다. 이미지가 작게 보이면 원본 SVG 링크를 열어 확대할 수 있습니다.
 
-데이터 관계도는 2026-10-26 실제 PostgreSQL 카탈로그를 읽기 전용으로 조회해 만들었습니다.<br>
-`public` 테이블 16개와 `auth.users` 참조를 표시하고, 외래키 32개 중 주요 관계 20개를 부모 → 자식 방향으로 연결했습니다.<br>
-`0..N`은 자식이 없거나 여러 행, `0..1`은 없거나 최대 한 행입니다. PK는 기본키, FK는 외래키, UQ는 중복을 허용하지 않는 키입니다.<br>
-복합 기본키는 PK가 붙은 컬럼을 함께 사용하며, FK 표시는 복합 외래키의 일부를 포함합니다.<br>
-`scan_runs.baseline_id`의 자기 참조는 설명으로 표시하고, 공통 사용자·공간 참조 등 보조 외래키 12개와 전체 컬럼·private 및 Auth 내부 구조는 생략했습니다.<br>
-점선으로 표시한 `website_targets`는 현재 제공하지 않는 URL 점검 경로입니다. `uploads`는 현재 GitHub 수집 입력의 보관 기록으로 사용합니다.<br>
-실제 사용자·분석 내용·운영 설정은 읽거나 포함하지 않았습니다. 관계도는 정적 SVG이며, DB 구조 변경 시 다시 대조해야 합니다.
+ERD는 2026-10-27 실제 PostgreSQL 카탈로그를 읽기 전용으로 조회해 대조했습니다.<br>
+서비스의 `public` 테이블 15개와 `auth.users` 참조에 주요 키·자료형을 표시하고, 자기 참조를 포함한 외래키 19개를 연결했습니다.<br>
+파란 키는 기본키, 마름모는 외래키입니다. 여러 키 아이콘이 있으면 함께 복합 기본키를 이루며, 두 아이콘이 함께 있으면 기본키이면서 외래키입니다.<br>
+관계선 양끝의 Crow’s Foot 기호는 막대가 하나, 원이 선택, 갈래가 여러 개를 뜻합니다. NULL 허용과 기본키·UNIQUE 제약을 대조해 선택 여부와 개수를 표시했습니다.<br>
+`scan_runs.baseline_id`의 자기 참조도 선으로 표시했습니다. 일부 외래키 13개, 공통 `workspace_id` 등 일부 복합 외래키 컬럼, 전체 컬럼·private 및 Auth 내부 구조는 생략했습니다.<br>
+`uploads`는 현재 GitHub 수집 입력의 보관 기록으로 사용합니다.<br>
+실제 사용자·분석 내용·운영 설정은 포함하지 않았습니다. 정적 SVG이므로 DB 구조 변경 시 다시 대조해야 합니다.
 
 SDK 그래프는 고정한 자사 코드 26개 파일·2,277줄의 실행 기록으로 만들었습니다.<br>
 각 지표에서 r5를 100으로 놓았으며 파란 막대는 r14/r15의 평균을 나타냅니다.<br>

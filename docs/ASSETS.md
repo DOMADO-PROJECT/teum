@@ -31,7 +31,7 @@ teum의 공개 화면과 브랜드 자산으로 만든 문서 자료입니다.<b
 | [hero.svg](../assets/diagrams/hero.svg) | 열린 틈 심벌과 서비스 슬로건 |
 | [review-flow.svg](../assets/diagrams/review-flow.svg) | 연결 → 점검 → 검토 → 재점검 흐름 |
 | [architecture.svg](../assets/diagrams/architecture.svg) | 웹·DB·작업 실행·격리 분석·외부 서비스의 경계 |
-| [database.svg](../assets/diagrams/database.svg) | PK·FK 표시·자료형·Crow’s Foot 기호로 표시한 서비스 테이블 15개와 Auth 참조 |
+| [database.svg](../assets/diagrams/database.svg) | 한글 역할 설명·PK·FK 표시·자료형·Crow’s Foot 기호로 표시한 서비스 테이블 15개와 Auth 참조 |
 | [sdk-optimization.svg](../assets/diagrams/sdk-optimization.svg) · [세로형](../assets/diagrams/sdk-optimization-mobile.svg) | 첫 4/4 성공본과 최종 두 회차의 요청·토큰·시간·usage 추정 비용 비교 |
 
 순수 SVG와 CSS로 구성했습니다. 스크립트·외부 이미지·외부 폰트 요청은 없습니다.<br>
@@ -44,8 +44,11 @@ teum의 공개 화면과 브랜드 자산으로 만든 문서 자료입니다.<b
 
 ERD는 2026-10-27 실제 PostgreSQL 카탈로그를 읽기 전용으로 조회해 대조했습니다.<br>
 서비스의 `public` 테이블 15개와 `auth.users` 참조에 주요 키·자료형을 표시하고, 자기 참조를 포함한 외래키 19개를 연결했습니다.<br>
+각 테이블 이름 아래에 역할을 한글 한 줄로 설명했습니다. 오른쪽 위에는 DB 종류인 `PostgreSQL`을 표시합니다.<br>
 `PK`는 기본키, `FK`는 외래키, `PK/FK`는 두 역할을 겸하는 컬럼입니다. 여러 컬럼에 `PK`가 표시되면 함께 복합 기본키를 이룹니다. 키 표시는 같은 열에 정렬했습니다.<br>
 테이블은 외곽선 없이 헤더 배경·옅은 행 구분선·은은한 그림자로 묶었습니다. 모든 관계선과 끝 기호는 같은 진한 회색과 두께를 사용하며, 색상으로 관계의 종류나 중요도를 구분하지 않습니다.<br>
+[MySQL Workbench 표기법](https://dev.mysql.com/doc/workbench/en/wb-relationship-tools.html)에 따라 식별 관계 5개는 실선, 비식별 관계 14개는 파선으로 표시합니다. 끝 기호는 실선으로 유지합니다.<br>
+[Workbench 8.0의 판정 기준](https://github.com/mysql/mysql-workbench/blob/8.0/plugins/db.mysql.editors/backend/mysql_relationship_editor.cpp#L258)대로 외래키의 모든 컬럼이 자식 기본키에 포함되어야 식별 관계입니다. 그림에서 생략한 복합 외래키 컬럼도 포함해 판정했으므로, 일부 컬럼만 `PK/FK`인 관계는 파선입니다.<br>
 관계선 양끝의 Crow’s Foot 기호는 막대가 하나, 원이 선택, 갈래가 여러 개를 뜻합니다. NULL 허용과 기본키·UNIQUE 제약을 대조해 선택 여부와 개수를 표시했습니다.<br>
 `scan_runs.baseline_id`의 자기 참조도 선으로 표시했습니다. 일부 외래키 13개, 공통 `workspace_id` 등 일부 복합 외래키 컬럼, 전체 컬럼·private 및 Auth 내부 구조는 생략했습니다.<br>
 `uploads`는 현재 GitHub 수집 입력의 보관 기록으로 사용합니다.<br>

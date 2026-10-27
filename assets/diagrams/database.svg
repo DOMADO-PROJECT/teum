@@ -1,26 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1170" viewBox="0 0 1280 1170" role="img" aria-labelledby="database-title database-desc" xml:lang="ko">
   <title id="database-title">teum. PostgreSQL ERD</title>
-  <desc id="database-desc">2026년 10월 27일 실제 카탈로그와 대조한 서비스의 public 테이블 15개와 auth.users 참조입니다. 주요 외래키 19개를 Crow’s Foot 기호로 표시합니다. 선 양끝의 막대는 하나, 원은 선택, 갈래는 여러 개를 뜻합니다. 키 아이콘은 기본키, 마름모는 외래키입니다. workspaces에서 projects와 scan_runs로 이어지며, 점검의 입력·규칙 결과·AI 검토·작업 기록을 연결합니다. baseline_id의 자기 참조도 선으로 표시합니다. 공통 작업 공간 컬럼과 일부 외래키 13개, 전체 컬럼, private 및 Auth 내부 구조는 생략합니다.</desc>
+  <desc id="database-desc">2026년 10월 27일 실제 카탈로그와 대조한 서비스의 public 테이블 15개와 auth.users 참조입니다. 주요 외래키 19개를 같은 색과 두께의 선 및 Crow’s Foot 기호로 표시합니다. 선 양끝의 막대는 하나, 원은 선택, 갈래는 여러 개를 뜻합니다. PK는 기본키, FK는 외래키, PK/FK는 두 역할을 겸하는 컬럼입니다. 키 표시는 같은 열에 정렬하고 테이블 외곽선은 생략했습니다. workspaces에서 projects와 scan_runs로 이어지며, 점검의 입력·규칙 결과·AI 검토·작업 기록을 연결합니다. baseline_id의 자기 참조도 선으로 표시합니다. 공통 작업 공간 컬럼과 일부 외래키 13개, 전체 컬럼, private 및 Auth 내부 구조는 생략합니다.</desc>
   <metadata id="database-data">{"as_of":"2026-10-27","source":"PostgreSQL catalog, read-only","schema":"public","displayed_public_tables":15,"displayed_foreign_keys":19,"omitted_foreign_keys":13,"notation":"Crow's Foot"}</metadata>
   <defs>
     <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#eef1f5" stroke-width=".6"/></pattern>
-    <g id="pk"><circle cx="3.5" cy="3.5" r="2.5"/><path d="M5.4 5.4L11 11M8 8L10 6M10 10L12 8"/></g>
-    <path id="fk" d="M4 0L8 4L4 8L0 4Z"/>
   </defs>
   <style>
     text{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;fill:#191f28}
     .muted{fill:#566270}.blue{fill:#1d65d1}
     .edge-halo{fill:none;stroke:#fff;stroke-width:4;stroke-linejoin:round}
-    .wire,.end{fill:none;stroke:#8b95a1;stroke-width:1.15;stroke-linejoin:miter;stroke-linecap:butt}
-    .core .wire,.core .end{stroke:#1d65d1;stroke-width:1.3}
-    .end circle{fill:#fff}
-    .outline{fill:#fff;stroke:#c9d3df;stroke-width:1.3}
+    .wire,.end{fill:none;stroke:#4b5563;stroke-width:1.8;stroke-linejoin:miter;stroke-linecap:butt}
+    [data-fk]>.wire{shape-rendering:crispEdges}
+    .end circle,.optional{fill:#fff}
+    .outline{fill:#fff;stroke:none}
     .head{fill:#edf4ff}.focus .head{fill:#1d65d1}
     .name{font-size:20px;font-weight:650}.focus .name{fill:#fff}
     .field{font-size:17.5px;fill:#333d4b}.type{font-size:14px;fill:#566270;text-anchor:end}
     .row-line{stroke:#eef1f5;stroke-width:1}
-    .pk-icon{fill:none;stroke:#1d65d1;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-    .fk-icon{fill:#fff;stroke:#8b95a1;stroke-width:1.4}
+    .key{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;font-size:12.5px;font-weight:650;fill:#4b5563;text-anchor:end}
   </style>
   <rect x="1" y="1" width="1278" height="1168" rx="10" fill="#fff" stroke="#e5e8eb"/>
   <text x="40" y="56" font-size="32" font-weight="750" letter-spacing="-1.2">teum.</text>
@@ -47,7 +44,7 @@
     <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(360 230) rotate(180)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
     <g class="end" data-end="child" data-min="0" data-max="many" transform="translate(280 454) rotate(0)"><path d="M1-4L10 0L1 4M1 0H10"/><circle cx="15" cy="0" r="2.5"/></g>
   </g>
-  <g class="core" data-fk="projects_workspace_id_fkey" data-parent="public.workspaces" data-child="public.projects">
+  <g data-fk="projects_workspace_id_fkey" data-parent="public.workspaces" data-child="public.projects">
     <title>public.workspaces — public.projects</title>
     <path class="edge-halo" d="M480 252L480 400"/><path class="wire" d="M480 252L480 400"/>
     <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(480 252) rotate(90)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
@@ -71,7 +68,7 @@
     <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(560 400) rotate(-90)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
     <g class="end" data-end="child" data-min="0" data-max="many" transform="translate(720 252) rotate(90)"><path d="M1-4L10 0L1 4M1 0H10"/><circle cx="15" cy="0" r="2.5"/></g>
   </g>
-  <g class="core" data-fk="scan_runs_project_id_workspace_id_fkey" data-parent="public.projects" data-child="public.scan_runs">
+  <g data-fk="scan_runs_project_id_workspace_id_fkey" data-parent="public.projects" data-child="public.scan_runs">
     <title>public.projects — public.scan_runs</title>
     <path class="edge-halo" d="M600 482L680 482"/><path class="wire" d="M600 482L680 482"/>
     <g class="end" data-end="parent" data-min="1" data-max="one" transform="translate(600 482) rotate(0)"><path d="M5-4V4"/><path d="M10-4V4"/></g>
@@ -148,8 +145,8 @@
     <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
     <text x="14" y="25" class="name">auth.users</text>
     <g data-column="id" data-type="uuid" data-primary="true" data-foreign="false">
-      <use href="#pk" class="pk-icon" x="12" y="48"/>
-      <text x="42" y="59" class="field">id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="57" class="key">PK</text>
+      <text x="60" y="59" class="field">id</text><text x="226" y="59" class="type">uuid</text>
     </g>
   </g>
   <g class="" data-table="public.workspaces" transform="translate(360 150)">
@@ -157,13 +154,13 @@
     <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
     <text x="14" y="25" class="name">workspaces</text>
     <g data-column="id" data-type="uuid" data-primary="true" data-foreign="false">
-      <use href="#pk" class="pk-icon" x="12" y="48"/>
-      <text x="42" y="59" class="field">id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="57" class="key">PK</text>
+      <text x="60" y="59" class="field">id</text><text x="226" y="59" class="type">uuid</text>
     </g>
     <g data-column="owner_id" data-type="uuid" data-primary="false" data-foreign="true">
       <path class="row-line" d="M1 66H239"/>
-      <use href="#fk" class="fk-icon" x="27" y="78"/>
-      <text x="42" y="87" class="field">owner_id</text><text x="226" y="87" class="type">uuid</text>
+      <text x="48" y="85" class="key">FK</text>
+      <text x="60" y="87" class="field">owner_id</text><text x="226" y="87" class="type">uuid</text>
     </g>
   </g>
   <g class="" data-table="public.uploads" transform="translate(680 150)">
@@ -171,13 +168,13 @@
     <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
     <text x="14" y="25" class="name">uploads</text>
     <g data-column="id" data-type="uuid" data-primary="true" data-foreign="false">
-      <use href="#pk" class="pk-icon" x="12" y="48"/>
-      <text x="42" y="59" class="field">id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="57" class="key">PK</text>
+      <text x="60" y="59" class="field">id</text><text x="226" y="59" class="type">uuid</text>
     </g>
     <g data-column="project_id" data-type="uuid" data-primary="false" data-foreign="true">
       <path class="row-line" d="M1 66H239"/>
-      <use href="#fk" class="fk-icon" x="27" y="78"/>
-      <text x="42" y="87" class="field">project_id</text><text x="226" y="87" class="type">uuid</text>
+      <text x="48" y="85" class="key">FK</text>
+      <text x="60" y="87" class="field">project_id</text><text x="226" y="87" class="type">uuid</text>
     </g>
   </g>
   <g class="" data-table="public.scan_stages" transform="translate(1000 150)">
@@ -185,14 +182,13 @@
     <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
     <text x="14" y="25" class="name">scan_stages</text>
     <g data-column="run_id" data-type="uuid" data-primary="true" data-foreign="true">
-      <use href="#pk" class="pk-icon" x="12" y="48"/>
-      <use href="#fk" class="fk-icon" x="27" y="50"/>
-      <text x="42" y="59" class="field">run_id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="57" class="key">PK/FK</text>
+      <text x="60" y="59" class="field">run_id</text><text x="226" y="59" class="type">uuid</text>
     </g>
     <g data-column="kind" data-type="text" data-primary="true" data-foreign="false">
       <path class="row-line" d="M1 66H239"/>
-      <use href="#pk" class="pk-icon" x="12" y="76"/>
-      <text x="42" y="87" class="field">kind</text><text x="226" y="87" class="type">text</text>
+      <text x="48" y="85" class="key">PK</text>
+      <text x="60" y="87" class="field">kind</text><text x="226" y="87" class="type">text</text>
     </g>
   </g>
   <g class="" data-table="public.workspace_members" transform="translate(40 400)">
@@ -200,15 +196,13 @@
     <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
     <text x="14" y="25" class="name">workspace_members</text>
     <g data-column="workspace_id" data-type="uuid" data-primary="true" data-foreign="true">
-      <use href="#pk" class="pk-icon" x="12" y="48"/>
-      <use href="#fk" class="fk-icon" x="27" y="50"/>
-      <text x="42" y="59" class="field">workspace_id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="57" class="key">PK/FK</text>
+      <text x="60" y="59" class="field">workspace_id</text><text x="226" y="59" class="type">uuid</text>
     </g>
     <g data-column="user_id" data-type="uuid" data-primary="true" data-foreign="true">
       <path class="row-line" d="M1 66H239"/>
-      <use href="#pk" class="pk-icon" x="12" y="76"/>
-      <use href="#fk" class="fk-icon" x="27" y="78"/>
-      <text x="42" y="87" class="field">user_id</text><text x="226" y="87" class="type">uuid</text>
+      <text x="48" y="85" class="key">PK/FK</text>
+      <text x="60" y="87" class="field">user_id</text><text x="226" y="87" class="type">uuid</text>
     </g>
   </g>
   <g class="" data-table="public.projects" transform="translate(360 400)">
@@ -216,13 +210,13 @@
     <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
     <text x="14" y="25" class="name">projects</text>
     <g data-column="id" data-type="uuid" data-primary="true" data-foreign="false">
-      <use href="#pk" class="pk-icon" x="12" y="48"/>
-      <text x="42" y="59" class="field">id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="57" class="key">PK</text>
+      <text x="60" y="59" class="field">id</text><text x="226" y="59" class="type">uuid</text>
     </g>
     <g data-column="workspace_id" data-type="uuid" data-primary="false" data-foreign="true">
       <path class="row-line" d="M1 66H239"/>
-      <use href="#fk" class="fk-icon" x="27" y="78"/>
-      <text x="42" y="87" class="field">workspace_id</text><text x="226" y="87" class="type">uuid</text>
+      <text x="48" y="85" class="key">FK</text>
+      <text x="60" y="87" class="field">workspace_id</text><text x="226" y="87" class="type">uuid</text>
     </g>
   </g>
   <g class="focus" data-table="public.scan_runs" transform="translate(680 400)">
@@ -230,23 +224,23 @@
     <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
     <text x="14" y="25" class="name">scan_runs</text>
     <g data-column="id" data-type="uuid" data-primary="true" data-foreign="false">
-      <use href="#pk" class="pk-icon" x="12" y="48"/>
-      <text x="42" y="59" class="field">id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="57" class="key">PK</text>
+      <text x="60" y="59" class="field">id</text><text x="226" y="59" class="type">uuid</text>
     </g>
     <g data-column="project_id" data-type="uuid" data-primary="false" data-foreign="true">
       <path class="row-line" d="M1 66H239"/>
-      <use href="#fk" class="fk-icon" x="27" y="78"/>
-      <text x="42" y="87" class="field">project_id</text><text x="226" y="87" class="type">uuid</text>
+      <text x="48" y="85" class="key">FK</text>
+      <text x="60" y="87" class="field">project_id</text><text x="226" y="87" class="type">uuid</text>
     </g>
     <g data-column="upload_id" data-type="uuid" data-primary="false" data-foreign="true">
       <path class="row-line" d="M1 94H239"/>
-      <use href="#fk" class="fk-icon" x="27" y="106"/>
-      <text x="42" y="115" class="field">upload_id</text><text x="226" y="115" class="type">uuid</text>
+      <text x="48" y="113" class="key">FK</text>
+      <text x="60" y="115" class="field">upload_id</text><text x="226" y="115" class="type">uuid</text>
     </g>
     <g data-column="baseline_id" data-type="uuid" data-primary="false" data-foreign="true">
       <path class="row-line" d="M1 122H239"/>
-      <use href="#fk" class="fk-icon" x="27" y="134"/>
-      <text x="42" y="143" class="field">baseline_id</text><text x="226" y="143" class="type">uuid</text>
+      <text x="48" y="141" class="key">FK</text>
+      <text x="60" y="143" class="field">baseline_id</text><text x="226" y="143" class="type">uuid</text>
     </g>
   </g>
   <g class="" data-table="public.scan_ai_reviews" transform="translate(1000 400)">
@@ -254,14 +248,13 @@
     <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
     <text x="14" y="25" class="name">scan_ai_reviews</text>
     <g data-column="run_id" data-type="uuid" data-primary="true" data-foreign="true">
-      <use href="#pk" class="pk-icon" x="12" y="48"/>
-      <use href="#fk" class="fk-icon" x="27" y="50"/>
-      <text x="42" y="59" class="field">run_id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="57" class="key">PK/FK</text>
+      <text x="60" y="59" class="field">run_id</text><text x="226" y="59" class="type">uuid</text>
     </g>
     <g data-column="kind" data-type="text" data-primary="false" data-foreign="true">
       <path class="row-line" d="M1 66H239"/>
-      <use href="#fk" class="fk-icon" x="27" y="78"/>
-      <text x="42" y="87" class="field">kind</text><text x="226" y="87" class="type">text</text>
+      <text x="48" y="85" class="key">FK</text>
+      <text x="60" y="87" class="field">kind</text><text x="226" y="87" class="type">text</text>
     </g>
   </g>
   <g class="" data-table="public.findings" transform="translate(40 670)">
@@ -269,18 +262,18 @@
     <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
     <text x="14" y="25" class="name">findings</text>
     <g data-column="id" data-type="uuid" data-primary="true" data-foreign="false">
-      <use href="#pk" class="pk-icon" x="12" y="48"/>
-      <text x="42" y="59" class="field">id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="57" class="key">PK</text>
+      <text x="60" y="59" class="field">id</text><text x="226" y="59" class="type">uuid</text>
     </g>
     <g data-column="project_id" data-type="uuid" data-primary="false" data-foreign="true">
       <path class="row-line" d="M1 66H239"/>
-      <use href="#fk" class="fk-icon" x="27" y="78"/>
-      <text x="42" y="87" class="field">project_id</text><text x="226" y="87" class="type">uuid</text>
+      <text x="48" y="85" class="key">FK</text>
+      <text x="60" y="87" class="field">project_id</text><text x="226" y="87" class="type">uuid</text>
     </g>
     <g data-column="assignee_id" data-type="uuid" data-primary="false" data-foreign="true">
       <path class="row-line" d="M1 94H239"/>
-      <use href="#fk" class="fk-icon" x="27" y="106"/>
-      <text x="42" y="115" class="field">assignee_id</text><text x="226" y="115" class="type">uuid</text>
+      <text x="48" y="113" class="key">FK</text>
+      <text x="60" y="115" class="field">assignee_id</text><text x="226" y="115" class="type">uuid</text>
     </g>
   </g>
   <g class="" data-table="public.project_analysis_policies" transform="translate(360 670)">
@@ -288,9 +281,8 @@
     <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
     <text x="14" y="25" class="name" style="font-size:17px">project_analysis_policies</text>
     <g data-column="project_id" data-type="uuid" data-primary="true" data-foreign="true">
-      <use href="#pk" class="pk-icon" x="12" y="48"/>
-      <use href="#fk" class="fk-icon" x="27" y="50"/>
-      <text x="42" y="59" class="field">project_id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="57" class="key">PK/FK</text>
+      <text x="60" y="59" class="field">project_id</text><text x="226" y="59" class="type">uuid</text>
     </g>
   </g>
   <g class="" data-table="public.scan_native_analysis" transform="translate(680 670)">
@@ -298,9 +290,8 @@
     <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
     <text x="14" y="25" class="name">scan_native_analysis</text>
     <g data-column="run_id" data-type="uuid" data-primary="true" data-foreign="true">
-      <use href="#pk" class="pk-icon" x="12" y="48"/>
-      <use href="#fk" class="fk-icon" x="27" y="50"/>
-      <text x="42" y="59" class="field">run_id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="57" class="key">PK/FK</text>
+      <text x="60" y="59" class="field">run_id</text><text x="226" y="59" class="type">uuid</text>
     </g>
   </g>
   <g class="" data-table="public.ai_finding_reviews" transform="translate(1000 670)">
@@ -308,19 +299,18 @@
     <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
     <text x="14" y="25" class="name">ai_finding_reviews</text>
     <g data-column="run_id" data-type="uuid" data-primary="true" data-foreign="true">
-      <use href="#pk" class="pk-icon" x="12" y="48"/>
-      <use href="#fk" class="fk-icon" x="27" y="50"/>
-      <text x="42" y="59" class="field">run_id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="57" class="key">PK/FK</text>
+      <text x="60" y="59" class="field">run_id</text><text x="226" y="59" class="type">uuid</text>
     </g>
     <g data-column="candidate_id" data-type="text" data-primary="true" data-foreign="false">
       <path class="row-line" d="M1 66H239"/>
-      <use href="#pk" class="pk-icon" x="12" y="76"/>
-      <text x="42" y="87" class="field">candidate_id</text><text x="226" y="87" class="type">text</text>
+      <text x="48" y="85" class="key">PK</text>
+      <text x="60" y="87" class="field">candidate_id</text><text x="226" y="87" class="type">text</text>
     </g>
     <g data-column="assignee_id" data-type="uuid" data-primary="false" data-foreign="true">
       <path class="row-line" d="M1 94H239"/>
-      <use href="#fk" class="fk-icon" x="27" y="106"/>
-      <text x="42" y="115" class="field">assignee_id</text><text x="226" y="115" class="type">uuid</text>
+      <text x="48" y="113" class="key">FK</text>
+      <text x="60" y="115" class="field">assignee_id</text><text x="226" y="115" class="type">uuid</text>
     </g>
   </g>
   <g class="" data-table="public.finding_occurrences" transform="translate(40 940)">
@@ -328,18 +318,18 @@
     <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
     <text x="14" y="25" class="name">finding_occurrences</text>
     <g data-column="id" data-type="uuid" data-primary="true" data-foreign="false">
-      <use href="#pk" class="pk-icon" x="12" y="48"/>
-      <text x="42" y="59" class="field">id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="57" class="key">PK</text>
+      <text x="60" y="59" class="field">id</text><text x="226" y="59" class="type">uuid</text>
     </g>
     <g data-column="run_id" data-type="uuid" data-primary="false" data-foreign="true">
       <path class="row-line" d="M1 66H239"/>
-      <use href="#fk" class="fk-icon" x="27" y="78"/>
-      <text x="42" y="87" class="field">run_id</text><text x="226" y="87" class="type">uuid</text>
+      <text x="48" y="85" class="key">FK</text>
+      <text x="60" y="87" class="field">run_id</text><text x="226" y="87" class="type">uuid</text>
     </g>
     <g data-column="finding_id" data-type="uuid" data-primary="false" data-foreign="true">
       <path class="row-line" d="M1 94H239"/>
-      <use href="#fk" class="fk-icon" x="27" y="106"/>
-      <text x="42" y="115" class="field">finding_id</text><text x="226" y="115" class="type">uuid</text>
+      <text x="48" y="113" class="key">FK</text>
+      <text x="60" y="115" class="field">finding_id</text><text x="226" y="115" class="type">uuid</text>
     </g>
   </g>
   <g class="" data-table="public.audit_events" transform="translate(360 940)">
@@ -347,18 +337,18 @@
     <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
     <text x="14" y="25" class="name">audit_events</text>
     <g data-column="id" data-type="bigint" data-primary="true" data-foreign="false">
-      <use href="#pk" class="pk-icon" x="12" y="48"/>
-      <text x="42" y="59" class="field">id</text><text x="226" y="59" class="type">bigint</text>
+      <text x="48" y="57" class="key">PK</text>
+      <text x="60" y="59" class="field">id</text><text x="226" y="59" class="type">bigint</text>
     </g>
     <g data-column="project_id" data-type="uuid" data-primary="false" data-foreign="true">
       <path class="row-line" d="M1 66H239"/>
-      <use href="#fk" class="fk-icon" x="27" y="78"/>
-      <text x="42" y="87" class="field">project_id</text><text x="226" y="87" class="type">uuid</text>
+      <text x="48" y="85" class="key">FK</text>
+      <text x="60" y="87" class="field">project_id</text><text x="226" y="87" class="type">uuid</text>
     </g>
     <g data-column="actor_id" data-type="uuid" data-primary="false" data-foreign="true">
       <path class="row-line" d="M1 94H239"/>
-      <use href="#fk" class="fk-icon" x="27" y="106"/>
-      <text x="42" y="115" class="field">actor_id</text><text x="226" y="115" class="type">uuid</text>
+      <text x="48" y="113" class="key">FK</text>
+      <text x="60" y="115" class="field">actor_id</text><text x="226" y="115" class="type">uuid</text>
     </g>
   </g>
   <g class="" data-table="public.dispatch_outbox" transform="translate(680 940)">
@@ -366,9 +356,8 @@
     <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
     <text x="14" y="25" class="name">dispatch_outbox</text>
     <g data-column="run_id" data-type="uuid" data-primary="true" data-foreign="true">
-      <use href="#pk" class="pk-icon" x="12" y="48"/>
-      <use href="#fk" class="fk-icon" x="27" y="50"/>
-      <text x="42" y="59" class="field">run_id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="57" class="key">PK/FK</text>
+      <text x="60" y="59" class="field">run_id</text><text x="226" y="59" class="type">uuid</text>
     </g>
   </g>
   <g class="" data-table="public.usage_reservations" transform="translate(1000 940)">
@@ -376,23 +365,23 @@
     <rect class="head" x=".7" y=".7" width="238.6" height="37.3" rx="4"/><rect class="head" x=".7" y="32" width="238.6" height="6"/>
     <text x="14" y="25" class="name">usage_reservations</text>
     <g data-column="run_id" data-type="uuid" data-primary="true" data-foreign="true">
-      <use href="#pk" class="pk-icon" x="12" y="48"/>
-      <use href="#fk" class="fk-icon" x="27" y="50"/>
-      <text x="42" y="59" class="field">run_id</text><text x="226" y="59" class="type">uuid</text>
+      <text x="48" y="57" class="key">PK/FK</text>
+      <text x="60" y="59" class="field">run_id</text><text x="226" y="59" class="type">uuid</text>
     </g>
     <g data-column="workspace_id" data-type="uuid" data-primary="false" data-foreign="true">
       <path class="row-line" d="M1 66H239"/>
-      <use href="#fk" class="fk-icon" x="27" y="78"/>
-      <text x="42" y="87" class="field">workspace_id</text><text x="226" y="87" class="type">uuid</text>
+      <text x="48" y="85" class="key">FK</text>
+      <text x="60" y="87" class="field">workspace_id</text><text x="226" y="87" class="type">uuid</text>
     </g>
   </g>
   <path d="M40 1100H1240" stroke="#e5e8eb"/>
   <g aria-label="범례">
-    <use href="#pk" x="40" y="1124" class="pk-icon"/><text x="64" y="1136" font-size="15" class="muted">기본키</text>
-    <use href="#fk" x="150" y="1126" class="fk-icon"/><text x="172" y="1136" font-size="15" class="muted">외래키</text>
-    <path d="M300 1130H328M305 1126V1134M310 1126V1134" class="wire"/><text x="338" y="1136" font-size="15" class="muted">1</text>
-    <path d="M390 1130H418M395 1126V1134" class="wire"/><circle cx="405" cy="1130" r="2.5" fill="#fff" stroke="#8b95a1" stroke-width="1.15"/><text x="428" y="1136" font-size="15" class="muted">0..1</text>
-    <path d="M510 1130H538M511 1126L520 1130L511 1134" class="wire"/><circle cx="525" cy="1130" r="2.5" fill="#fff" stroke="#8b95a1" stroke-width="1.15"/><text x="548" y="1136" font-size="15" class="muted">0..N</text>
+    <text x="56" y="1134" class="key">PK</text><text x="68" y="1136" font-size="15" class="muted">기본키</text>
+    <text x="166" y="1134" class="key">FK</text><text x="178" y="1136" font-size="15" class="muted">외래키</text>
+    <text x="304" y="1134" class="key">PK/FK</text><text x="316" y="1136" font-size="15" class="muted">겸용</text>
+    <path d="M416 1130H444M421 1126V1134M426 1126V1134" class="wire"/><text x="454" y="1136" font-size="15" class="muted">1</text>
+    <path d="M510 1130H538M515 1126V1134" class="wire"/><circle cx="525" cy="1130" r="2.5" class="wire optional"/><text x="548" y="1136" font-size="15" class="muted">0..1</text>
+    <path d="M630 1130H658M631 1126L640 1130L631 1134" class="wire"/><circle cx="645" cy="1130" r="2.5" class="wire optional"/><text x="668" y="1136" font-size="15" class="muted">0..N</text>
     <text x="1240" y="1136" font-size="14" text-anchor="end" class="muted">주요 키·관계 · public 15 + Auth · 2026-10-27</text>
   </g>
 </svg>

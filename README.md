@@ -52,9 +52,12 @@ teum에서는 **발견 → 근거 확인 → 검토 기록 → 수정본 재점�
 
 ## 02. 저장소 연결부터, 수정 후 확인까지
 
-![GitHub 연결과 범위 선택에서 시작해 기본 점검과 선택 AI 검토, 근거 확인, 새 커밋 재점검으로 이어지는 흐름](assets/diagrams/review-flow.svg)
+<picture>
+  <source media="(max-width: 640px)" srcset="assets/diagrams/review-flow-mobile.svg">
+  <img src="assets/diagrams/review-flow.svg" width="1280" alt="GitHub 연결과 범위 선택에서 시작해 기본 점검과 별도 동의한 선택 AI 검토, 근거 확인, 비교 조건을 확인하는 새 커밋 재점검으로 이어지는 흐름">
+</picture>
 
-*[SVG 크게 보기](assets/diagrams/review-flow.svg) · 움직임은 단계의 연결을 설명하며 실제 실행 시간이나 진행률을 나타내지 않습니다.*
+*[가로 SVG](assets/diagrams/review-flow.svg) · [모바일 SVG](assets/diagrams/review-flow-mobile.svg) · 움직임은 단계의 연결을 설명하며 실제 실행 시간이나 진행률을 나타내지 않습니다.*
 
 1. **확인할 코드를 정합니다.** GitHub App에 허용한 저장소에서 브랜치와 폴더를 선택합니다. 수집할 파일을 확인하고, 특정 커밋의 코드로 입력을 고정합니다.
 2. **점검을 시작합니다.** 기본 보안 점검을 실행합니다. AI 검토는 별도 선택과 코드 전송 동의가 있을 때 추가합니다.

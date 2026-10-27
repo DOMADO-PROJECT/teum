@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="768" viewBox="0 0 720 768" role="img" aria-labelledby="flow-title flow-desc" xml:lang="ko" class="mobile">
+  <title id="flow-title">teum. 사용 흐름 — 범위 선택부터 수정본 재점검까지</title>
+  <desc id="flow-desc">GitHub 연결부터 수정본 재점검까지의 사용 흐름입니다. 1. 허용한 저장소와 폴더를 선택하고 점검할 코드를 특정 커밋으로 고정합니다. 2. 기본 보안 점검을 실행합니다. AI 검토는 별도 선택과 코드 전송 동의가 있을 때 추가하며, 규칙 결과와 별도로 독립 후보와 방어 근거를 기록합니다. 3. 코드 근거와 영향을 확인하고 처리 상태를 기록합니다. 검토 기록과 실제 재점검 결과는 구분합니다. 4. 사용자가 수정한 새 커밋으로 재점검하고 비교 조건을 확인합니다. 리포트는 HTML 또는 JSON으로 내보낼 수 있습니다. AI 후보의 자동 재점검 비교는 현재 지원하지 않습니다. 발견 0건이 전체 안전을 의미하지 않으며, 점검 범위와 완료 상태를 함께 확인해야 합니다. 강조된 단계에서 다음 단계로 가는 선이 위에서 아래로 파랗게 채워지고, 도착하면 다음 번호가 강조됩니다. 1부터 4까지 순서대로 이어지며 글자의 위치는 고정되어 있습니다. 6초 반복 모션은 단계 순서를 설명하며 실제 실행 시간이나 진행률을 나타내지 않습니다. 모션 감소 설정에서는 네 단계를 정적으로 표시합니다.</desc>
+  <style>
+    text{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;fill:#191f28}
+    .muted{fill:#566270}.blue{fill:#1d65d1}
+    .step-label{font-size:26px;font-weight:650;letter-spacing:-.4px}
+    .step-detail{font-size:20px;fill:#566270}
+    .number{font-size:20px;font-weight:500;font-variant-numeric:tabular-nums;text-anchor:middle;fill:#6b7684}
+    .track{fill:none;stroke:#d8dfe6;stroke-width:.8}
+    .flow{fill:#1d65d1;opacity:0;clip-path:inset(0 0 100% 0);transform-box:fill-box}
+    .active{opacity:0}.active .number{fill:#1d65d1}
+    .mobile .step-label{font-size:32px}.mobile .step-detail{font-size:26px}.mobile .number{font-size:24px}
+    @media(prefers-reduced-motion:no-preference){
+      .active{animation:flow-focus 6s linear infinite both;animation-delay:var(--delay)}
+      .flow{animation:flow-link 6s linear infinite both;animation-delay:var(--delay)}
+    }
+    /* 연결선이 다음 단계에 닿는 순간 번호 강조를 넘겨, 이동 방향과 단계 순서를 맞춘다. */
+    @keyframes flow-focus{0%,25%,100%{opacity:0}5%,20%{opacity:1}}
+    @keyframes flow-link{0%{clip-path:inset(0 0 100% 0);opacity:0}1.5%{opacity:1}15%{clip-path:inset(0);opacity:1}20%,100%{clip-path:inset(0);opacity:0}}
+  </style>
+  <rect x="1" y="1" width="718" height="766" rx="10" fill="#fff" stroke="#e5e8eb"/>
+  <text x="32" y="58" font-size="36" font-weight="750" letter-spacing="-1.2">teum.</text>
+  <text x="156" y="56" class="blue" font-size="18" font-weight="650" letter-spacing="1.2">REVIEW FLOW</text>
+  <text x="688" y="56" class="muted" font-size="18" text-anchor="end">사용 흐름</text>
+  <path d="M32 84H688" stroke="#e5e8eb"/>
+  <path d="M56 170V290" class="track" aria-hidden="true"/>
+  <rect x="55" y="170" width="2" height="120" class="flow" data-flow="1-2" style="--delay:0.6s" aria-hidden="true"/>
+  <path d="M56 338V458" class="track" aria-hidden="true"/>
+  <rect x="55" y="338" width="2" height="120" class="flow" data-flow="2-3" style="--delay:2.1s" aria-hidden="true"/>
+  <path d="M56 506V626" class="track" aria-hidden="true"/>
+  <rect x="55" y="506" width="2" height="120" class="flow" data-flow="3-4" style="--delay:3.6s" aria-hidden="true"/>
+
+  <g data-step="1">
+  <text x="56" y="154" class="number">01</text>
+  <text x="116" y="156" class="step-label">범위 선택</text>
+  <text x="116" y="206" class="step-detail">GitHub 연결 · 저장소/폴더 · 커밋 고정</text>
+    <g class="active" aria-hidden="true" style="--delay:0s">
+  <text x="56" y="154" class="number">01</text>
+    </g>
+  </g>
+  <path d="M116 254H688" stroke="#eef1f5"/>
+
+  <g data-step="2">
+  <text x="56" y="322" class="number">02</text>
+  <text x="116" y="324" class="step-label">보안 점검</text>
+  <text x="116" y="374" class="step-detail">기본 점검 · AI 검토는 별도 동의 후 선택</text>
+    <g class="active" aria-hidden="true" style="--delay:1.5s">
+  <text x="56" y="322" class="number">02</text>
+    </g>
+  </g>
+  <path d="M116 422H688" stroke="#eef1f5"/>
+
+  <g data-step="3">
+  <text x="56" y="490" class="number">03</text>
+  <text x="116" y="492" class="step-label">근거 검토</text>
+  <text x="116" y="542" class="step-detail">코드 근거·영향 확인 · 처리 상태 기록</text>
+    <g class="active" aria-hidden="true" style="--delay:3s">
+  <text x="56" y="490" class="number">03</text>
+    </g>
+  </g>
+  <path d="M116 590H688" stroke="#eef1f5"/>
+
+  <g data-step="4">
+  <text x="56" y="658" class="number">04</text>
+  <text x="116" y="660" class="step-label">수정본 재점검</text>
+  <text x="116" y="710" class="step-detail">새 커밋 · 비교 조건 확인 · 리포트</text>
+    <g class="active" aria-hidden="true" style="--delay:4.5s">
+  <text x="56" y="658" class="number">04</text>
+    </g>
+  </g>
+</svg>

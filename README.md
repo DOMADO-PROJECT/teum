@@ -94,7 +94,7 @@ Next.js는 화면과 API를 처리하고, Workflow는 후속 작업을 이어 �
 | 웹 화면·API | Next.js App Router · React · TypeScript | 공개 홈과 작업 공간, 입력 검증과 권한 검사 |
 | 계정·데이터 | Supabase Auth · PostgreSQL · private Storage | 로그인, 작업과 결과 기록, 비공개 입력 보관 |
 | 작업 실행 | Vercel Workflow | 코드 수집, 분석 단계, 재시도와 정리 |
-| 격리 분석 | Vercel Sandbox · Semgrep CE · Gitleaks | 고정 도구로 코드와 비밀정보 분석, 의존성 목록 추출 |
+| 격리 분석 | Vercel Sandbox · Semgrep CE · Gitleaks · 자체 분석기 | 코드·비밀정보 분석, 의존성 추출, 자체 코드 흐름 분석 |
 | 외부 대조·검토 | OSV · OpenAI Responses API | 공개 패키지 취약점 대조, 동의한 코드의 선택 AI 검토 |
 | 화면 표현 | CSS · GSAP · Shiki | 브랜드 모션, 코드 구문 강조와 변경 비교 |
 
@@ -102,7 +102,7 @@ Sandbox 안에서는 네트워크를 차단하고 고객 코드의 설치·빌�
 OSV에는 공개 패키지 이름과 버전을 보내며, AI를 선택하면 동의한 범위의 코드 문맥을 별도로 보냅니다.<br>
 두 외부 호출은 Sandbox 밖의 서버 단계에서 수행합니다.
 
-GitHub 수집과 분석은 별도 Workflow로 실행합니다. 수집한 입력을 저장한 뒤, **Sandbox 분석 → OSV 조회 → 선택 AI 검토 → 정리** 순서로 진행합니다.<br>
+GitHub 수집과 분석은 별도 Workflow로 실행합니다. 수집한 입력을 저장한 뒤, **규칙 분석·의존성 추출 → OSV 조회 → 자체 코드 흐름 분석 → 결과 저장 → 선택 AI 검토 → 정리** 순서로 진행합니다.<br>
 GitHub 파일 수집은 최대 8개, OSV 조회는 최대 4개 요청을 병렬로 처리합니다. Sandbox 분석과 AI 검토를 동시에 실행하는 구조는 아닙니다.
 
 <br>

@@ -4,6 +4,7 @@
   <metadata id="database-data">{"as_of":"2026-10-27","source":"PostgreSQL catalog, read-only","schema":"public","displayed_public_tables":15,"displayed_foreign_keys":19,"omitted_foreign_keys":13,"notation":"Crow's Foot"}</metadata>
   <defs>
     <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#eef1f5" stroke-width=".6"/></pattern>
+    <filter id="table-shadow" x="-5%" y="-15%" width="110%" height="135%" color-interpolation-filters="sRGB"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#191f28" flood-opacity=".06"/></filter>
   </defs>
   <style>
     text{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;fill:#191f28}
@@ -12,7 +13,7 @@
     .wire,.end{fill:none;stroke:#4b5563;stroke-width:1.8;stroke-linejoin:miter;stroke-linecap:butt}
     [data-fk]>.wire{shape-rendering:crispEdges}
     .end circle,.optional{fill:#fff}
-    .outline{fill:#fff;stroke:none}
+    .outline{fill:#fff;stroke:none;filter:url(#table-shadow)}
     .head{fill:#edf4ff}.focus .head{fill:#1d65d1}
     .name{font-size:20px;font-weight:650}.focus .name{fill:#fff}
     .field{font-size:17.5px;fill:#333d4b}.type{font-size:14px;fill:#566270;text-anchor:end}

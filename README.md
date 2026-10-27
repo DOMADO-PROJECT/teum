@@ -171,7 +171,7 @@ r5에서 핵심 조건 4/4를 처음 충족했습니다.<br>
 
 <picture>
   <source media="(max-width: 640px)" srcset="assets/diagrams/sdk-optimization-mobile.svg">
-  <img src="assets/diagrams/sdk-optimization.svg" width="1200" alt="고정 자사 코드의 SDK 실험에서 첫 4/4 성공본 r5와 최종 r14/r15 평균을 비교했습니다. API 요청 92.6%, 총토큰 88.0%, 전체 시간 32.2%, usage 추정 비용 32.7% 감소. 최종 두 회차 모두 핵심 4/4·세부 16/16이며 현재 서비스 경로와 별도입니다.">
+  <img src="assets/diagrams/sdk-optimization.svg" width="1280" alt="고정 자사 코드의 SDK 실험에서 첫 4/4 성공본 r5와 최종 r14/r15 평균을 비교했습니다. API 요청 92.6%, 총토큰 88.0%, 전체 시간 32.2%, usage 추정 비용 32.7% 감소. 최종 두 회차 모두 핵심 4/4·세부 16/16이며 현재 서비스 경로와 별도입니다.">
 </picture>
 
 *[가로 SVG](assets/diagrams/sdk-optimization.svg) · [세로 SVG](assets/diagrams/sdk-optimization-mobile.svg) · 고정 표본의 개발용 SDK 실험 · 현재 서비스 경로와 별도입니다.*

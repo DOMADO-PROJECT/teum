@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://dev.mysql.com/doc/workbench/en/wb-relationship-tools.html",
+    "exit": 0,
+    "status_and_final_url": "200\thttps://dev.mysql.com/doc/workbench/en/wb-relationship-tools.html",
+    "error": null
+  },
+  {
+    "url": "https://github.com/DOMADO-PROJECT/teum",
+    "exit": 0,
+    "status_and_final_url": "200\thttps://github.com/DOMADO-PROJECT/teum",
+    "error": null
+  },
+  {
+    "url": "https://github.com/mysql/mysql-workbench/blob/8.0/plugins/db.mysql.editors/backend/mysql_relationship_editor.cpp#L258",
+    "exit": 0,
+    "status_and_final_url": "200\thttps://github.com/mysql/mysql-workbench/blob/8.0/plugins/db.mysql.editors/backend/mysql_relationship_editor.cpp#L258",
+    "error": null
+  },
+  {
+    "url": "https://teum.today",
+    "exit": 0,
+    "status_and_final_url": "200\thttps://teum.today/",
+    "error": null
+  },
+  {
+    "url": "https://teum.today/data-policy",
+    "exit": 0,
+    "status_and_final_url": "200\thttps://teum.today/data-policy",
+    "error": null
+  },
+  {
+    "url": "https://teum.today/demo",
+    "exit": 0,
+    "status_and_final_url": "200\thttps://teum.today/demo",
+    "error": null
+  },
+  {
+    "url": "https://teum.today/demo/projects/rules",
+    "exit": 0,
+    "status_and_final_url": "200\thttps://teum.today/demo/projects/rules",
+    "error": null
+  },
+  {
+    "url": "https://teum.today/demo/scans/R-042/report",
+    "exit": 0,
+    "status_and_final_url": "200\thttps://teum.today/demo/scans/R-042/report",
+    "error": null
+  },
+  {
+    "url": "https://teum.today/demo/scans/R-042?source=ai",
+    "exit": 0,
+    "status_and_final_url": "200\thttps://teum.today/demo/scans/R-042?source=ai",
+    "error": null
+  },
+  {
+    "url": "https://teum.today/demo/scans/R-042?source=rules",
+    "exit": 0,
+    "status_and_final_url": "200\thttps://teum.today/demo/scans/R-042?source=rules",
+    "error": null
+  },
+  {
+    "url": "https://teum.today/demo/scans/R-047/coverage",
+    "exit": 0,
+    "status_and_final_url": "200\thttps://teum.today/demo/scans/R-047/coverage",
+    "error": null
+  },
+  {
+    "url": "https://teum.today/guides",
+    "exit": 0,
+    "status_and_final_url": "200\thttps://teum.today/guides",
+    "error": null
+  }
+]

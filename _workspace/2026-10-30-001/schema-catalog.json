@@ -1,0 +1,1105 @@
+[
+  {
+    "table_name": "ai_finding_reviews",
+    "rls_enabled": true,
+    "columns": [
+      {
+        "name": "run_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "candidate_id",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "workflow_state",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "assignee_id",
+        "type": "uuid",
+        "nullable": true
+      },
+      {
+        "name": "acceptance_reason",
+        "type": "text",
+        "nullable": true
+      },
+      {
+        "name": "acceptance_until",
+        "type": "date",
+        "nullable": true
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone",
+        "nullable": false
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "f",
+        "name": "ai_finding_reviews_assignee_id_fkey",
+        "definition": "FOREIGN KEY (assignee_id) REFERENCES auth.users(id) ON DELETE SET NULL"
+      },
+      {
+        "kind": "p",
+        "name": "ai_finding_reviews_pkey",
+        "definition": "PRIMARY KEY (run_id, candidate_id)"
+      },
+      {
+        "kind": "f",
+        "name": "ai_finding_reviews_run_id_fkey",
+        "definition": "FOREIGN KEY (run_id) REFERENCES scan_ai_reviews(run_id) ON DELETE CASCADE"
+      }
+    ]
+  },
+  {
+    "table_name": "audit_events",
+    "rls_enabled": true,
+    "columns": [
+      {
+        "name": "id",
+        "type": "bigint",
+        "nullable": false
+      },
+      {
+        "name": "workspace_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "actor_id",
+        "type": "uuid",
+        "nullable": true
+      },
+      {
+        "name": "project_id",
+        "type": "uuid",
+        "nullable": true
+      },
+      {
+        "name": "action",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "entity_id",
+        "type": "uuid",
+        "nullable": true
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": false
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "f",
+        "name": "audit_events_actor_id_fkey",
+        "definition": "FOREIGN KEY (actor_id) REFERENCES auth.users(id)"
+      },
+      {
+        "kind": "p",
+        "name": "audit_events_pkey",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "kind": "f",
+        "name": "audit_events_project_id_workspace_id_fkey",
+        "definition": "FOREIGN KEY (project_id, workspace_id) REFERENCES projects(id, workspace_id)"
+      },
+      {
+        "kind": "f",
+        "name": "audit_events_workspace_id_fkey",
+        "definition": "FOREIGN KEY (workspace_id) REFERENCES workspaces(id)"
+      }
+    ]
+  },
+  {
+    "table_name": "dispatch_outbox",
+    "rls_enabled": true,
+    "columns": [
+      {
+        "name": "run_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "state",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "attempts",
+        "type": "integer",
+        "nullable": false
+      },
+      {
+        "name": "lease_until",
+        "type": "timestamp with time zone",
+        "nullable": true
+      },
+      {
+        "name": "next_attempt_at",
+        "type": "timestamp with time zone",
+        "nullable": false
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "p",
+        "name": "dispatch_outbox_pkey",
+        "definition": "PRIMARY KEY (run_id)"
+      },
+      {
+        "kind": "f",
+        "name": "dispatch_outbox_run_id_fkey",
+        "definition": "FOREIGN KEY (run_id) REFERENCES scan_runs(id)"
+      }
+    ]
+  },
+  {
+    "table_name": "finding_occurrences",
+    "rls_enabled": true,
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "finding_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "run_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "project_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "workspace_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "engine",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "rule_id",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "severity",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "path",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "path_hash",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "start_line",
+        "type": "integer",
+        "nullable": false
+      },
+      {
+        "name": "end_line",
+        "type": "integer",
+        "nullable": false
+      },
+      {
+        "name": "masked_evidence",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "ai_explanation",
+        "type": "jsonb",
+        "nullable": true
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "f",
+        "name": "finding_occurrences_finding_id_project_id_workspace_id_fkey",
+        "definition": "FOREIGN KEY (finding_id, project_id, workspace_id) REFERENCES findings(id, project_id, workspace_id)"
+      },
+      {
+        "kind": "p",
+        "name": "finding_occurrences_pkey",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "kind": "u",
+        "name": "finding_occurrences_run_id_finding_id_start_line_path_hash_key",
+        "definition": "UNIQUE (run_id, finding_id, start_line, path_hash)"
+      },
+      {
+        "kind": "f",
+        "name": "finding_occurrences_run_id_project_id_workspace_id_fkey",
+        "definition": "FOREIGN KEY (run_id, project_id, workspace_id) REFERENCES scan_runs(id, project_id, workspace_id)"
+      }
+    ]
+  },
+  {
+    "table_name": "findings",
+    "rls_enabled": true,
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "project_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "workspace_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "fingerprint",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "workflow_state",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "assignee_id",
+        "type": "uuid",
+        "nullable": true
+      },
+      {
+        "name": "acceptance_reason",
+        "type": "text",
+        "nullable": true
+      },
+      {
+        "name": "acceptance_until",
+        "type": "date",
+        "nullable": true
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone",
+        "nullable": false
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "u",
+        "name": "findings_id_project_id_workspace_id_key",
+        "definition": "UNIQUE (id, project_id, workspace_id)"
+      },
+      {
+        "kind": "p",
+        "name": "findings_pkey",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "kind": "u",
+        "name": "findings_project_id_fingerprint_key",
+        "definition": "UNIQUE (project_id, fingerprint)"
+      },
+      {
+        "kind": "f",
+        "name": "findings_project_id_workspace_id_fkey",
+        "definition": "FOREIGN KEY (project_id, workspace_id) REFERENCES projects(id, workspace_id)"
+      },
+      {
+        "kind": "f",
+        "name": "findings_workspace_id_assignee_id_fkey",
+        "definition": "FOREIGN KEY (workspace_id, assignee_id) REFERENCES workspace_members(workspace_id, user_id)"
+      }
+    ]
+  },
+  {
+    "table_name": "project_analysis_policies",
+    "rls_enabled": true,
+    "columns": [
+      {
+        "name": "project_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "workspace_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "revision",
+        "type": "integer",
+        "nullable": false
+      },
+      {
+        "name": "settings",
+        "type": "jsonb",
+        "nullable": true
+      },
+      {
+        "name": "declared_by",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone",
+        "nullable": false
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "f",
+        "name": "project_analysis_policies_declared_by_fkey",
+        "definition": "FOREIGN KEY (declared_by) REFERENCES auth.users(id)"
+      },
+      {
+        "kind": "p",
+        "name": "project_analysis_policies_pkey",
+        "definition": "PRIMARY KEY (project_id)"
+      },
+      {
+        "kind": "f",
+        "name": "project_analysis_policies_project_id_workspace_id_fkey",
+        "definition": "FOREIGN KEY (project_id, workspace_id) REFERENCES projects(id, workspace_id)"
+      }
+    ]
+  },
+  {
+    "table_name": "projects",
+    "rls_enabled": true,
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "workspace_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "created_by",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": false
+      },
+      {
+        "name": "deleted_at",
+        "type": "timestamp with time zone",
+        "nullable": true
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "f",
+        "name": "projects_created_by_fkey",
+        "definition": "FOREIGN KEY (created_by) REFERENCES auth.users(id)"
+      },
+      {
+        "kind": "u",
+        "name": "projects_id_workspace_id_key",
+        "definition": "UNIQUE (id, workspace_id)"
+      },
+      {
+        "kind": "p",
+        "name": "projects_pkey",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "kind": "f",
+        "name": "projects_workspace_id_fkey",
+        "definition": "FOREIGN KEY (workspace_id) REFERENCES workspaces(id)"
+      }
+    ]
+  },
+  {
+    "table_name": "scan_ai_reviews",
+    "rls_enabled": true,
+    "columns": [
+      {
+        "name": "run_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "project_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "workspace_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "kind",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "status",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "report",
+        "type": "jsonb",
+        "nullable": true
+      },
+      {
+        "name": "error_code",
+        "type": "text",
+        "nullable": true
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": false
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "p",
+        "name": "scan_ai_reviews_pkey",
+        "definition": "PRIMARY KEY (run_id)"
+      },
+      {
+        "kind": "f",
+        "name": "scan_ai_reviews_run_id_kind_fkey",
+        "definition": "FOREIGN KEY (run_id, kind) REFERENCES scan_stages(run_id, kind) ON DELETE CASCADE"
+      },
+      {
+        "kind": "f",
+        "name": "scan_ai_reviews_run_id_project_id_workspace_id_fkey",
+        "definition": "FOREIGN KEY (run_id, project_id, workspace_id) REFERENCES scan_runs(id, project_id, workspace_id)"
+      }
+    ]
+  },
+  {
+    "table_name": "scan_native_analysis",
+    "rls_enabled": true,
+    "columns": [
+      {
+        "name": "run_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "project_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "workspace_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "generation",
+        "type": "integer",
+        "nullable": false
+      },
+      {
+        "name": "policy_revision",
+        "type": "integer",
+        "nullable": false
+      },
+      {
+        "name": "artifact",
+        "type": "jsonb",
+        "nullable": false
+      },
+      {
+        "name": "expires_at",
+        "type": "timestamp with time zone",
+        "nullable": false
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "p",
+        "name": "scan_native_analysis_pkey",
+        "definition": "PRIMARY KEY (run_id)"
+      },
+      {
+        "kind": "f",
+        "name": "scan_native_analysis_run_id_project_id_workspace_id_fkey",
+        "definition": "FOREIGN KEY (run_id, project_id, workspace_id) REFERENCES scan_runs(id, project_id, workspace_id)"
+      }
+    ]
+  },
+  {
+    "table_name": "scan_runs",
+    "rls_enabled": true,
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "workspace_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "project_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "upload_id",
+        "type": "uuid",
+        "nullable": true
+      },
+      {
+        "name": "requested_by",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "baseline_id",
+        "type": "uuid",
+        "nullable": true
+      },
+      {
+        "name": "idempotency_key",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "status",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "ai_consent",
+        "type": "boolean",
+        "nullable": false
+      },
+      {
+        "name": "ai_status",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "generation",
+        "type": "integer",
+        "nullable": false
+      },
+      {
+        "name": "workflow_id",
+        "type": "text",
+        "nullable": true
+      },
+      {
+        "name": "sandbox_id",
+        "type": "text",
+        "nullable": true
+      },
+      {
+        "name": "engine_versions",
+        "type": "jsonb",
+        "nullable": true
+      },
+      {
+        "name": "rules_sha256",
+        "type": "text",
+        "nullable": true
+      },
+      {
+        "name": "error_code",
+        "type": "text",
+        "nullable": true
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": false
+      },
+      {
+        "name": "completed_at",
+        "type": "timestamp with time zone",
+        "nullable": true
+      },
+      {
+        "name": "worker_lease_until",
+        "type": "timestamp with time zone",
+        "nullable": true
+      },
+      {
+        "name": "sandbox_stopped_at",
+        "type": "timestamp with time zone",
+        "nullable": true
+      },
+      {
+        "name": "ai_attempted_at",
+        "type": "timestamp with time zone",
+        "nullable": true
+      },
+      {
+        "name": "input_kind",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "website_target_id",
+        "type": "uuid",
+        "nullable": true
+      },
+      {
+        "name": "website_result",
+        "type": "jsonb",
+        "nullable": true
+      },
+      {
+        "name": "ai_review_policy",
+        "type": "text",
+        "nullable": true
+      },
+      {
+        "name": "authorization_analysis_enabled",
+        "type": "boolean",
+        "nullable": false
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "f",
+        "name": "scan_runs_baseline_id_project_id_workspace_id_fkey",
+        "definition": "FOREIGN KEY (baseline_id, project_id, workspace_id) REFERENCES scan_runs(id, project_id, workspace_id)"
+      },
+      {
+        "kind": "u",
+        "name": "scan_runs_id_project_id_workspace_id_key",
+        "definition": "UNIQUE (id, project_id, workspace_id)"
+      },
+      {
+        "kind": "p",
+        "name": "scan_runs_pkey",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "kind": "f",
+        "name": "scan_runs_project_id_workspace_id_fkey",
+        "definition": "FOREIGN KEY (project_id, workspace_id) REFERENCES projects(id, workspace_id)"
+      },
+      {
+        "kind": "f",
+        "name": "scan_runs_requested_by_fkey",
+        "definition": "FOREIGN KEY (requested_by) REFERENCES auth.users(id)"
+      },
+      {
+        "kind": "u",
+        "name": "scan_runs_requested_by_idempotency_key_key",
+        "definition": "UNIQUE (requested_by, idempotency_key)"
+      },
+      {
+        "kind": "u",
+        "name": "scan_runs_upload_id_key",
+        "definition": "UNIQUE (upload_id)"
+      },
+      {
+        "kind": "f",
+        "name": "scan_runs_upload_id_project_id_workspace_id_fkey",
+        "definition": "FOREIGN KEY (upload_id, project_id, workspace_id) REFERENCES uploads(id, project_id, workspace_id)"
+      },
+      {
+        "kind": "f",
+        "name": "scan_runs_website_target_fkey",
+        "definition": "FOREIGN KEY (website_target_id, project_id, workspace_id) REFERENCES website_targets(id, project_id, workspace_id)"
+      }
+    ]
+  },
+  {
+    "table_name": "scan_stages",
+    "rls_enabled": true,
+    "columns": [
+      {
+        "name": "run_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "project_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "workspace_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "kind",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "status",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "coverage",
+        "type": "jsonb",
+        "nullable": false
+      },
+      {
+        "name": "error_code",
+        "type": "text",
+        "nullable": true
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "p",
+        "name": "scan_stages_pkey",
+        "definition": "PRIMARY KEY (run_id, kind)"
+      },
+      {
+        "kind": "f",
+        "name": "scan_stages_run_id_project_id_workspace_id_fkey",
+        "definition": "FOREIGN KEY (run_id, project_id, workspace_id) REFERENCES scan_runs(id, project_id, workspace_id)"
+      }
+    ]
+  },
+  {
+    "table_name": "uploads",
+    "rls_enabled": true,
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "workspace_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "project_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "uploaded_by",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "object_key",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "expected_bytes",
+        "type": "integer",
+        "nullable": false
+      },
+      {
+        "name": "actual_bytes",
+        "type": "integer",
+        "nullable": true
+      },
+      {
+        "name": "source_sha256",
+        "type": "text",
+        "nullable": true
+      },
+      {
+        "name": "status",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": false
+      },
+      {
+        "name": "expires_at",
+        "type": "timestamp with time zone",
+        "nullable": false
+      },
+      {
+        "name": "deletion_confirmed_at",
+        "type": "timestamp with time zone",
+        "nullable": true
+      },
+      {
+        "name": "source_kind",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "source_details",
+        "type": "jsonb",
+        "nullable": true
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "u",
+        "name": "uploads_id_project_id_workspace_id_key",
+        "definition": "UNIQUE (id, project_id, workspace_id)"
+      },
+      {
+        "kind": "u",
+        "name": "uploads_object_key_key",
+        "definition": "UNIQUE (object_key)"
+      },
+      {
+        "kind": "p",
+        "name": "uploads_pkey",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "kind": "f",
+        "name": "uploads_project_id_workspace_id_fkey",
+        "definition": "FOREIGN KEY (project_id, workspace_id) REFERENCES projects(id, workspace_id)"
+      },
+      {
+        "kind": "f",
+        "name": "uploads_uploaded_by_fkey",
+        "definition": "FOREIGN KEY (uploaded_by) REFERENCES auth.users(id)"
+      }
+    ]
+  },
+  {
+    "table_name": "usage_reservations",
+    "rls_enabled": true,
+    "columns": [
+      {
+        "name": "run_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "workspace_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "reserved_on",
+        "type": "date",
+        "nullable": false
+      },
+      {
+        "name": "ai_reserved",
+        "type": "boolean",
+        "nullable": false
+      },
+      {
+        "name": "released_at",
+        "type": "timestamp with time zone",
+        "nullable": true
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "p",
+        "name": "usage_reservations_pkey",
+        "definition": "PRIMARY KEY (run_id)"
+      },
+      {
+        "kind": "f",
+        "name": "usage_reservations_run_id_fkey",
+        "definition": "FOREIGN KEY (run_id) REFERENCES scan_runs(id)"
+      },
+      {
+        "kind": "f",
+        "name": "usage_reservations_workspace_id_fkey",
+        "definition": "FOREIGN KEY (workspace_id) REFERENCES workspaces(id)"
+      }
+    ]
+  },
+  {
+    "table_name": "website_targets",
+    "rls_enabled": true,
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "workspace_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "project_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "created_by",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "origin",
+        "type": "text",
+        "nullable": true
+      },
+      {
+        "name": "challenge",
+        "type": "text",
+        "nullable": true
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": false
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "f",
+        "name": "website_targets_created_by_fkey",
+        "definition": "FOREIGN KEY (created_by) REFERENCES auth.users(id)"
+      },
+      {
+        "kind": "u",
+        "name": "website_targets_id_project_id_workspace_id_key",
+        "definition": "UNIQUE (id, project_id, workspace_id)"
+      },
+      {
+        "kind": "p",
+        "name": "website_targets_pkey",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "kind": "u",
+        "name": "website_targets_project_id_origin_key",
+        "definition": "UNIQUE (project_id, origin)"
+      },
+      {
+        "kind": "f",
+        "name": "website_targets_project_id_workspace_id_fkey",
+        "definition": "FOREIGN KEY (project_id, workspace_id) REFERENCES projects(id, workspace_id)"
+      }
+    ]
+  },
+  {
+    "table_name": "workspace_members",
+    "rls_enabled": true,
+    "columns": [
+      {
+        "name": "workspace_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "user_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "role",
+        "type": "text",
+        "nullable": false
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "p",
+        "name": "workspace_members_pkey",
+        "definition": "PRIMARY KEY (workspace_id, user_id)"
+      },
+      {
+        "kind": "f",
+        "name": "workspace_members_user_id_fkey",
+        "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id)"
+      },
+      {
+        "kind": "f",
+        "name": "workspace_members_workspace_id_fkey",
+        "definition": "FOREIGN KEY (workspace_id) REFERENCES workspaces(id)"
+      }
+    ]
+  },
+  {
+    "table_name": "workspaces",
+    "rls_enabled": true,
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "owner_id",
+        "type": "uuid",
+        "nullable": false
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "nullable": false
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone",
+        "nullable": false
+      }
+    ],
+    "constraints": [
+      {
+        "kind": "f",
+        "name": "workspaces_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES auth.users(id)"
+      },
+      {
+        "kind": "u",
+        "name": "workspaces_owner_id_key",
+        "definition": "UNIQUE (owner_id)"
+      },
+      {
+        "kind": "p",
+        "name": "workspaces_pkey",
+        "definition": "PRIMARY KEY (id)"
+      }
+    ]
+  }
+]

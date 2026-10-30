@@ -1,0 +1,67 @@
+{
+  "scope": "사실 정정과 줄바꿈 정리 이후의 문체 수정만 산정",
+  "original_characters": 32868,
+  "final_characters": 32868,
+  "changed_characters_reference": 9,
+  "change_rate_percent_reference": 0.027382256297918947,
+  "official_verifier_available": false,
+  "checklist_pass": 5,
+  "checklist_total": 6,
+  "grade": "B",
+  "categories": {
+    "D-2": [
+      1,
+      0
+    ],
+    "A-7": [
+      0,
+      0
+    ],
+    "A-8": [
+      0,
+      0
+    ],
+    "H-1": [
+      0,
+      0
+    ]
+  },
+  "files": [
+    {
+      "file": "README.md",
+      "original_characters": 9050,
+      "final_characters": 9050,
+      "changed_characters_reference": 0
+    },
+    {
+      "file": "docs/AI_SDK_R1_R15.md",
+      "original_characters": 7010,
+      "final_characters": 7010,
+      "changed_characters_reference": 9
+    },
+    {
+      "file": "docs/ASSETS.md",
+      "original_characters": 5740,
+      "final_characters": 5740,
+      "changed_characters_reference": 0
+    },
+    {
+      "file": "docs/DEMO.md",
+      "original_characters": 1463,
+      "final_characters": 1463,
+      "changed_characters_reference": 0
+    },
+    {
+      "file": "docs/ENGINEERING.md",
+      "original_characters": 5007,
+      "final_characters": 5007,
+      "changed_characters_reference": 0
+    },
+    {
+      "file": "docs/VALIDATION.md",
+      "original_characters": 4598,
+      "final_characters": 4598,
+      "changed_characters_reference": 0
+    }
+  ]
+}

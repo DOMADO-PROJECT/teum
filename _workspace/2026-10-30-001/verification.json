@@ -1,0 +1,31 @@
+{
+  "markdown": {
+    "documents": 6,
+    "local_link_occurrences": 56,
+    "missing_sentence_breaks": 0
+  },
+  "sdk": {
+    "raw_results": 15,
+    "quality_hashes": 13,
+    "token_table_cells": 60,
+    "time_cost_table_cells": 30,
+    "comparisons_recomputed": 12
+  },
+  "svg": {
+    "files": 9,
+    "sdk_graph_metrics": 8
+  },
+  "database": {
+    "public_tables": 16,
+    "displayed_tables": 15,
+    "verified_relations": 19,
+    "identifying": 5,
+    "non_identifying": 14,
+    "omitted_relations": 13
+  },
+  "source": {
+    "package_versions": 11,
+    "private_worktree_unchanged": true,
+    "private_remote_tree_matches": true
+  }
+}

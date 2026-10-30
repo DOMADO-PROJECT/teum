@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1036" viewBox="0 0 1280 1036" role="img" aria-labelledby="architecture-title architecture-desc" xml:lang="ko">
+  <title id="architecture-title">teum. 서비스 아키텍처 — 코드 수집, 격리 분석, 선택 AI 검토</title>
+  <desc id="architecture-desc">브라우저는 Next.js를 통해 입력과 권한을 확인하고 작업을 요청하며, 저장된 결과를 따로 조회합니다. Supabase는 Auth, PostgreSQL과 private Storage로 인증·입력·상태·결과를 관리합니다. GitHub 수집과 분석은 별도 Vercel Workflow로 실행합니다. 수집 Workflow는 허용한 저장소·폴더의 고정 커밋을 읽어 private Storage에 보관합니다. 분석 Workflow는 준비된 입력으로 Sandbox의 규칙·비밀정보 분석과 의존성 추출, Sandbox 밖의 OSV 조회, Sandbox의 자체 코드 흐름 분석, 결과 저장을 수행합니다. 이후 별도 동의가 있으면 Sandbox 밖에서 OpenAI 검토를 실행하고 독립 후보를 저장하며, 정리 작업을 이어 갑니다. Sandbox는 네트워크를 차단하고 고객 코드의 설치·빌드·실행을 하지 않습니다. OSV에는 공개 패키지 이름과 버전만, OpenAI에는 동의한 범위의 코드 문맥을 보냅니다. 회색 화살표는 구성 요소의 연결이며, 파란 선은 요청·응답 방향으로 순서대로 채워집니다. 모션은 GitHub 입력과 자체 코드 흐름 분석·AI 검토를 사용하는 한 경로를 보여줍니다. 실제 시간·진행률이나 모든 재시도·분기를 나타내지는 않습니다. 모션 감소 설정에서도 구성 요소와 연결을 정적으로 읽을 수 있습니다.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#4b5563" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <filter id="card-shadow" x="-5%" y="-15%" width="110%" height="135%" color-interpolation-filters="sRGB"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#191f28" flood-opacity=".06"/></filter>
+  </defs>
+  <style>
+    text{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;fill:#191f28}
+    .muted{fill:#566270}.blue{fill:#1d65d1}
+    .card{fill:#fff;filter:url(#card-shadow)}
+    .head{fill:#edf4ff}.focus .head{fill:#1d65d1}.focus .name{fill:#fff}
+    .name{font-size:24px;font-weight:650}.purpose{font-size:15.5px;fill:#566270}
+    .body{font-size:18px;fill:#333d4b}.note{font-size:15.5px;fill:#566270}
+    .section{font-size:16px;font-weight:550;fill:#566270}.label{font-size:16px;fill:#566270}
+    .wire{fill:none;stroke:#4b5563;stroke-width:1.8;stroke-linejoin:round;marker-end:url(#arrow)}
+    .both{marker-start:url(#arrow)}
+    .trace,.tip{fill:none;stroke:#1d65d1;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;opacity:0;animation-duration:20s;animation-delay:calc(var(--at) - 20s);animation-timing-function:linear;animation-iteration-count:infinite;animation-fill-mode:both}
+    .trace{stroke-dasharray:1;stroke-dashoffset:1;animation-name:flow}
+    .tip{animation-name:arrival}
+    /* 20초 예시: 접수 → 수집·보관 → 규칙 분석 → OSV → 코드 흐름 분석 → 저장 → 선택 AI → 저장 → 조회. */
+    @keyframes flow{0%{stroke-dashoffset:1;opacity:0}.15%{opacity:1}2.8%,3.3%{stroke-dashoffset:0;opacity:1}4%,100%{stroke-dashoffset:0;opacity:0}}
+    @keyframes arrival{0%,2.6%{opacity:0}2.8%,3.3%{opacity:1}4%,100%{opacity:0}}
+    @media(prefers-reduced-motion:reduce){.trace,.tip{animation:none;opacity:0}}
+  </style>
+  <rect x="1" y="1" width="1278" height="1034" rx="10" fill="#fff" stroke="#e5e8eb"/>
+  <text x="40" y="56" font-size="32" font-weight="750" letter-spacing="-1.2">teum.</text>
+  <text x="150" y="54" font-size="16" font-weight="650" letter-spacing="1.2" class="blue">ARCHITECTURE</text>
+  <text x="1240" y="54" font-size="16" text-anchor="end" class="muted">수집 → 분석 → 검토</text>
+  <path d="M40 80H1240" stroke="#e5e8eb"/>
+
+  <g aria-hidden="true">
+    <path class="wire both" data-connection="web" d="M364 240H484"/>
+    <path class="wire both" data-connection="data" d="M796 240H916"/>
+    <path class="wire" data-connection="launch" d="M640 332V432"/>
+    <path class="wire both" data-connection="storage" d="M940 524H1060Q1072 524 1072 512V332"/>
+    <path class="wire both" data-connection="github" d="M424 616V648Q424 660 412 660H220Q208 660 208 672V748"/>
+    <path class="wire both" data-connection="sandbox" d="M640 616V748"/>
+    <path class="wire both" data-connection="osv" d="M904 616V732Q904 744 916 744H932"/>
+    <path class="wire both" data-connection="ai" d="M864 616V908Q864 920 876 920H932"/>
+  </g>
+
+  <g aria-hidden="true">
+    <g class="flow" data-step="request" style="--at:0s"><path class="trace" pathLength="1" d="M364 240H484"/><path class="tip" d="M478 236L484 240L478 244"/></g>
+    <g class="flow" data-step="auth-query" style="--at:0.8s"><path class="trace" pathLength="1" d="M796 240H916"/><path class="tip" d="M910 236L916 240L910 244"/></g>
+    <g class="flow" data-step="auth-response" style="--at:1.6s"><path class="trace" pathLength="1" d="M916 240H796"/><path class="tip" d="M802 244L796 240L802 236"/></g>
+    <g class="flow" data-step="accepted" style="--at:2.4s"><path class="trace" pathLength="1" d="M484 240H364"/><path class="tip" d="M370 244L364 240L370 236"/></g>
+    <g class="flow" data-step="start-workflow" style="--at:3.2s"><path class="trace" pathLength="1" d="M640 332V432"/><path class="tip" d="M644 426L640 432L636 426"/></g>
+    <g class="flow" data-step="collect-source" style="--at:4s"><path class="trace" pathLength="1" d="M424 616V648Q424 660 412 660H220Q208 660 208 672V748"/><path class="tip" d="M212 742L208 748L204 742"/></g>
+    <g class="flow" data-step="source-response" style="--at:4.8s"><path class="trace" pathLength="1" d="M208 748V672Q208 660 220 660H412Q424 660 424 648V616"/><path class="tip" d="M420 622L424 616L428 622"/></g>
+    <g class="flow" data-step="store-input" style="--at:5.6s"><path class="trace" pathLength="1" d="M940 524H1060Q1072 524 1072 512V332"/><path class="tip" d="M1068 338L1072 332L1076 338"/></g>
+    <g class="flow" data-step="read-input" style="--at:6.4s"><path class="trace" pathLength="1" d="M1072 332V512Q1072 524 1060 524H940"/><path class="tip" d="M946 528L940 524L946 520"/></g>
+    <g class="flow" data-step="rules" style="--at:7.2s"><path class="trace" pathLength="1" d="M640 616V748"/><path class="tip" d="M644 742L640 748L636 742"/></g>
+    <g class="flow" data-step="dependency-inventory" style="--at:8s"><path class="trace" pathLength="1" d="M640 748V616"/><path class="tip" d="M636 622L640 616L644 622"/></g>
+    <g class="flow" data-step="osv-query" style="--at:8.8s"><path class="trace" pathLength="1" d="M904 616V732Q904 744 916 744H932"/><path class="tip" d="M926 740L932 744L926 748"/></g>
+    <g class="flow" data-step="osv-response" style="--at:9.6s"><path class="trace" pathLength="1" d="M932 744H916Q904 744 904 732V616"/><path class="tip" d="M900 622L904 616L908 622"/></g>
+    <g class="flow" data-step="code-flow" style="--at:10.4s"><path class="trace" pathLength="1" d="M640 616V748"/><path class="tip" d="M644 742L640 748L636 742"/></g>
+    <g class="flow" data-step="analysis-response" style="--at:11.2s"><path class="trace" pathLength="1" d="M640 748V616"/><path class="tip" d="M636 622L640 616L644 622"/></g>
+    <g class="flow" data-step="store-analysis" style="--at:12s"><path class="trace" pathLength="1" d="M940 524H1060Q1072 524 1072 512V332"/><path class="tip" d="M1068 338L1072 332L1076 338"/></g>
+    <g class="flow" data-step="ai-review" style="--at:12.8s"><path class="trace" pathLength="1" d="M864 616V908Q864 920 876 920H932"/><path class="tip" d="M926 916L932 920L926 924"/></g>
+    <g class="flow" data-step="ai-response" style="--at:13.6s"><path class="trace" pathLength="1" d="M932 920H876Q864 920 864 908V616"/><path class="tip" d="M860 622L864 616L868 622"/></g>
+    <g class="flow" data-step="store-ai" style="--at:14.4s"><path class="trace" pathLength="1" d="M940 524H1060Q1072 524 1072 512V332"/><path class="tip" d="M1068 338L1072 332L1076 338"/></g>
+    <g class="flow" data-step="result-query" style="--at:15.2s"><path class="trace" pathLength="1" d="M364 240H484"/><path class="tip" d="M478 236L484 240L478 244"/></g>
+    <g class="flow" data-step="read-results" style="--at:16s"><path class="trace" pathLength="1" d="M796 240H916"/><path class="tip" d="M910 236L916 240L910 244"/></g>
+    <g class="flow" data-step="stored-results" style="--at:16.8s"><path class="trace" pathLength="1" d="M916 240H796"/><path class="tip" d="M802 244L796 240L802 236"/></g>
+    <g class="flow" data-step="display-results" style="--at:17.6s"><path class="trace" pathLength="1" d="M484 240H364"/><path class="tip" d="M370 244L364 240L370 236"/></g>
+  </g>
+
+    <text x="424" y="218" class="label" text-anchor="middle">요청·조회</text>
+    <text x="856" y="218" class="label" text-anchor="middle">인증·조회</text>
+    <text x="660" y="390" class="label">접수 후 실행</text>
+    <text x="1094" y="393" class="label">입력·상태</text>
+    <text x="1094" y="420" class="label">결과 저장</text>
+    <text x="664" y="690" class="label">분석 요청·근거</text>
+    <text x="64" y="724" class="section">코드 수집</text>
+    <text x="456" y="724" class="section">격리 분석</text>
+    <text x="944" y="644" class="section">Sandbox 밖의 외부 호출</text>
+
+  <g class="node" data-node="browser">
+    <rect class="card" x="64" y="160" width="288" height="160" rx="8"/>
+    <path class="head" d="M72 160H344Q352 160 352 168V216H64V168Q64 160 72 160Z"/>
+    <text x="84" y="196" class="name">브라우저</text>
+    <text x="84" y="254" class="body">범위·동의 선택</text>
+    <text x="84" y="284" class="body">근거·리포트 확인</text>
+  </g>
+
+  <g class="node" data-node="nextjs">
+    <rect class="card" x="496" y="160" width="288" height="160" rx="8"/>
+    <path class="head" d="M504 160H776Q784 160 784 168V216H496V168Q496 160 504 160Z"/>
+    <text x="516" y="196" class="name">Next.js</text>
+    <text x="516" y="254" class="body">입력 검증·권한 확인</text>
+    <text x="516" y="284" class="body">웹 화면·API</text>
+  </g>
+
+  <g class="node" data-node="supabase">
+    <rect class="card" x="928" y="160" width="288" height="160" rx="8"/>
+    <path class="head" d="M936 160H1208Q1216 160 1216 168V216H928V168Q928 160 936 160Z"/>
+    <text x="948" y="196" class="name">Supabase</text>
+    <text x="948" y="254" class="body">인증 · 데이터 · 비공개 파일</text>
+    <text x="948" y="284" class="note">Auth · PostgreSQL · private Storage</text>
+  </g>
+
+  <g class="node focus" data-node="workflow">
+    <rect class="card" x="352" y="444" width="576" height="160" rx="8"/>
+    <path class="head" d="M360 444H920Q928 444 928 452V500H352V452Q352 444 360 444Z"/>
+    <text x="376" y="480" class="name">Vercel Workflow</text>
+    <text x="376" y="534" class="body">수집과 분석을 별도 Workflow로 실행</text>
+    <text x="376" y="571" class="note">재시도 · 상태 확인 · 취소 · 정리</text>
+  </g>
+
+  <g class="node" data-node="github">
+    <rect class="card" x="64" y="760" width="288" height="224" rx="8"/>
+    <path class="head" d="M72 760H344Q352 760 352 768V832H64V768Q64 760 72 760Z"/>
+    <text x="84" y="795" class="name">GitHub App</text>
+    <text x="84" y="819" class="purpose">허용한 소스의 읽기 전용 수집</text>
+    <text x="84" y="872" class="body">선택한 저장소·폴더</text>
+    <text x="84" y="902" class="body">고정 커밋의 파일 수집</text>
+    <text x="84" y="950" class="note">수집본은 비공개 Storage에 보관</text>
+  </g>
+
+  <g class="node" data-node="sandbox">
+    <rect class="card" x="456" y="760" width="360" height="224" rx="8"/>
+    <path class="head" d="M464 760H808Q816 760 816 768V832H456V768Q456 760 464 760Z"/>
+    <text x="476" y="795" class="name">Vercel Sandbox</text>
+    <text x="476" y="819" class="purpose">네트워크가 차단된 분석 환경</text>
+    <text x="476" y="872" class="body">Semgrep CE · Gitleaks</text>
+    <text x="476" y="902" class="body">의존성 추출 · 자체 코드 흐름 분석</text>
+    <text x="476" y="950" class="blue" font-size="15.5" font-weight="550">고객 코드 설치·빌드·실행 없음</text>
+  </g>
+
+  <g class="node" data-node="osv">
+    <rect class="card" x="944" y="680" width="272" height="128" rx="8"/>
+    <path class="head" d="M952 680H1208Q1216 680 1216 688V724H944V688Q944 680 952 680Z"/>
+    <text x="964" y="710" class="name">OSV</text>
+    <text x="964" y="752" class="body">공개 패키지 이름·버전</text>
+    <text x="964" y="780" class="body">취약점 정보 대조</text>
+  </g>
+
+  <g class="node" data-node="openai">
+    <rect class="card" x="944" y="856" width="272" height="128" rx="8"/>
+    <path class="head" d="M952 856H1208Q1216 856 1216 864V900H944V864Q944 856 952 856Z"/>
+    <text x="964" y="886" class="name">OpenAI</text>
+    <text x="964" y="928" class="body">별도 동의한 코드 문맥</text>
+    <text x="964" y="956" class="body">독립 후보·방어 근거 검토</text>
+    <text x="1196" y="884" text-anchor="end" font-size="15.5" font-weight="650" class="blue">선택</text>
+  </g>
+</svg>

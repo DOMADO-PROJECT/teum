@@ -1,0 +1,155 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>docs/VALIDATION.md</title><style>body{margin:0;background:#fff;color:#1f2328;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;line-height:1.65}main{box-sizing:border-box;max-width:1012px;margin:0 auto;padding:40px 32px}h1,h2{border-bottom:1px solid #d1d9e0;padding-bottom:.3em;line-height:1.3}h2{margin-top:24px}h3{margin-top:24px}p{margin:0 0 16px}img{max-width:100%;height:auto}a{color:#0969da;text-decoration:none}table{border-collapse:collapse;display:block;max-width:100%;overflow:auto;margin:16px 0}th,td{border:1px solid #d1d9e0;padding:6px 13px}tr:nth-child(2n){background:#f6f8fa}blockquote{margin:0 0 16px;padding:0 1em;color:#59636e;border-left:4px solid #d1d9e0}code{background:#eff1f3;padding:.2em .4em;border-radius:4px}li{margin:6px 0}@media(max-width:640px){main{padding:24px 16px}h1{font-size:28px}h2{font-size:24px}}</style><main><div class="markdown-heading"><h1 class="heading-element">teum. — 확인한 내용과 남은 검증</h1><a id="user-content-teum--확인한-내용과-남은-검증" class="anchor" aria-label="Permalink: teum. — 확인한 내용과 남은 검증" href="#teum--확인한-내용과-남은-검증"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p><strong>2026년 10월 30일 확인한 개발·검증 이력</strong>을 공개 가능한 범위로 정리했습니다.<br>
+기본 점검은 10-13, 자체 분석과 AI 검토는 10-19~21, SDK 실험은 10-24 기록을 중심으로 대조했습니다.<br>
+기록마다 실행 코드와 입력이 다르며, 이 문서를 검토하며 제품 분석이나 유료 모델 평가를 새로 실행하지는 않았습니다.<br>
+<a href="/_workspace/2026-10-30-001/preview/README.html">서비스 소개</a> · <a href="/_workspace/2026-10-30-001/preview/docs/ENGINEERING.html">구현 선택</a> · <a href="https://teum.today/guides" rel="nofollow">이용 가이드</a></p>
+<br>
+<br>
+<div class="markdown-heading"><h2 class="heading-element">01. 검증의 종류를 나눠 기록했습니다</h2><a id="user-content-01-검증의-종류를-나눠-기록했습니다" class="anchor" aria-label="Permalink: 01. 검증의 종류를 나눠 기록했습니다" href="#01-검증의-종류를-나눠-기록했습니다"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>확인한 내용</th>
+<th>이 결과가 뜻하지 않는 것</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>단위·계약 검사</td>
+<td>입력·출력 형식, 상태 전이, 재점검 비교, AI 응답 검증, 모의 외부 I/O의 실패 처리</td>
+<td>실제 제공자 장애에서도 같은 시간 안에 복구된다는 보장</td>
+</tr>
+<tr>
+<td>실제 분석 엔진</td>
+<td>고정 Semgrep·Gitleaks의 양성·음성 자료, 마스킹, 부분 결과, 의존성 추출, 서버 결과 계약</td>
+<td>고객 저장소 전반의 탐지율·오탐률</td>
+</tr>
+<tr>
+<td>DB 검사</td>
+<td>합성 자료로 사용자 간 접근, 권한·동의, 중복·늦은 저장 거절, 취소·만료·삭제 연동 확인 후 rollback</td>
+<td>모든 배포·트래픽 조건의 종단 검증</td>
+</tr>
+<tr>
+<td>운영 경로</td>
+<td>인증된 합성 대상에서 수집·점검·재점검·리포트·정리 흐름 확인</td>
+<td>실제 고객 코드의 품질 평가·지속 부하 시험</td>
+</tr>
+<tr>
+<td>공개·샘플 화면</td>
+<td>반응형 표시, 문구, 탐색, 코드 근거·리포트 화면 확인</td>
+<td>실제 인증·분석·DB 저장의 성공</td>
+</tr>
+</tbody>
+</table>
+<p>단위 검사와 실제 엔진 검사, 운영 서비스 확인은 서로 대체할 수 없는 근거로 다뤘습니다.<br>
+타입 검사·린트·운영 빌드·시크릿 검사도 수행했지만, 통과 수를 제품 정확도나 보안 보증으로 사용하지 않습니다.<br><br></p>
+<div class="markdown-heading"><h2 class="heading-element">02. 기본 점검의 운영 흐름을 확인했습니다</h2><a id="user-content-02-기본-점검의-운영-흐름을-확인했습니다" class="anchor" aria-label="Permalink: 02. 기본 점검의 운영 흐름을 확인했습니다" href="#02-기본-점검의-운영-흐름을-확인했습니다"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>2026년 10월 13일, AI 전송 동의를 끈 합성 대상으로 <strong>네 차례</strong> 점검했습니다.<br>
+고객 코드나 실제 비밀 키를 사용하지 않고, 다음 조건을 각각 확인했습니다.<br><br></p>
+<table>
+<thead>
+<tr>
+<th>조건</th>
+<th>관측한 결과</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>정상 점검</td>
+<td>GitHub 수집에서 규칙·비밀정보·의존성 결과 표시까지 완료</td>
+</tr>
+<tr>
+<td>같은 조건 재점검</td>
+<td>같은 항목의 식별과 기존 검토 상태 유지</td>
+</tr>
+<tr>
+<td>일부 파일 파싱 오류</td>
+<td>정상 파일의 근거를 보존하고 전체를 부분 완료로 표시</td>
+</tr>
+<tr>
+<td>준비 중 취소</td>
+<td>취소 상태와 결과 미저장, 작업 환경·원본 자료 정리 확인</td>
+</tr>
+</tbody>
+</table>
+<p>완료·부분 완료 결과의 HTML/JSON 리포트에서 마스킹과 검토 상태를 확인했습니다.<br>
+Workflow 종료만 보지 않고, Sandbox 정지·원본 객체 부재·사용 예약 반환도 각각 대조했습니다.<br>
+이 취소 검증은 개별 분석 엔진이 실행 중인 모든 순간의 취소·늦은 응답 처리를 입증하지는 않습니다.<br></p>
+<br>
+<div class="markdown-heading"><h3 class="heading-element">엔진과 의존성 검사는 별도로 진행했습니다</h3><a id="user-content-엔진과-의존성-검사는-별도로-진행했습니다" class="anchor" aria-label="Permalink: 엔진과 의존성 검사는 별도로 진행했습니다" href="#엔진과-의존성-검사는-별도로-진행했습니다"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>합성 양성·음성 자료로 자체 정적 규칙과 비밀정보 규칙을 검사하고, 서로 다른 비밀 값의 식별과 줄 이동을 확인했습니다.<br>
+지원 파일 수 경계, 정상·실패 파일 구분, 외부 분석 설정을 채택하지 않는 동작도 검사했습니다.<br>
+의존성 파서의 형식별 검사와 실제 OSV 공개 패키지 조회를 구분해 수행했습니다.<br><br></p>
+<p>일부 로컬 YAML 검사는 런타임 조건으로 생략됐으며, 별도 실제 엔진 환경의 파서 검사에 포함해 확인했습니다.<br>
+공개 교육용 자료의 최초 평가와 같은 자료로 보완한 회귀 결과도 구분했습니다.<br>
+보완에 사용한 자료의 통과율을 새로운 독립 평가나 일반 서비스 정확도로 발표하지 않습니다.<br><br></p>
+<div class="markdown-heading"><h2 class="heading-element">03. AI 검토는 구현과 품질 평가를 구별합니다</h2><a id="user-content-03-ai-검토는-구현과-품질-평가를-구별합니다" class="anchor" aria-label="Permalink: 03. AI 검토는 구현과 품질 평가를 구별합니다" href="#03-ai-검토는-구현과-품질-평가를-구별합니다"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>현재 구현은 같은 대화에서 원문을 읽고 가설·후보를 조사한 뒤, 후보가 있을 때 별도 대화에서 반증을 검토합니다.<br>
+서버가 실제 열람한 원문으로 인용을 복원·대조하고, AI 결과를 규칙 결과와 별도로 저장합니다.<br>
+모의 응답 검사에서는 거절·시간 초과·잘못된 형식·미열람 인용·중복·취소와 권한 철회 등을 확인했습니다.<br>
+DB 검사는 AI 문맥과 결과의 접근 경계, 동의·만료·삭제 연동을 포함합니다.<br><br></p>
+<p>이전 모델에서는 제한된 합성 자료의 실제 API 평가와 운영 연결 검증을 수행했습니다.<br>
+전환한 <code>gpt-6.1-sol</code>도 10-16 합성 25사례와 10-21 당시의 계획·조사·반증 실행본으로 평가했습니다.<br>
+10-21에는 위험·대조 4쌍의 최종 근거가 기대와 일치했으며, 실제 로그인·GitHub 수집·AI 검토·DB 저장·화면·정리를 수정 전·후 두 번 확인했습니다.<br>
+두 실행의 AI 후보는 각각 1건·0건이고 AI 검토는 완료됐지만, 다른 분석의 미완료 범위 때문에 전체 점검 상태는 부분 완료였습니다.<br>
+취약본 JSON 다운로드는 DB와 대조했으며, 수정본 JSON과 인증 HTML 다운로드는 브라우저 차단으로 확인하지 못했습니다.<br><br></p>
+<p>10-22 이후 서비스의 읽기·조사 경로가 다시 바뀌었습니다.<br>
+같은 모델을 사용하더라도 이전 실행본의 평가를 현재 실행본의 품질 보증으로 옮겨 말할 수는 없습니다.<br>
+별도 후속 후보의 실제 저장소 3표본 평가도 보고서 생성은 1/3, 핵심 조사 완료 확인은 0/3이어서 채택을 보류했습니다.<br>
+이 실패 기록과 서비스에 연결하지 않은 SDK 실험을 현재 운영 경로의 성적으로 합산하지 않습니다.<br><br></p>
+<p>현재 AI 검토는 별도 동의와 허용된 이용 범위 안에서 제공하는 선택 기능입니다.<br>
+AI 후보의 자동 재점검 일치 판정, 수정 코드의 실행 검증, 모든 업무 로직의 안전성 판단은 포함하지 않습니다.<br><br></p>
+<p><strong>2026-10-24 추가 기록:</strong> 서비스 경로와 별도의 개발용 SDK로 같은 자사 코드 26개 파일·2,277줄을 반복 평가했습니다.<br>
+r1~r15의 수치·실패 기록·비교 조건은 <a href="/_workspace/2026-10-30-001/preview/docs/AI_SDK_R1_R15.html">AI SDK 실험 기록</a>에 정리했습니다.<br>
+SDK 실험의 품질 판정과 서비스 운영 검증은 구분합니다.<br>
+서비스 엔진 연결과 큰 저장소 검증은 후속 작업으로 남아 있습니다.<br><br></p>
+<div class="markdown-heading"><h2 class="heading-element">04. 자체 코드 분석의 후속 검증</h2><a id="user-content-04-자체-코드-분석의-후속-검증" class="anchor" aria-label="Permalink: 04. 자체 코드 분석의 후속 검증" href="#04-자체-코드-분석의-후속-검증"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>10-19~20에는 제한된 TypeScript 흐름·인가 분석의 GitHub 수집, 결과 저장, 화면·HTML/JSON 리포트와 캐시 재사용을 확인했습니다.<br>
+다른 실제 계정과 비로그인 요청이 기존 결과·정책을 읽지 못하는 경계도 별도로 점검했습니다.<br>
+10-21 서버 데이터 전달 분석에서는 같은 합성 입력으로 최초 분석과 재점검을 실행하고, 재점검의 본분석 생략과 저장 결과의 일치를 확인했습니다.<br>
+재점검에도 입력 준비용 Sandbox는 필요했으며, 두 점검 모두 미확인 조건을 남긴 부분 완료였습니다.<br><br></p>
+<p>이 결과는 지원하는 코드 형태와 고정 입력에서의 동작 확인입니다.<br>
+고객 DB의 실제 RLS·역할·JWT 집행, 일반적인 SSR·ORM 지원이나 서비스 전체 처리량을 검증한 결과는 아닙니다.<br><br></p>
+<div class="markdown-heading"><h2 class="heading-element">05. 현재의 지원 범위와 남은 검증</h2><a id="user-content-05-현재의-지원-범위와-남은-검증" class="anchor" aria-label="Permalink: 05. 현재의 지원 범위와 남은 검증" href="#05-현재의-지원-범위와-남은-검증"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
+<p>새 점검 입력은 GitHub이며, 정적 규칙은 JavaScript·TypeScript·Python을 대상으로 합니다.<br>
+지원하는 npm·pnpm·uv·Poetry 잠금 파일과 고정 requirements에서 공개 의존성을 대조합니다.<br>
+자체 코드 분석은 지원하는 TypeScript의 SQL·셸 흐름, 선언한 객체 소유권 조건과 일부 서버 데이터 전달을 다룹니다.<br>
+자체 분석 한도는 최대 64파일·합계 1 MiB·파일당 256 KiB이며, 일반적인 Next.js·Supabase 코드 전체를 지원한다는 뜻은 아닙니다.<br>
+다른 언어·의존성 형식, 웹사이트 신규 점검, 자동 PR 점검은 현재 제공 범위에 포함하지 않습니다.<br><br></p>
+<table>
+<thead>
+<tr>
+<th>남은 확인</th>
+<th>이유</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>독립 고객 저장소의 품질 평가</td>
+<td>합성·교육용 자료만으로 실제 누락·오탐 분포를 알 수 없음</td>
+</tr>
+<tr>
+<td>호스팅 중단·재전달·제공자 삭제 장애 시험</td>
+<td>모의 실패 검사와 운영 정상 정리만으로 장애 복구 전체를 입증할 수 없음</td>
+</tr>
+<tr>
+<td>지속 부하와 동시 이용</td>
+<td>현재 제한된 실행 정책의 기록으로 서비스 처리량을 일반화할 수 없음</td>
+</tr>
+<tr>
+<td>실기기·브라우저·접근성의 폭넓은 검증</td>
+<td>화면 크기별 관찰과 일부 기기 확인이 모든 사용 환경을 대표하지 않음</td>
+</tr>
+<tr>
+<td>현재 서비스 실행본의 후속 실모델 평가</td>
+<td>같은 모델이어도 읽기·조사 경로가 달라지면 이전 평가를 그대로 적용할 수 없음</td>
+</tr>
+</tbody>
+</table>
+<p><strong>발견 0건은 점검한 범위에서 근거를 남기지 않았다는 뜻입니다.</strong><br>
+지원하지 않거나 읽지 않은 코드, 실행 중 환경, 전체 업무 권한의 안전을 확인했다는 뜻은 아닙니다.<br>
+기본 점검의 운영 흐름은 확인했지만, 이를 정식 서비스 전체 준비 완료 판정으로 확대하지 않습니다.<br></p>
+<br>
+<p><a href="/_workspace/2026-10-30-001/preview/docs/ENGINEERING.html">구현 선택 읽기 →</a> · <a href="/_workspace/2026-10-30-001/preview/README.html">서비스 소개로 돌아가기</a> · <a href="https://teum.today/data-policy" rel="nofollow">데이터 처리 안내</a></p>
+</main></html>

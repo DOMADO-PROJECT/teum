@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1036" viewBox="0 0 1280 1036" role="img" aria-labelledby="architecture-title architecture-desc" xml:lang="ko">
   <title id="architecture-title">teum. 서비스 아키텍처 — 코드 수집, 격리 분석, 선택 AI 검토</title>
-  <desc id="architecture-desc">브라우저는 Next.js를 통해 입력과 권한을 확인하고 작업을 요청하며, 저장된 결과를 따로 조회합니다. Supabase는 Auth, PostgreSQL과 private Storage로 인증·입력·상태·결과를 관리합니다. GitHub 수집과 분석은 별도 Vercel Workflow로 실행합니다. 수집 Workflow는 허용한 저장소·폴더의 고정 커밋을 읽어 private Storage에 보관합니다. 분석 Workflow는 준비된 입력으로 Sandbox의 규칙·비밀정보 분석과 의존성 추출, Sandbox 밖의 OSV 조회, Sandbox의 자체 코드 흐름 분석, 결과 저장을 수행합니다. 이후 별도 동의가 있으면 Sandbox 밖에서 OpenAI 검토를 실행하고 독립 후보를 저장하며, 정리 작업을 이어 갑니다. Sandbox는 네트워크를 차단하고 고객 코드의 설치·빌드·실행을 하지 않습니다. OSV에는 공개 패키지 이름과 버전만, OpenAI에는 동의한 범위의 코드 문맥을 보냅니다. 회색 화살표는 구성 요소의 연결이며, 파란 선은 요청·응답 방향으로 순서대로 채워집니다. 모션은 GitHub 입력과 자체 코드 흐름 분석·AI 검토를 사용하는 한 경로를 보여줍니다. 실제 시간·진행률이나 모든 재시도·분기를 나타내지는 않습니다. 모션 감소 설정에서도 구성 요소와 연결을 정적으로 읽을 수 있습니다.</desc>
+  <desc id="architecture-desc">브라우저는 Next.js를 통해 입력과 권한을 확인하고 작업을 요청하며, 저장된 결과를 따로 조회합니다. Supabase는 Auth, PostgreSQL과 private Storage로 인증·입력·상태·결과를 관리합니다. GitHub 수집과 분석은 별도 Vercel Workflow로 실행합니다. 수집 Workflow는 허용한 저장소·폴더의 고정 커밋을 읽어 private Storage에 보관합니다. 분석 Workflow는 준비된 입력으로 Sandbox의 규칙·비밀정보 분석과 의존성 추출, Sandbox 밖의 OSV 조회, Sandbox의 자체 코드 흐름 분석, 결과 저장을 수행합니다. 이후 별도 동의가 있으면 Sandbox 밖에서 OpenAI 검토를 실행하고 독립 후보를 저장하며, 정리 작업을 이어 갑니다. Sandbox는 네트워크를 차단하고 고객 코드의 설치·빌드·실행을 하지 않습니다. OSV에는 공개 패키지 이름과 버전만, OpenAI에는 동의한 범위의 코드 문맥을 보냅니다. 회색 화살표는 구성 요소의 연결이며, 파란 선은 요청·응답 방향으로 순서대로 채워집니다. 화살표가 도착한 카드의 파란 테두리가 잠깐 나타났다가 부드럽게 사라집니다. 모션은 GitHub 입력과 자체 코드 흐름 분석·AI 검토를 사용하는 한 경로를 보여줍니다. 실제 시간·진행률이나 모든 재시도·분기를 나타내지는 않습니다. 모션 감소 설정에서도 구성 요소와 연결을 정적으로 읽을 수 있습니다.</desc>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#4b5563" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker>
     <filter id="card-shadow" x="-5%" y="-15%" width="110%" height="135%" color-interpolation-filters="sRGB"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#191f28" flood-opacity=".06"/></filter>
@@ -15,13 +15,15 @@
     .section{font-size:16px;font-weight:550;fill:#566270}.label{font-size:16px;fill:#566270}
     .wire{fill:none;stroke:#4b5563;stroke-width:1.8;stroke-linejoin:round;marker-end:url(#arrow)}
     .both{marker-start:url(#arrow)}
-    .trace,.tip{fill:none;stroke:#1d65d1;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;opacity:0;animation-duration:20s;animation-delay:calc(var(--at) - 20s);animation-timing-function:linear;animation-iteration-count:infinite;animation-fill-mode:both}
+    .trace,.tip,.node-pulse{fill:none;stroke:#1d65d1;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;opacity:0;animation-duration:20s;animation-delay:calc(var(--at) - 20s);animation-timing-function:linear;animation-iteration-count:infinite;animation-fill-mode:both}
     .trace{stroke-dasharray:1;stroke-dashoffset:1;animation-name:flow}
     .tip{animation-name:arrival}
+    .node-pulse{stroke-width:1.8;pointer-events:none;animation-name:node-arrival;animation-timing-function:ease-in-out}
     /* 20초 예시: 접수 → 수집·보관 → 규칙 분석 → OSV → 코드 흐름 분석 → 저장 → 선택 AI → 저장 → 조회. */
     @keyframes flow{0%{stroke-dashoffset:1;opacity:0}.15%{opacity:1}2.8%,3.3%{stroke-dashoffset:0;opacity:1}4%,100%{stroke-dashoffset:0;opacity:0}}
     @keyframes arrival{0%,2.6%{opacity:0}2.8%,3.3%{opacity:1}4%,100%{opacity:0}}
-    @media(prefers-reduced-motion:reduce){.trace,.tip{animation:none;opacity:0}}
+    @keyframes node-arrival{0%,2.8%{opacity:0}3.6%,4.6%{opacity:1}6.2%,100%{opacity:0}}
+    @media(prefers-reduced-motion:reduce){.trace,.tip,.node-pulse{animation:none;opacity:0}}
   </style>
   <rect x="1" y="1" width="1278" height="1034" rx="10" fill="#fff" stroke="#e5e8eb"/>
   <text x="40" y="56" font-size="32" font-weight="750" letter-spacing="-1.2">teum.</text>
@@ -82,6 +84,8 @@
     <text x="84" y="196" class="name">브라우저</text>
     <text x="84" y="254" class="body">범위·동의 선택</text>
     <text x="84" y="284" class="body">근거·리포트 확인</text>
+    <rect class="node-pulse" x="64" y="160" width="288" height="160" rx="8" style="--at:2.4s" aria-hidden="true"/>
+    <rect class="node-pulse" x="64" y="160" width="288" height="160" rx="8" style="--at:17.6s" aria-hidden="true"/>
   </g>
 
   <g class="node" data-node="nextjs">
@@ -90,6 +94,10 @@
     <text x="516" y="196" class="name">Next.js</text>
     <text x="516" y="254" class="body">입력 검증·권한 확인</text>
     <text x="516" y="284" class="body">웹 화면·API</text>
+    <rect class="node-pulse" x="496" y="160" width="288" height="160" rx="8" style="--at:0s" aria-hidden="true"/>
+    <rect class="node-pulse" x="496" y="160" width="288" height="160" rx="8" style="--at:1.6s" aria-hidden="true"/>
+    <rect class="node-pulse" x="496" y="160" width="288" height="160" rx="8" style="--at:15.2s" aria-hidden="true"/>
+    <rect class="node-pulse" x="496" y="160" width="288" height="160" rx="8" style="--at:16.8s" aria-hidden="true"/>
   </g>
 
   <g class="node" data-node="supabase">
@@ -98,6 +106,11 @@
     <text x="948" y="196" class="name">Supabase</text>
     <text x="948" y="254" class="body">인증 · 데이터 · 비공개 파일</text>
     <text x="948" y="284" class="note">Auth · PostgreSQL · private Storage</text>
+    <rect class="node-pulse" x="928" y="160" width="288" height="160" rx="8" style="--at:0.8s" aria-hidden="true"/>
+    <rect class="node-pulse" x="928" y="160" width="288" height="160" rx="8" style="--at:5.6s" aria-hidden="true"/>
+    <rect class="node-pulse" x="928" y="160" width="288" height="160" rx="8" style="--at:12s" aria-hidden="true"/>
+    <rect class="node-pulse" x="928" y="160" width="288" height="160" rx="8" style="--at:14.4s" aria-hidden="true"/>
+    <rect class="node-pulse" x="928" y="160" width="288" height="160" rx="8" style="--at:16s" aria-hidden="true"/>
   </g>
 
   <g class="node focus" data-node="workflow">
@@ -106,6 +119,13 @@
     <text x="376" y="480" class="name">Vercel Workflow</text>
     <text x="376" y="534" class="body">수집과 분석을 별도 Workflow로 실행</text>
     <text x="376" y="571" class="note">재시도 · 상태 확인 · 취소 · 정리</text>
+    <rect class="node-pulse" x="352" y="444" width="576" height="160" rx="8" style="--at:3.2s" aria-hidden="true"/>
+    <rect class="node-pulse" x="352" y="444" width="576" height="160" rx="8" style="--at:4.8s" aria-hidden="true"/>
+    <rect class="node-pulse" x="352" y="444" width="576" height="160" rx="8" style="--at:6.4s" aria-hidden="true"/>
+    <rect class="node-pulse" x="352" y="444" width="576" height="160" rx="8" style="--at:8s" aria-hidden="true"/>
+    <rect class="node-pulse" x="352" y="444" width="576" height="160" rx="8" style="--at:9.6s" aria-hidden="true"/>
+    <rect class="node-pulse" x="352" y="444" width="576" height="160" rx="8" style="--at:11.2s" aria-hidden="true"/>
+    <rect class="node-pulse" x="352" y="444" width="576" height="160" rx="8" style="--at:13.6s" aria-hidden="true"/>
   </g>
 
   <g class="node" data-node="github">
@@ -116,6 +136,7 @@
     <text x="84" y="872" class="body">선택한 저장소·폴더</text>
     <text x="84" y="902" class="body">고정 커밋의 파일 수집</text>
     <text x="84" y="950" class="note">수집본은 비공개 Storage에 보관</text>
+    <rect class="node-pulse" x="64" y="760" width="288" height="224" rx="8" style="--at:4s" aria-hidden="true"/>
   </g>
 
   <g class="node" data-node="sandbox">
@@ -126,6 +147,8 @@
     <text x="476" y="872" class="body">Semgrep CE · Gitleaks</text>
     <text x="476" y="902" class="body">의존성 추출 · 자체 코드 흐름 분석</text>
     <text x="476" y="950" class="blue" font-size="15.5" font-weight="550">고객 코드 설치·빌드·실행 없음</text>
+    <rect class="node-pulse" x="456" y="760" width="360" height="224" rx="8" style="--at:7.2s" aria-hidden="true"/>
+    <rect class="node-pulse" x="456" y="760" width="360" height="224" rx="8" style="--at:10.4s" aria-hidden="true"/>
   </g>
 
   <g class="node" data-node="osv">
@@ -134,6 +157,7 @@
     <text x="964" y="710" class="name">OSV</text>
     <text x="964" y="752" class="body">공개 패키지 이름·버전</text>
     <text x="964" y="780" class="body">취약점 정보 대조</text>
+    <rect class="node-pulse" x="944" y="680" width="272" height="128" rx="8" style="--at:8.8s" aria-hidden="true"/>
   </g>
 
   <g class="node" data-node="openai">
@@ -143,5 +167,6 @@
     <text x="964" y="928" class="body">별도 동의한 코드 문맥</text>
     <text x="964" y="956" class="body">독립 후보·방어 근거 검토</text>
     <text x="1196" y="884" text-anchor="end" font-size="15.5" font-weight="650" class="blue">선택</text>
+    <rect class="node-pulse" x="944" y="856" width="272" height="128" rx="8" style="--at:12.8s" aria-hidden="true"/>
   </g>
 </svg>

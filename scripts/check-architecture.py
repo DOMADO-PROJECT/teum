@@ -1,5 +1,6 @@
 """아키텍처의 화살표 도착점과 카드 강조를 표준 라이브러리로 확인한다."""
 from pathlib import Path
+from decimal import Decimal
 import re
 import xml.etree.ElementTree as ET
 
@@ -11,6 +12,8 @@ flows = root.findall('.//*[@data-step]')
 pulses = root.findall('.//s:rect[@class="node-pulse"]', ns)
 assert len(nodes) == 8 and len(flows) == len(pulses) == 23
 assert len({flow.get('style') for flow in flows}) == len(flows)
+starts = [Decimal(re.search(r'--at:([\d.]+)s', flow.get('style'))[1]) for flow in flows]
+assert starts == [Decimal('1.2') * index for index in range(23)]
 
 for flow in flows:
     tip = flow.find('s:path[@class="tip"]', ns)

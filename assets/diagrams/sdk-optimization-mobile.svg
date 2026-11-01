@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="1220" viewBox="0 0 720 1220" role="img" aria-labelledby="sdk-title sdk-desc" xml:lang="ko" class="mobile">
+  <title id="sdk-title">teum. AI SDK 실행 효율 비교 — 기준 실행과 개선 후 두 회차 평균</title>
+  <desc id="sdk-desc">고정한 자사 코드 26개 파일·2,277줄을 사용한 개발용 SDK 실험입니다. 기준 실행은 처음으로 핵심 검토 조건 4/4를 충족한 r5이며, 개선 후는 같은 실행본의 r14/r15 두 회차 평균입니다. API 요청은 27회에서 2회로 92.6%, 총토큰은 1,738,129개에서 208,733개로 88.0%, 전체 시간은 26:51.974에서 18:13.274로 32.2%, usage 추정 비용은 USD 1.4790에서 0.9958로 32.7% 감소했습니다. 최종 두 회차는 각각 핵심 4/4·세부 16/16을 충족했습니다. 회색 막대는 지표별 기준 실행을 100으로 놓은 값이며, 파란 막대는 개선 후 남은 비율입니다. 감소율 숫자는 줄어든 비율로, 막대의 비율과 구분해 표시합니다. 시간 표시는 초 단위로 반올림하며 막대 길이와 감소율은 반올림 전 원값으로 계산합니다. 수치와 감소율은 처음부터 고정하고 막대만 약 2.2초 안에 최종 비율로 줄인 뒤 오래 유지하는 12초 모션을 반복합니다. 움직이는 중간 길이는 관측치가 아닙니다. 모션 감소 설정에서는 최종값을 정적으로 표시합니다. 현재 서비스 경로와 별도인 고정 표본의 실험이며, 비용은 실제 청구액과 구분하는 usage 기반 추정치입니다.</desc>
+  <metadata id="sdk-data">{&quot;baseline_run&quot;:&quot;r5&quot;,&quot;final_runs&quot;:[&quot;r14&quot;,&quot;r15&quot;],&quot;final_aggregation&quot;:&quot;arithmetic mean of two runs&quot;,&quot;fixed_files&quot;:26,&quot;fixed_lines&quot;:2277,&quot;final_core_complete_each&quot;:&quot;4/4&quot;,&quot;final_detailed_complete_each&quot;:&quot;16/16&quot;,&quot;bar_scale&quot;:&quot;each metric normalized to r5 = 100, zero origin&quot;,&quot;source&quot;:&quot;docs/AI_SDK_R1_R15.md&quot;,&quot;metrics&quot;:[{&quot;id&quot;:&quot;requests&quot;,&quot;label&quot;:&quot;API 요청&quot;,&quot;baseline&quot;:&quot;27&quot;,&quot;final_mean&quot;:&quot;2.0&quot;,&quot;reduction_percent&quot;:&quot;92.59259259259259259259259259&quot;,&quot;display_reduction&quot;:&quot;92.6% 감소&quot;,&quot;display_values&quot;:&quot;27회 → 2회&quot;},{&quot;id&quot;:&quot;total_tokens&quot;,&quot;label&quot;:&quot;총토큰&quot;,&quot;baseline&quot;:&quot;1738129&quot;,&quot;final_mean&quot;:&quot;208733.0&quot;,&quot;reduction_percent&quot;:&quot;87.99093738151771243676389957&quot;,&quot;display_reduction&quot;:&quot;88.0% 감소&quot;,&quot;display_values&quot;:&quot;1,738,129개 → 208,733개&quot;},{&quot;id&quot;:&quot;elapsed_ms&quot;,&quot;label&quot;:&quot;전체 시간&quot;,&quot;baseline&quot;:&quot;1611974&quot;,&quot;final_mean&quot;:&quot;1093273.5&quot;,&quot;reduction_percent&quot;:&quot;32.17796937171443211863218638&quot;,&quot;display_reduction&quot;:&quot;32.2% 감소&quot;,&quot;display_values&quot;:&quot;26분 52초 → 18분 13초&quot;},{&quot;id&quot;:&quot;known_usage_cost_usd&quot;,&quot;label&quot;:&quot;추정 비용 · USD&quot;,&quot;baseline&quot;:&quot;1.4789971&quot;,&quot;final_mean&quot;:&quot;0.99583325&quot;,&quot;reduction_percent&quot;:&quot;32.66834329830667010773719570&quot;,&quot;display_reduction&quot;:&quot;32.7% 감소&quot;,&quot;display_values&quot;:&quot;$1.4790 → $0.9958&quot;}]}</metadata>
+  <style>
+    text{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;fill:#191f28}
+    .muted{fill:#566270}.blue{fill:#1d65d1}.numeric{font-variant-numeric:tabular-nums}
+    .baseline{fill:#8b95a1}.final{fill:#1d65d1}
+    .metric{font-size:24px;font-weight:650}.values{font-size:20px;fill:#566270}
+    .result-value{fill:#333d4b;font-weight:550}.reduction{font-size:34px;font-weight:650;fill:#1d65d1;text-anchor:end}
+    .label{font-size:16px;fill:#566270}.note{font-size:15.5px;fill:#566270}
+    .guide{fill:none;stroke:#e5e8eb;stroke-width:1;stroke-dasharray:3 6}.zero{stroke:#8b95a1;stroke-width:1}
+    .divider{stroke:#eef1f5;stroke-width:1}
+    .mobile .metric{font-size:30px}.mobile .values{font-size:24px}.mobile .reduction{font-size:36px}
+    .mobile .label{font-size:20px}.mobile .note{font-size:20px}
+    @media(prefers-reduced-motion:no-preference){
+      .final-bar{transform-box:fill-box;transform-origin:left center;animation:sdk-bar 12s cubic-bezier(.22,1,.36,1) infinite both,sdk-cycle 12s linear infinite both;animation-delay:var(--delay)}
+    }
+    /* 숫자는 고정하고, 막대만 기준 길이에서 최종 비율로 줄인 뒤 대부분의 주기 동안 유지한다. */
+    @keyframes sdk-bar{0%,3%{transform:scaleX(var(--start-scale))}17%,100%{transform:scaleX(1)}}
+    @keyframes sdk-cycle{0%,98%,100%{opacity:0}3%,95%{opacity:1}}
+  </style>
+  <rect x="1" y="1" width="718" height="1218" rx="10" fill="#fff" stroke="#e5e8eb"/>
+  <text x="32" y="58" font-size="36" font-weight="750" letter-spacing="-1.2">teum.</text>
+  <text x="156" y="56" class="blue" font-size="18" font-weight="650" letter-spacing="1.2">AI SDK</text>
+  <text x="688" y="56" class="muted" font-size="18" text-anchor="end">실행 효율 비교</text>
+  <path d="M32 84H688" stroke="#e5e8eb"/>
+  <text x="32" y="132" class="muted" font-size="24">고정 자사 코드 26개 파일·2,277줄</text>
+  <text x="32" y="168" class="muted" font-size="22">핵심 검토 조건 4/4 유지</text>
+  <rect x="32" y="201" width="12" height="12" class="baseline"/>
+  <text x="56" y="214" class="muted" font-size="22">기준 실행</text>
+  <rect x="252" y="201" width="12" height="12" class="final"/>
+  <text x="276" y="214" class="muted" font-size="22">개선 후 · 2회 평균</text>
+  <text x="32" y="260" class="label">기준 대비 비율 (%)</text>
+  <text x="688" y="260" class="label" text-anchor="end">감소율</text>
+
+  <g data-metric="requests">
+    <path d="M32 364V430" class="zero"/>
+    <path d="M360 364V430M688 364V430" class="guide"/>
+  <text x="32" y="314" class="metric">API 요청</text>
+    <text x="32" y="350" class="values numeric"><tspan>27회</tspan><tspan> → </tspan><tspan class="result-value">2회</tspan></text>
+  <text x="688" y="314" class="reduction numeric">92.6%</text>
+    <rect x="32" y="376" width="656" height="16" class="baseline" data-series="r5"/>
+    <rect x="32" y="406" width="48.592593" height="16" class="final final-bar" style="--start-scale:13.499999886814;--delay:0s" data-series="final-mean"/>
+  </g>
+  <path d="M32 448H688" class="divider"/>
+
+  <g data-metric="total_tokens">
+    <path d="M32 560V626" class="zero"/>
+    <path d="M360 560V626M688 560V626" class="guide"/>
+  <text x="32" y="510" class="metric">총토큰</text>
+    <text x="32" y="546" class="values numeric"><tspan>1,738,129개</tspan><tspan> → </tspan><tspan class="result-value">208,733개</tspan></text>
+  <text x="688" y="510" class="reduction numeric">88.0%</text>
+    <rect x="32" y="572" width="656" height="16" class="baseline" data-series="r5"/>
+    <rect x="32" y="602" width="78.779451" height="16" class="final final-bar" style="--start-scale:8.327044574098;--delay:0.06s" data-series="final-mean"/>
+  </g>
+  <path d="M32 644H688" class="divider"/>
+
+  <g data-metric="elapsed_ms">
+    <path d="M32 756V822" class="zero"/>
+    <path d="M360 756V822M688 756V822" class="guide"/>
+  <text x="32" y="706" class="metric">전체 시간</text>
+    <text x="32" y="742" class="values numeric"><tspan>26분 52초</tspan><tspan> → </tspan><tspan class="result-value">18분 13초</tspan></text>
+  <text x="688" y="706" class="reduction numeric">32.2%</text>
+    <rect x="32" y="768" width="656" height="16" class="baseline" data-series="r5"/>
+    <rect x="32" y="798" width="444.912521" height="16" class="final final-bar" style="--start-scale:1.474447153174;--delay:0.12s" data-series="final-mean"/>
+  </g>
+  <path d="M32 840H688" class="divider"/>
+
+  <g data-metric="known_usage_cost_usd">
+    <path d="M32 952V1018" class="zero"/>
+    <path d="M360 952V1018M688 952V1018" class="guide"/>
+  <text x="32" y="902" class="metric">추정 비용 · USD</text>
+    <text x="32" y="938" class="values numeric"><tspan>$1.4790</tspan><tspan> → </tspan><tspan class="result-value">$0.9958</tspan></text>
+  <text x="688" y="902" class="reduction numeric">32.7%</text>
+    <rect x="32" y="964" width="656" height="16" class="baseline" data-series="r5"/>
+    <rect x="32" y="994" width="441.695668" height="16" class="final final-bar" style="--start-scale:1.485185496544;--delay:0.18s" data-series="final-mean"/>
+  </g>
+  <text x="32" y="1050" class="label numeric" text-anchor="middle">0</text>
+  <text x="360" y="1050" class="label numeric" text-anchor="middle">50</text>
+  <text x="688" y="1050" class="label numeric" text-anchor="middle">100</text>
+  <path d="M32 1080H688" stroke="#e5e8eb"/>
+  <text x="32" y="1118" class="note">기준: 첫 4/4 성공본(r5) · 개선 후: r14/r15 평균</text>
+  <text x="32" y="1149" class="note">최종 두 회차 모두 세부 16/16 · 비용은 usage 추정치</text>
+  <text x="32" y="1180" class="note">고정 표본의 SDK 실험 · 현재 서비스와 별도</text>
+</svg>

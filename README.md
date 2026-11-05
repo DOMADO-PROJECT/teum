@@ -99,9 +99,12 @@ teum에서는 **발견 → 근거 확인 → 검토 기록 → 수정본 재점�
 Next.js는 화면과 API를 처리하고, Workflow는 후속 작업을 이어 갑니다.<br>
 Sandbox에서는 격리된 정적 분석을 실행합니다.<br><br>
 
-![Next.js와 Supabase, Workflow, 네트워크가 차단된 Sandbox, 외부 OSV와 선택 OpenAI 검토의 경계를 보여주는 시스템 아키텍처](assets/diagrams/architecture.svg)
+<picture>
+  <source media="(max-width: 640px)" srcset="assets/diagrams/architecture-mobile.svg">
+  <img src="assets/diagrams/architecture.svg" width="1280" alt="Next.js와 Supabase, Workflow, 네트워크가 차단된 Sandbox, 외부 OSV와 선택 OpenAI 검토의 경계를 보여주는 시스템 아키텍처">
+</picture>
 
-*[SVG 크게 보기](assets/diagrams/architecture.svg) · 세부 API와 내부 식별자를 생략한 구현 구조입니다.*<br><br>
+*[가로 SVG](assets/diagrams/architecture.svg) · [모바일 SVG](assets/diagrams/architecture-mobile.svg) · 세부 API와 내부 식별자를 생략한 구현 구조입니다.*<br><br>
 
 | 구성 | 사용 기술 | 맡은 역할 |
 |---|---|---|

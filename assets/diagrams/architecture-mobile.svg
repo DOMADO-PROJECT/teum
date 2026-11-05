@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1840" viewBox="0 0 640 1840" role="img" aria-labelledby="architecture-title architecture-desc" xml:lang="ko">
+  <title id="architecture-title">teum. 서비스 아키텍처 — 코드 수집, 격리 분석, 선택 AI 검토</title>
+  <desc id="architecture-desc">브라우저는 Next.js를 통해 입력과 권한을 확인하고 작업을 요청하며, 저장된 결과를 따로 조회합니다. Supabase는 Auth, PostgreSQL과 private Storage로 인증·입력·상태·결과를 관리합니다. GitHub 수집과 분석은 별도 Vercel Workflow로 실행합니다. 수집 Workflow는 허용한 저장소·폴더의 고정 커밋을 읽어 private Storage에 보관합니다. 분석 Workflow는 준비된 입력으로 Sandbox의 규칙·비밀정보 분석과 의존성 추출, Sandbox 밖의 OSV 조회, Sandbox의 자체 코드 흐름 분석, 결과 저장을 수행합니다. 이후 별도 동의가 있으면 Sandbox 밖에서 OpenAI 검토를 실행하고 독립 후보를 저장하며, 정리 작업을 이어 갑니다. Sandbox는 네트워크를 차단하고 고객 코드의 설치·빌드·실행을 하지 않습니다. OSV에는 공개 패키지 이름과 버전만, OpenAI에는 동의한 범위의 코드 문맥을 보냅니다. 회색 화살표는 구성 요소의 연결이며, 파란 선은 요청·응답 방향으로 순서대로 채워집니다. 화살표가 도착한 카드의 파란 테두리가 잠깐 나타났다가 부드럽게 사라집니다. 모션은 GitHub 입력과 자체 코드 흐름 분석·AI 검토를 사용하는 한 경로를 보여줍니다. 실제 시간·진행률이나 모든 재시도·분기를 나타내지는 않습니다. 모션 감소 설정에서도 구성 요소와 연결을 정적으로 읽을 수 있습니다.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#4b5563" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <filter id="card-shadow" x="-5%" y="-15%" width="110%" height="135%" color-interpolation-filters="sRGB"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#191f28" flood-opacity=".06"/></filter>
+  </defs>
+  <style>
+    text{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;fill:#191f28}
+    .muted{fill:#566270}.blue{fill:#1d65d1}
+    .card{fill:#fff;filter:url(#card-shadow)}
+    .head{fill:#edf4ff}.focus .head{fill:#1d65d1}.focus .name{fill:#fff}
+    .name{font-size:26px;font-weight:650}.purpose{font-size:20px;fill:#566270}
+    .body{font-size:22px;fill:#333d4b}.note{font-size:20px;fill:#566270}
+    .section{font-size:20px;font-weight:550;fill:#566270}.label{font-size:20px;fill:#566270}
+    .wire{fill:none;stroke:#4b5563;stroke-width:1.8;stroke-linejoin:round;marker-end:url(#arrow)}
+    .both{marker-start:url(#arrow)}
+    .trace,.tip,.node-pulse{fill:none;stroke:#1d65d1;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;opacity:0;animation-duration:30s;animation-delay:calc(var(--at) - 30s);animation-timing-function:linear;animation-iteration-count:infinite;animation-fill-mode:both}
+    .trace{stroke-dasharray:1;stroke-dashoffset:1;animation-name:flow}
+    .tip{animation-name:arrival}
+    .node-pulse{stroke-width:1.8;pointer-events:none;animation-name:node-arrival;animation-timing-function:ease-in-out}
+    /* 30초 예시: 접수 → 수집·보관 → 규칙 분석 → OSV → 코드 흐름 분석 → 저장 → 선택 AI → 저장 → 조회. */
+    @keyframes flow{0%{stroke-dashoffset:1;opacity:0}.08%{opacity:1}2.4%,2.8%{stroke-dashoffset:0;opacity:1}3.6%,100%{stroke-dashoffset:0;opacity:0}}
+    @keyframes arrival{0%,2.2%{opacity:0}2.4%,2.8%{opacity:1}3.6%,100%{opacity:0}}
+    @keyframes node-arrival{0%,2.4%{opacity:0}2.8%,4.4%{opacity:1}6%,100%{opacity:0}}
+    @media(prefers-reduced-motion:reduce){.trace,.tip,.node-pulse{animation:none;opacity:0}}
+  </style>
+  <rect x="1" y="1" width="638" height="1838" rx="10" fill="#fff" stroke="#e5e8eb"/>
+  <text x="32" y="56" font-size="34" font-weight="750" letter-spacing="-1.2">teum.</text>
+  <text x="150" y="54" font-size="18" font-weight="650" letter-spacing="1.2" class="blue">ARCHITECTURE</text>
+  <text x="608" y="54" font-size="20" text-anchor="end" class="muted">서비스 구조</text>
+  <path d="M32 80H608" stroke="#e5e8eb"/>
+
+  <g aria-hidden="true">
+    <path class="wire both" data-connection="web" d="M152 268V332"/>
+    <path class="wire both" data-connection="data" d="M284 452H356"/>
+    <path class="wire" data-connection="launch" d="M152 572V660"/>
+    <path class="wire both" data-connection="storage" d="M488 660V572"/>
+    <path class="wire both" data-connection="github" d="M80 860V1016Q80 1028 92 1028H172"/>
+    <path class="wire both" data-connection="sandbox" d="M80 860V1302Q80 1314 92 1314H172"/>
+    <path class="wire both" data-connection="osv" d="M80 860V1560Q80 1572 92 1572H172"/>
+    <path class="wire both" data-connection="ai" d="M80 860V1736Q80 1748 92 1748H172"/>
+  </g>
+
+  <g aria-hidden="true">
+    <g class="flow" data-step="request" style="--at:0s"><path class="trace" pathLength="1" d="M152 268V332"/><path class="tip" d="M156 326L152 332L148 326"/></g>
+    <g class="flow" data-step="auth-query" style="--at:1.2s"><path class="trace" pathLength="1" d="M284 452H356"/><path class="tip" d="M350 448L356 452L350 456"/></g>
+    <g class="flow" data-step="auth-response" style="--at:2.4s"><path class="trace" pathLength="1" d="M356 452H284"/><path class="tip" d="M290 456L284 452L290 448"/></g>
+    <g class="flow" data-step="accepted" style="--at:3.6s"><path class="trace" pathLength="1" d="M152 332V268"/><path class="tip" d="M148 274L152 268L156 274"/></g>
+    <g class="flow" data-step="start-workflow" style="--at:4.8s"><path class="trace" pathLength="1" d="M152 572V660"/><path class="tip" d="M156 654L152 660L148 654"/></g>
+    <g class="flow" data-step="collect-source" style="--at:6s"><path class="trace" pathLength="1" d="M80 860V1016Q80 1028 92 1028H172"/><path class="tip" d="M166 1024L172 1028L166 1032"/></g>
+    <g class="flow" data-step="source-response" style="--at:7.2s"><path class="trace" pathLength="1" d="M172 1028H92Q80 1028 80 1016V860"/><path class="tip" d="M76 866L80 860L84 866"/></g>
+    <g class="flow" data-step="store-input" style="--at:8.4s"><path class="trace" pathLength="1" d="M488 660V572"/><path class="tip" d="M484 578L488 572L492 578"/></g>
+    <g class="flow" data-step="read-input" style="--at:9.6s"><path class="trace" pathLength="1" d="M488 572V660"/><path class="tip" d="M492 654L488 660L484 654"/></g>
+    <g class="flow" data-step="rules" style="--at:10.8s"><path class="trace" pathLength="1" d="M80 860V1302Q80 1314 92 1314H172"/><path class="tip" d="M166 1310L172 1314L166 1318"/></g>
+    <g class="flow" data-step="dependency-inventory" style="--at:12s"><path class="trace" pathLength="1" d="M172 1314H92Q80 1314 80 1302V860"/><path class="tip" d="M76 866L80 860L84 866"/></g>
+    <g class="flow" data-step="osv-query" style="--at:13.2s"><path class="trace" pathLength="1" d="M80 860V1560Q80 1572 92 1572H172"/><path class="tip" d="M166 1568L172 1572L166 1576"/></g>
+    <g class="flow" data-step="osv-response" style="--at:14.4s"><path class="trace" pathLength="1" d="M172 1572H92Q80 1572 80 1560V860"/><path class="tip" d="M76 866L80 860L84 866"/></g>
+    <g class="flow" data-step="code-flow" style="--at:15.6s"><path class="trace" pathLength="1" d="M80 860V1302Q80 1314 92 1314H172"/><path class="tip" d="M166 1310L172 1314L166 1318"/></g>
+    <g class="flow" data-step="analysis-response" style="--at:16.8s"><path class="trace" pathLength="1" d="M172 1314H92Q80 1314 80 1302V860"/><path class="tip" d="M76 866L80 860L84 866"/></g>
+    <g class="flow" data-step="store-analysis" style="--at:18s"><path class="trace" pathLength="1" d="M488 660V572"/><path class="tip" d="M484 578L488 572L492 578"/></g>
+    <g class="flow" data-step="ai-review" style="--at:19.2s"><path class="trace" pathLength="1" d="M80 860V1736Q80 1748 92 1748H172"/><path class="tip" d="M166 1744L172 1748L166 1752"/></g>
+    <g class="flow" data-step="ai-response" style="--at:20.4s"><path class="trace" pathLength="1" d="M172 1748H92Q80 1748 80 1736V860"/><path class="tip" d="M76 866L80 860L84 866"/></g>
+    <g class="flow" data-step="store-ai" style="--at:21.6s"><path class="trace" pathLength="1" d="M488 660V572"/><path class="tip" d="M484 578L488 572L492 578"/></g>
+    <g class="flow" data-step="result-query" style="--at:22.8s"><path class="trace" pathLength="1" d="M152 268V332"/><path class="tip" d="M156 326L152 332L148 326"/></g>
+    <g class="flow" data-step="read-results" style="--at:24s"><path class="trace" pathLength="1" d="M284 452H356"/><path class="tip" d="M350 448L356 452L350 456"/></g>
+    <g class="flow" data-step="stored-results" style="--at:25.2s"><path class="trace" pathLength="1" d="M356 452H284"/><path class="tip" d="M290 456L284 452L290 448"/></g>
+    <g class="flow" data-step="display-results" style="--at:26.4s"><path class="trace" pathLength="1" d="M152 332V268"/><path class="tip" d="M148 274L152 268L156 274"/></g>
+  </g>
+
+  <text x="176" y="308" class="label">요청·조회</text>
+  <text x="320" y="426" font-size="18" text-anchor="middle" class="muted">인증·조회</text>
+  <text x="176" y="620" class="label">접수 후 실행</text>
+  <text x="508" y="606" class="label">입력·상태</text>
+  <text x="508" y="634" class="label">결과 저장</text>
+  <text x="184" y="908" class="section">코드 수집</text>
+  <text x="184" y="1180" class="section">격리 분석 · 분석 요청·근거</text>
+  <path d="M144 1452H608" stroke="#e5e8eb" stroke-dasharray="4 6"/>
+  <text x="184" y="1480" class="section">Sandbox 밖의 외부 호출</text>
+
+  <g class="node" data-node="browser">
+    <rect class="card" x="32" y="128" width="576" height="128" rx="8"/>
+    <path class="head" d="M40 128H600Q608 128 608 136V184H32V136Q32 128 40 128Z"/>
+    <text x="52" y="164" class="name">브라우저</text>
+    <text x="52" y="222" class="body">범위·동의 선택</text>
+    <text x="320" y="222" class="body">근거·리포트 확인</text>
+    <rect class="node-pulse" x="32" y="128" width="576" height="128" rx="8" style="--at:3.6s" aria-hidden="true"/>
+    <rect class="node-pulse" x="32" y="128" width="576" height="128" rx="8" style="--at:26.4s" aria-hidden="true"/>
+  </g>
+
+  <g class="node" data-node="nextjs">
+    <rect class="card" x="32" y="344" width="240" height="216" rx="8"/>
+    <path class="head" d="M40 344H264Q272 344 272 352V400H32V352Q32 344 40 344Z"/>
+    <text x="52" y="380" class="name">Next.js</text>
+    <text x="52" y="438" class="body">입력 검증·권한 확인</text>
+    <text x="52" y="476" class="body">웹 화면·API</text>
+    <rect class="node-pulse" x="32" y="344" width="240" height="216" rx="8" style="--at:0s" aria-hidden="true"/>
+    <rect class="node-pulse" x="32" y="344" width="240" height="216" rx="8" style="--at:2.4s" aria-hidden="true"/>
+    <rect class="node-pulse" x="32" y="344" width="240" height="216" rx="8" style="--at:22.8s" aria-hidden="true"/>
+    <rect class="node-pulse" x="32" y="344" width="240" height="216" rx="8" style="--at:25.2s" aria-hidden="true"/>
+  </g>
+
+  <g class="node" data-node="supabase">
+    <rect class="card" x="368" y="344" width="240" height="216" rx="8"/>
+    <path class="head" d="M376 344H600Q608 344 608 352V400H368V352Q368 344 376 344Z"/>
+    <text x="388" y="380" class="name">Supabase</text>
+    <text class="body"><tspan x="388" y="430">인증 · 데이터 · </tspan><tspan x="388" y="462">비공개 파일</tspan></text>
+    <text class="note"><tspan x="388" y="504">Auth · PostgreSQL · </tspan><tspan x="388" y="534">private Storage</tspan></text>
+    <rect class="node-pulse" x="368" y="344" width="240" height="216" rx="8" style="--at:1.2s" aria-hidden="true"/>
+    <rect class="node-pulse" x="368" y="344" width="240" height="216" rx="8" style="--at:8.4s" aria-hidden="true"/>
+    <rect class="node-pulse" x="368" y="344" width="240" height="216" rx="8" style="--at:18s" aria-hidden="true"/>
+    <rect class="node-pulse" x="368" y="344" width="240" height="216" rx="8" style="--at:21.6s" aria-hidden="true"/>
+    <rect class="node-pulse" x="368" y="344" width="240" height="216" rx="8" style="--at:24s" aria-hidden="true"/>
+  </g>
+
+  <g class="node focus" data-node="workflow">
+    <rect class="card" x="32" y="672" width="576" height="176" rx="8"/>
+    <path class="head" d="M40 672H600Q608 672 608 680V728H32V680Q32 672 40 672Z"/>
+    <text x="56" y="708" class="name">Vercel Workflow</text>
+    <text x="56" y="766" class="body">수집과 분석을 별도 Workflow로 실행</text>
+    <text x="56" y="808" class="note">재시도 · 상태 확인 · 취소 · 정리</text>
+    <rect class="node-pulse" x="32" y="672" width="576" height="176" rx="8" style="--at:4.8s" aria-hidden="true"/>
+    <rect class="node-pulse" x="32" y="672" width="576" height="176" rx="8" style="--at:7.2s" aria-hidden="true"/>
+    <rect class="node-pulse" x="32" y="672" width="576" height="176" rx="8" style="--at:9.6s" aria-hidden="true"/>
+    <rect class="node-pulse" x="32" y="672" width="576" height="176" rx="8" style="--at:12s" aria-hidden="true"/>
+    <rect class="node-pulse" x="32" y="672" width="576" height="176" rx="8" style="--at:14.4s" aria-hidden="true"/>
+    <rect class="node-pulse" x="32" y="672" width="576" height="176" rx="8" style="--at:16.8s" aria-hidden="true"/>
+    <rect class="node-pulse" x="32" y="672" width="576" height="176" rx="8" style="--at:20.4s" aria-hidden="true"/>
+  </g>
+
+  <g class="node" data-node="github">
+    <rect class="card" x="184" y="936" width="424" height="184" rx="8"/>
+    <path class="head" d="M192 936H600Q608 936 608 944V1008H184V944Q184 936 192 936Z"/>
+    <text x="204" y="971" class="name">GitHub App</text>
+    <text x="204" y="997" class="purpose">허용한 소스의 읽기 전용 수집</text>
+    <text x="204" y="1046" class="body">선택한 저장소·폴더</text>
+    <text x="204" y="1076" class="body">고정 커밋의 파일 수집</text>
+    <text x="204" y="1106" class="note">수집본은 비공개 Storage에 보관</text>
+    <rect class="node-pulse" x="184" y="936" width="424" height="184" rx="8" style="--at:6s" aria-hidden="true"/>
+  </g>
+
+  <g class="node" data-node="sandbox">
+    <rect class="card" x="184" y="1208" width="424" height="212" rx="8"/>
+    <path class="head" d="M192 1208H600Q608 1208 608 1216V1280H184V1216Q184 1208 192 1208Z"/>
+    <text x="204" y="1243" class="name">Vercel Sandbox</text>
+    <text x="204" y="1269" class="purpose">네트워크가 차단된 분석 환경</text>
+    <text x="204" y="1322" class="body">Semgrep CE · Gitleaks</text>
+    <text x="204" y="1354" class="body">의존성 추출 · 자체 코드 흐름 분석</text>
+    <text x="204" y="1398" class="blue" font-size="22" font-weight="550">고객 코드 설치·빌드·실행 없음</text>
+    <rect class="node-pulse" x="184" y="1208" width="424" height="212" rx="8" style="--at:10.8s" aria-hidden="true"/>
+    <rect class="node-pulse" x="184" y="1208" width="424" height="212" rx="8" style="--at:15.6s" aria-hidden="true"/>
+  </g>
+
+  <g class="node" data-node="osv">
+    <rect class="card" x="184" y="1508" width="424" height="128" rx="8"/>
+    <path class="head" d="M192 1508H600Q608 1508 608 1516V1552H184V1516Q184 1508 192 1508Z"/>
+    <text x="204" y="1538" class="name">OSV</text>
+    <text x="204" y="1580" class="body">공개 패키지 이름·버전</text>
+    <text x="204" y="1610" class="body">취약점 정보 대조</text>
+    <rect class="node-pulse" x="184" y="1508" width="424" height="128" rx="8" style="--at:13.2s" aria-hidden="true"/>
+  </g>
+
+  <g class="node" data-node="openai">
+    <rect class="card" x="184" y="1684" width="424" height="128" rx="8"/>
+    <path class="head" d="M192 1684H600Q608 1684 608 1692V1728H184V1692Q184 1684 192 1684Z"/>
+    <text x="204" y="1714" class="name">OpenAI</text>
+    <text x="204" y="1756" class="body">별도 동의한 코드 문맥</text>
+    <text x="204" y="1786" class="body">독립 후보·방어 근거 검토</text>
+    <text x="588" y="1714" text-anchor="end" font-size="20" font-weight="650" class="blue">선택</text>
+    <rect class="node-pulse" x="184" y="1684" width="424" height="128" rx="8" style="--at:19.2s" aria-hidden="true"/>
+  </g>
+</svg>

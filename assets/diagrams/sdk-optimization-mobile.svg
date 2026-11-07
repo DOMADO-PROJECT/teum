@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="720" height="1220" viewBox="0 0 720 1220" role="img" aria-labelledby="sdk-title sdk-desc" xml:lang="ko" class="mobile">
-  <title id="sdk-title">teum. AI SDK 실행 효율 비교 — 기준 실행과 개선 후 두 회차 평균</title>
-  <desc id="sdk-desc">고정한 자사 코드 26개 파일·2,277줄을 사용한 개발용 SDK 실험입니다. 기준 실행은 처음으로 핵심 검토 조건 4/4를 충족한 r5이며, 개선 후는 같은 실행본의 r14/r15 두 회차 평균입니다. API 요청은 27회에서 2회로 92.6%, 총토큰은 1,738,129개에서 208,733개로 88.0%, 전체 시간은 26:51.974에서 18:13.274로 32.2%, usage 추정 비용은 USD 1.4790에서 0.9958로 32.7% 감소했습니다. 최종 두 회차는 각각 핵심 4/4·세부 16/16을 충족했습니다. 회색 막대는 지표별 기준 실행을 100으로 놓은 값이며, 파란 막대는 개선 후 남은 비율입니다. 감소율 숫자는 줄어든 비율로, 막대의 비율과 구분해 표시합니다. 시간 표시는 초 단위로 반올림하며 막대 길이와 감소율은 반올림 전 원값으로 계산합니다. 수치와 감소율은 처음부터 고정하고 막대만 약 2.2초 안에 최종 비율로 줄인 뒤 모든 막대가 완성된 화면을 7초 유지하며, 페이드를 포함한 9.82초 주기로 반복합니다. 움직이는 중간 길이는 관측치가 아닙니다. 모션 감소 설정에서는 최종값을 정적으로 표시합니다. 현재 서비스 경로와 별도인 고정 표본의 실험이며, 비용은 실제 청구액과 구분하는 usage 기반 추정치입니다.</desc>
-  <metadata id="sdk-data">{&quot;baseline_run&quot;:&quot;r5&quot;,&quot;final_runs&quot;:[&quot;r14&quot;,&quot;r15&quot;],&quot;final_aggregation&quot;:&quot;arithmetic mean of two runs&quot;,&quot;fixed_files&quot;:26,&quot;fixed_lines&quot;:2277,&quot;final_core_complete_each&quot;:&quot;4/4&quot;,&quot;final_detailed_complete_each&quot;:&quot;16/16&quot;,&quot;bar_scale&quot;:&quot;each metric normalized to r5 = 100, zero origin&quot;,&quot;source&quot;:&quot;docs/AI_SDK_R1_R15.md&quot;,&quot;metrics&quot;:[{&quot;id&quot;:&quot;requests&quot;,&quot;label&quot;:&quot;API 요청&quot;,&quot;baseline&quot;:&quot;27&quot;,&quot;final_mean&quot;:&quot;2.0&quot;,&quot;reduction_percent&quot;:&quot;92.59259259259259259259259259&quot;,&quot;display_reduction&quot;:&quot;92.6% 감소&quot;,&quot;display_values&quot;:&quot;27회 → 2회&quot;},{&quot;id&quot;:&quot;total_tokens&quot;,&quot;label&quot;:&quot;총토큰&quot;,&quot;baseline&quot;:&quot;1738129&quot;,&quot;final_mean&quot;:&quot;208733.0&quot;,&quot;reduction_percent&quot;:&quot;87.99093738151771243676389957&quot;,&quot;display_reduction&quot;:&quot;88.0% 감소&quot;,&quot;display_values&quot;:&quot;1,738,129개 → 208,733개&quot;},{&quot;id&quot;:&quot;elapsed_ms&quot;,&quot;label&quot;:&quot;전체 시간&quot;,&quot;baseline&quot;:&quot;1611974&quot;,&quot;final_mean&quot;:&quot;1093273.5&quot;,&quot;reduction_percent&quot;:&quot;32.17796937171443211863218638&quot;,&quot;display_reduction&quot;:&quot;32.2% 감소&quot;,&quot;display_values&quot;:&quot;26분 52초 → 18분 13초&quot;},{&quot;id&quot;:&quot;known_usage_cost_usd&quot;,&quot;label&quot;:&quot;추정 비용 · USD&quot;,&quot;baseline&quot;:&quot;1.4789971&quot;,&quot;final_mean&quot;:&quot;0.99583325&quot;,&quot;reduction_percent&quot;:&quot;32.66834329830667010773719570&quot;,&quot;display_reduction&quot;:&quot;32.7% 감소&quot;,&quot;display_values&quot;:&quot;$1.4790 → $0.9958&quot;}]}</metadata>
+  <title id="sdk-title">teum. 제품 AI 검토 개선 — 같은 품질7사례 합계</title>
+  <desc id="sdk-desc">2026-11-07 실제 제품 Responses 경로에서 같은 자체 품질 대조7사례를 기준/최종 각1회 실행한 합계입니다. API 요청29→10회, 총토큰185,226→62,413개, AI 검토 시간302.418→201.854초, 보수 추정 비용USD0.638025→0.2749525입니다. 각각65.5%,66.3%,33.3%,56.9% 감소했고 선택한 품질 기준은 두 버전 모두7/7입니다. 일반 탐지율이나 전체 서비스 소요 시간의 보장이 아니며 큰 표본의 속도 향상을 주장하지 않습니다. 회색은 각 지표의 기준100, 파란색은 최종 남은 비율이며 감소율 숫자는 줄어든 비율입니다. 비용은 캐시 할인 없는 보수 추정이며 청구액이 아닙니다. 숫자는 고정하고 막대만 약2.2초 안에 최종 비율로 줄어든 뒤7초 유지합니다. 중간 길이는 관측치가 아니며 모션 감소 설정에서는 최종값을 정적으로 표시합니다. 기존 개발용 SDK r1~r15 그래프는 sdk-r1-r15.svg에 보존했습니다.</desc>
+  <metadata id="sdk-data">{&quot;measured_on&quot;:&quot;2026-11-07&quot;,&quot;source&quot;:&quot;docs/verification/ai-mvp-20261107.json&quot;,&quot;scope&quot;:&quot;product-responses&quot;,&quot;aggregation&quot;:&quot;sum of the same seven authored quality cases, one run per version&quot;,&quot;baseline_quality&quot;:&quot;7/7&quot;,&quot;final_quality&quot;:&quot;7/7&quot;,&quot;bar_scale&quot;:&quot;baseline=100, zero origin&quot;,&quot;large_sample_speedup_claimed&quot;:false,&quot;metrics&quot;:[{&quot;id&quot;:&quot;requests&quot;,&quot;label&quot;:&quot;API 요청&quot;,&quot;baseline&quot;:29,&quot;final&quot;:10,&quot;reduction_percent&quot;:65.51724137931035},{&quot;id&quot;:&quot;total_tokens&quot;,&quot;label&quot;:&quot;총토큰&quot;,&quot;baseline&quot;:185226,&quot;final&quot;:62413,&quot;reduction_percent&quot;:66.30440650880546},{&quot;id&quot;:&quot;elapsed_ms&quot;,&quot;label&quot;:&quot;AI 검토 시간&quot;,&quot;baseline&quot;:302418,&quot;final&quot;:201854,&quot;reduction_percent&quot;:33.253311641502826},{&quot;id&quot;:&quot;conservative_usd&quot;,&quot;label&quot;:&quot;보수 추정 비용 · USD&quot;,&quot;baseline&quot;:0.638025,&quot;final&quot;:0.2749525,&quot;reduction_percent&quot;:56.905685513890525}]}</metadata>
   <style>
     text{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;fill:#191f28}
     .muted{fill:#566270}.blue{fill:#1d65d1}.numeric{font-variant-numeric:tabular-nums}
@@ -22,15 +22,15 @@
   </style>
   <rect x="1" y="1" width="718" height="1218" rx="10" fill="#fff" stroke="#e5e8eb"/>
   <text x="32" y="58" font-size="36" font-weight="750" letter-spacing="-1.2">teum.</text>
-  <text x="156" y="56" class="blue" font-size="18" font-weight="650" letter-spacing="1.2">AI SDK</text>
-  <text x="688" y="56" class="muted" font-size="18" text-anchor="end">실행 효율 비교</text>
+  <text x="156" y="56" class="blue" font-size="18" font-weight="650" letter-spacing="1.2">제품 AI</text>
+  <text x="688" y="56" class="muted" font-size="18" text-anchor="end">2026-11-07 · 실제 제품</text>
   <path d="M32 84H688" stroke="#e5e8eb"/>
-  <text x="32" y="132" class="muted" font-size="24">고정 자사 코드 26개 파일·2,277줄</text>
-  <text x="32" y="168" class="muted" font-size="22">핵심 검토 조건 4/4 유지</text>
+  <text x="32" y="132" class="muted" font-size="24">자체 품질 대조 7사례 · 합계</text>
+  <text x="32" y="168" class="muted" font-size="22">각 버전 7/7 · 1회씩</text>
   <rect x="32" y="201" width="12" height="12" class="baseline"/>
-  <text x="56" y="214" class="muted" font-size="22">기준 실행</text>
+  <text x="56" y="214" class="muted" font-size="22">개선 전 제품</text>
   <rect x="252" y="201" width="12" height="12" class="final"/>
-  <text x="276" y="214" class="muted" font-size="22">개선 후 · 2회 평균</text>
+  <text x="276" y="214" class="muted" font-size="22">최종 제품</text>
   <text x="32" y="260" class="label">기준 대비 비율 (%)</text>
   <text x="688" y="260" class="label" text-anchor="end">감소율</text>
 
@@ -38,10 +38,10 @@
     <path d="M32 364V430" class="zero"/>
     <path d="M360 364V430M688 364V430" class="guide"/>
   <text x="32" y="314" class="metric">API 요청</text>
-    <text x="32" y="350" class="values numeric"><tspan>27회</tspan><tspan> → </tspan><tspan class="result-value">2회</tspan></text>
-  <text x="688" y="314" class="reduction numeric">92.6%</text>
-    <rect x="32" y="376" width="656" height="16" class="baseline" data-series="r5"/>
-    <rect x="32" y="406" width="48.592593" height="16" class="final final-bar" style="--start-scale:13.499999886814;--delay:0s" data-series="final-mean"/>
+    <text x="32" y="350" class="values numeric"><tspan>29회</tspan><tspan> → </tspan><tspan class="result-value">10회</tspan></text>
+  <text x="688" y="314" class="reduction numeric">65.5%</text>
+    <rect x="32" y="376" width="656" height="16" class="baseline" data-series="baseline"/>
+    <rect x="32" y="406" width="226.206897" height="16" class="final final-bar" style="--start-scale:2.900000000000;--delay:0s" data-series="final"/>
   </g>
   <path d="M32 448H688" class="divider"/>
 
@@ -49,38 +49,38 @@
     <path d="M32 560V626" class="zero"/>
     <path d="M360 560V626M688 560V626" class="guide"/>
   <text x="32" y="510" class="metric">총토큰</text>
-    <text x="32" y="546" class="values numeric"><tspan>1,738,129개</tspan><tspan> → </tspan><tspan class="result-value">208,733개</tspan></text>
-  <text x="688" y="510" class="reduction numeric">88.0%</text>
-    <rect x="32" y="572" width="656" height="16" class="baseline" data-series="r5"/>
-    <rect x="32" y="602" width="78.779451" height="16" class="final final-bar" style="--start-scale:8.327044574098;--delay:0.06s" data-series="final-mean"/>
+    <text x="32" y="546" class="values numeric"><tspan>185,226개</tspan><tspan> → </tspan><tspan class="result-value">62,413개</tspan></text>
+  <text x="688" y="510" class="reduction numeric">66.3%</text>
+    <rect x="32" y="572" width="656" height="16" class="baseline" data-series="baseline"/>
+    <rect x="32" y="602" width="221.043093" height="16" class="final final-bar" style="--start-scale:2.967747103969;--delay:0.06s" data-series="final"/>
   </g>
   <path d="M32 644H688" class="divider"/>
 
   <g data-metric="elapsed_ms">
     <path d="M32 756V822" class="zero"/>
     <path d="M360 756V822M688 756V822" class="guide"/>
-  <text x="32" y="706" class="metric">전체 시간</text>
-    <text x="32" y="742" class="values numeric"><tspan>26분 52초</tspan><tspan> → </tspan><tspan class="result-value">18분 13초</tspan></text>
-  <text x="688" y="706" class="reduction numeric">32.2%</text>
-    <rect x="32" y="768" width="656" height="16" class="baseline" data-series="r5"/>
-    <rect x="32" y="798" width="444.912521" height="16" class="final final-bar" style="--start-scale:1.474447153174;--delay:0.12s" data-series="final-mean"/>
+  <text x="32" y="706" class="metric">AI 검토 시간</text>
+    <text x="32" y="742" class="values numeric"><tspan>302.4초</tspan><tspan> → </tspan><tspan class="result-value">201.9초</tspan></text>
+  <text x="688" y="706" class="reduction numeric">33.3%</text>
+    <rect x="32" y="768" width="656" height="16" class="baseline" data-series="baseline"/>
+    <rect x="32" y="798" width="437.858276" height="16" class="final final-bar" style="--start-scale:1.498201670514;--delay:0.12s" data-series="final"/>
   </g>
   <path d="M32 840H688" class="divider"/>
 
-  <g data-metric="known_usage_cost_usd">
+  <g data-metric="conservative_usd">
     <path d="M32 952V1018" class="zero"/>
     <path d="M360 952V1018M688 952V1018" class="guide"/>
-  <text x="32" y="902" class="metric">추정 비용 · USD</text>
-    <text x="32" y="938" class="values numeric"><tspan>$1.4790</tspan><tspan> → </tspan><tspan class="result-value">$0.9958</tspan></text>
-  <text x="688" y="902" class="reduction numeric">32.7%</text>
-    <rect x="32" y="964" width="656" height="16" class="baseline" data-series="r5"/>
-    <rect x="32" y="994" width="441.695668" height="16" class="final final-bar" style="--start-scale:1.485185496544;--delay:0.18s" data-series="final-mean"/>
+  <text x="32" y="902" class="metric">보수 추정 비용 · USD</text>
+    <text x="32" y="938" class="values numeric"><tspan>$0.6380</tspan><tspan> → </tspan><tspan class="result-value">$0.2750</tspan></text>
+  <text x="688" y="902" class="reduction numeric">56.9%</text>
+    <rect x="32" y="964" width="656" height="16" class="baseline" data-series="baseline"/>
+    <rect x="32" y="994" width="282.698703" height="16" class="final final-bar" style="--start-scale:2.320491721297;--delay:0.18s" data-series="final"/>
   </g>
   <text x="32" y="1050" class="label numeric" text-anchor="middle">0</text>
   <text x="360" y="1050" class="label numeric" text-anchor="middle">50</text>
   <text x="688" y="1050" class="label numeric" text-anchor="middle">100</text>
   <path d="M32 1080H688" stroke="#e5e8eb"/>
-  <text x="32" y="1118" class="note">기준: 첫 4/4 성공본(r5) · 개선 후: r14/r15 평균</text>
-  <text x="32" y="1149" class="note">최종 두 회차 모두 세부 16/16 · 비용은 usage 추정치</text>
-  <text x="32" y="1180" class="note">고정 표본의 SDK 실험 · 현재 서비스와 별도</text>
+  <text x="32" y="1118" class="note">기준: 개선 전 제품 · 동일 7사례 합계</text>
+  <text x="32" y="1149" class="note">각 버전 7/7 · 1회씩 · 일반 탐지율 보장 아님</text>
+  <text x="32" y="1180" class="note">큰 표본 속도 개선 미확인 · 비용은 보수 추정</text>
 </svg>

@@ -1,0 +1,465 @@
+{
+  "schema": "teum-public-ai-mvp-measurements-1",
+  "measured_on": "2026-11-07",
+  "model": "gpt-6.1-sol",
+  "sdk": "OpenAI 7.23.0 / Responses",
+  "service_tier": "default",
+  "baseline_effort": {
+    "investigation": "high",
+    "verification": "high"
+  },
+  "final_effort": {
+    "investigation": "medium",
+    "verification": "high"
+  },
+  "comparison": {
+    "baseline": {
+      "label": "mvp-quality-baseline-1",
+      "record_sha256": "0efc0525dae7be2d01357d4f13d09953a1f74a8a3c64145225a1c24f2f23ffea",
+      "aggregate": {
+        "elapsed_ms": 302418,
+        "requests": 29,
+        "input_tokens": 161898,
+        "output_tokens": 23328,
+        "total_tokens": 185226,
+        "conservative_usd": 0.638025
+      },
+      "cases": [
+        {
+          "id": "cross-file-object-authorization",
+          "label": "객체 인가 위험",
+          "expected_findings": 1,
+          "passed": true,
+          "elapsed_ms": 56070,
+          "requests": 6,
+          "input_tokens": 35215,
+          "output_tokens": 4472,
+          "total_tokens": 39687,
+          "conservative_usd": 0.1327575
+        },
+        {
+          "id": "owner-scoped-query-control",
+          "label": "소유자 조회 방어",
+          "expected_findings": 0,
+          "passed": true,
+          "elapsed_ms": 38608,
+          "requests": 3,
+          "input_tokens": 15372,
+          "output_tokens": 3168,
+          "total_tokens": 18540,
+          "conservative_usd": 0.07011
+        },
+        {
+          "id": "caller-ownership-control",
+          "label": "호출부 소유자 방어",
+          "expected_findings": 0,
+          "passed": true,
+          "elapsed_ms": 36237,
+          "requests": 4,
+          "input_tokens": 21107,
+          "output_tokens": 2709,
+          "total_tokens": 23816,
+          "conservative_usd": 0.07985750000000001
+        },
+        {
+          "id": "missing-authorization-boundary",
+          "label": "인가 helper 입력 부재",
+          "expected_findings": 0,
+          "passed": true,
+          "elapsed_ms": 35228,
+          "requests": 3,
+          "input_tokens": 15479,
+          "output_tokens": 2814,
+          "total_tokens": 18293,
+          "conservative_usd": 0.06683750000000001
+        },
+        {
+          "id": "untrusted-comment-injection",
+          "label": "악성 주석이 있는 위험 사례",
+          "expected_findings": 1,
+          "passed": true,
+          "elapsed_ms": 57146,
+          "requests": 6,
+          "input_tokens": 36387,
+          "output_tokens": 4318,
+          "total_tokens": 40705,
+          "conservative_usd": 0.13414750000000003
+        },
+        {
+          "id": "supabase-permissive-rls",
+          "label": "느슨한 RLS",
+          "expected_findings": 1,
+          "passed": true,
+          "elapsed_ms": 52043,
+          "requests": 5,
+          "input_tokens": 28789,
+          "output_tokens": 3752,
+          "total_tokens": 32541,
+          "conservative_usd": 0.1094925
+        },
+        {
+          "id": "supabase-owner-rls-control",
+          "label": "소유자 RLS 방어",
+          "expected_findings": 0,
+          "passed": true,
+          "elapsed_ms": 27086,
+          "requests": 2,
+          "input_tokens": 9549,
+          "output_tokens": 2095,
+          "total_tokens": 11644,
+          "conservative_usd": 0.04482249999999999
+        }
+      ]
+    },
+    "final": {
+      "label": "mvp-quality-2",
+      "record_sha256": "4ee1faaad78e6d7e050fa5d664e783b748f9d7ddc1c4275d12f48428d4ffea16",
+      "aggregate": {
+        "elapsed_ms": 201854,
+        "requests": 10,
+        "input_tokens": 46557,
+        "output_tokens": 15856,
+        "total_tokens": 62413,
+        "conservative_usd": 0.2749525
+      },
+      "cases": [
+        {
+          "id": "cross-file-object-authorization",
+          "label": "객체 인가 위험",
+          "expected_findings": 1,
+          "passed": true,
+          "elapsed_ms": 51819,
+          "requests": 2,
+          "input_tokens": 9416,
+          "output_tokens": 4207,
+          "total_tokens": 13623,
+          "conservative_usd": 0.06561
+        },
+        {
+          "id": "owner-scoped-query-control",
+          "label": "소유자 조회 방어",
+          "expected_findings": 0,
+          "passed": true,
+          "elapsed_ms": 13548,
+          "requests": 1,
+          "input_tokens": 4507,
+          "output_tokens": 1058,
+          "total_tokens": 5565,
+          "conservative_usd": 0.021847500000000006
+        },
+        {
+          "id": "caller-ownership-control",
+          "label": "호출부 소유자 방어",
+          "expected_findings": 0,
+          "passed": true,
+          "elapsed_ms": 11943,
+          "requests": 1,
+          "input_tokens": 4527,
+          "output_tokens": 943,
+          "total_tokens": 5470,
+          "conservative_usd": 0.020747500000000002
+        },
+        {
+          "id": "missing-authorization-boundary",
+          "label": "인가 helper 입력 부재",
+          "expected_findings": 0,
+          "passed": true,
+          "elapsed_ms": 13719,
+          "requests": 1,
+          "input_tokens": 4541,
+          "output_tokens": 913,
+          "total_tokens": 5454,
+          "conservative_usd": 0.0204825
+        },
+        {
+          "id": "untrusted-comment-injection",
+          "label": "악성 주석이 있는 위험 사례",
+          "expected_findings": 1,
+          "passed": true,
+          "elapsed_ms": 47891,
+          "requests": 2,
+          "input_tokens": 9752,
+          "output_tokens": 3959,
+          "total_tokens": 13711,
+          "conservative_usd": 0.06397000000000001
+        },
+        {
+          "id": "supabase-permissive-rls",
+          "label": "느슨한 RLS",
+          "expected_findings": 1,
+          "passed": true,
+          "elapsed_ms": 50964,
+          "requests": 2,
+          "input_tokens": 9382,
+          "output_tokens": 4010,
+          "total_tokens": 13392,
+          "conservative_usd": 0.06355500000000001
+        },
+        {
+          "id": "supabase-owner-rls-control",
+          "label": "소유자 RLS 방어",
+          "expected_findings": 0,
+          "passed": true,
+          "elapsed_ms": 11970,
+          "requests": 1,
+          "input_tokens": 4432,
+          "output_tokens": 766,
+          "total_tokens": 5198,
+          "conservative_usd": 0.018740000000000007
+        }
+      ]
+    },
+    "retained_candidate_cases": {
+      "baseline": {
+        "cases": 3,
+        "elapsed_ms": 165259
+      },
+      "final": {
+        "cases": 3,
+        "elapsed_ms": 150674
+      }
+    },
+    "zero_candidate_cases": {
+      "baseline": {
+        "cases": 4,
+        "elapsed_ms": 137159
+      },
+      "final": {
+        "cases": 4,
+        "elapsed_ms": 51180
+      }
+    }
+  },
+  "percent_reduction": {
+    "elapsed_ms": 33.253,
+    "requests": 65.517,
+    "input_tokens": 71.243,
+    "output_tokens": 32.03,
+    "total_tokens": 66.304,
+    "conservative_usd": 56.906
+  },
+  "large_sample": {
+    "files": 26,
+    "lines": 2277,
+    "final_repeats": 2,
+    "required_candidate_retained_each": true,
+    "same_quality_speedup_claimed": false
+  },
+  "runs": [
+    {
+      "label": "mvp-bounded-1",
+      "status": "failed",
+      "cases": 1,
+      "elapsed_ms": 88930,
+      "requests": 6,
+      "input_tokens": 168924,
+      "output_tokens": 6496,
+      "total_tokens": 175420,
+      "conservative_usd": 0.4872700000000002,
+      "missing_usage_responses": 0,
+      "record_sha256": "8a3a728ffccb411d1982072897f893ffe82b7adadfe327960f9e57d0d942e53f"
+    },
+    {
+      "label": "mvp-cache-1",
+      "status": "failed",
+      "cases": 1,
+      "elapsed_ms": 57512,
+      "requests": 3,
+      "input_tokens": 140775,
+      "output_tokens": 2811,
+      "total_tokens": 143586,
+      "conservative_usd": 0.38004750000000004,
+      "missing_usage_responses": 0,
+      "record_sha256": "20c272c04dfca1192180ba5f86c70dd4bf304c2e79665306240aaa23f090e63b"
+    },
+    {
+      "label": "mvp-compact-1",
+      "status": "completed",
+      "cases": 1,
+      "elapsed_ms": 76055,
+      "requests": 4,
+      "input_tokens": 99417,
+      "output_tokens": 5547,
+      "total_tokens": 104964,
+      "conservative_usd": 0.3040125,
+      "missing_usage_responses": 0,
+      "record_sha256": "0783ebecbbb0147485a64341d2ded9dd938a024098bbe6455d8005408aeaba0f"
+    },
+    {
+      "label": "mvp-final-1",
+      "status": "failed",
+      "cases": 1,
+      "elapsed_ms": 152407,
+      "requests": 3,
+      "input_tokens": 140175,
+      "output_tokens": 8764,
+      "total_tokens": 148939,
+      "conservative_usd": 0.43807750000000006,
+      "missing_usage_responses": 0,
+      "record_sha256": "fcfca1cb2d5c4a976d1f120b9223ddd405fad3759df644a373f7a5c5c3472290"
+    },
+    {
+      "label": "mvp-focused-1",
+      "status": "completed",
+      "cases": 1,
+      "elapsed_ms": 132716,
+      "requests": 5,
+      "input_tokens": 175324,
+      "output_tokens": 10026,
+      "total_tokens": 185350,
+      "conservative_usd": 0.53857,
+      "missing_usage_responses": 0,
+      "record_sha256": "e3128d8577c86d6a0ef796a8f905bd3058594c4aaa50012d4da7a9a3bbcc3694"
+    },
+    {
+      "label": "mvp-mixed-1",
+      "status": "failed",
+      "cases": 1,
+      "elapsed_ms": 73649,
+      "requests": 3,
+      "input_tokens": 140036,
+      "output_tokens": 5279,
+      "total_tokens": 145315,
+      "conservative_usd": 0.40288,
+      "missing_usage_responses": 0,
+      "record_sha256": "923430a1521e4f9938dd99ab75c6c49f925d5574596d5987947d5b99d0d171f8"
+    },
+    {
+      "label": "mvp-prefetch-1",
+      "status": "completed",
+      "cases": 1,
+      "elapsed_ms": 108969,
+      "requests": 3,
+      "input_tokens": 143287,
+      "output_tokens": 6406,
+      "total_tokens": 149693,
+      "conservative_usd": 0.4222775000000001,
+      "missing_usage_responses": 0,
+      "record_sha256": "56828dcde942d8954168425339101a86814b61b6559212c5aa6365da10177de7"
+    },
+    {
+      "label": "mvp-quality-1",
+      "status": "completed",
+      "cases": 7,
+      "elapsed_ms": 214561,
+      "requests": 17,
+      "input_tokens": 87796,
+      "output_tokens": 16019,
+      "total_tokens": 103815,
+      "conservative_usd": 0.3796800000000001,
+      "missing_usage_responses": 0,
+      "record_sha256": "0a32efc602e20010cb5d807df137b122ce355ae47db7467e28cf61939155121b"
+    },
+    {
+      "label": "mvp-quality-2",
+      "status": "completed",
+      "cases": 7,
+      "elapsed_ms": 201854,
+      "requests": 10,
+      "input_tokens": 46557,
+      "output_tokens": 15856,
+      "total_tokens": 62413,
+      "conservative_usd": 0.2749525,
+      "missing_usage_responses": 0,
+      "record_sha256": "4ee1faaad78e6d7e050fa5d664e783b748f9d7ddc1c4275d12f48428d4ffea16"
+    },
+    {
+      "label": "mvp-release-1",
+      "status": "completed",
+      "cases": 1,
+      "elapsed_ms": 119183,
+      "requests": 5,
+      "input_tokens": 121599,
+      "output_tokens": 8890,
+      "total_tokens": 130489,
+      "conservative_usd": 0.39289750000000007,
+      "missing_usage_responses": 0,
+      "record_sha256": "31a9972f93cbaede6c4cc0ec37b1047826a958dbfa9840506d61127521a9bc31"
+    },
+    {
+      "label": "mvp-release-2",
+      "status": "completed",
+      "cases": 1,
+      "elapsed_ms": 111667,
+      "requests": 5,
+      "input_tokens": 124987,
+      "output_tokens": 9154,
+      "total_tokens": 134141,
+      "conservative_usd": 0.4040075,
+      "missing_usage_responses": 0,
+      "record_sha256": "bed6e4f49b42bca32b3b1811b0c0e9d766fd284c4d29378357caaa93de8ad532"
+    },
+    {
+      "label": "mvp-whole-1",
+      "status": "completed",
+      "cases": 1,
+      "elapsed_ms": 104532,
+      "requests": 5,
+      "input_tokens": 115778,
+      "output_tokens": 8110,
+      "total_tokens": 123888,
+      "conservative_usd": 0.3705449999999999,
+      "missing_usage_responses": 0,
+      "record_sha256": "14ddf2373d76d19203dbe1130553e71fcfb83aef8079369a0197fde086aa48c8"
+    },
+    {
+      "label": "mvp-baseline-1",
+      "status": "completed",
+      "cases": 1,
+      "elapsed_ms": 83307,
+      "requests": 4,
+      "input_tokens": 96655,
+      "output_tokens": 6468,
+      "total_tokens": 103123,
+      "conservative_usd": 0.3063175,
+      "missing_usage_responses": 0,
+      "record_sha256": "523c6272247eba5f5a7dffcd9f35a1c0888317af1f710ac4fb52ad46d0034b2c"
+    },
+    {
+      "label": "mvp-quality-baseline-1",
+      "status": "completed",
+      "cases": 7,
+      "elapsed_ms": 302418,
+      "requests": 29,
+      "input_tokens": 161898,
+      "output_tokens": 23328,
+      "total_tokens": 185226,
+      "conservative_usd": 0.638025,
+      "missing_usage_responses": 0,
+      "record_sha256": "0efc0525dae7be2d01357d4f13d09953a1f74a8a3c64145225a1c24f2f23ffea"
+    }
+  ],
+  "accounting": {
+    "total_runs": 14,
+    "total_cases": 32,
+    "conservative_usd": 5.73956,
+    "missing_usage_responses": 0,
+    "input_usd_per_million": 2.5,
+    "output_usd_per_million": 10,
+    "cached_discount_applied": false,
+    "invoice_amount": false
+  },
+  "validation": {
+    "fake_provider_sdk_paths": 13,
+    "node_passed": 808,
+    "python_passed": 119,
+    "python_skipped": 3,
+    "typecheck": "passed",
+    "lint": "passed",
+    "build": "passed-with-two-existing-warnings",
+    "production_authenticated_workflow_run": false
+  },
+  "provenance": {
+    "private_summary_sha256": "fa3f42e29369e26bc00efadedc2544074a5caae8c608621cc1ebed2d858d5e25",
+    "source_kind": "author-maintained private execution records; public aggregate extract",
+    "public_scope": "측정 합계·사례별 지표·설계·실패/한계. 코드 원문·모델 원 응답·운영 취약점 상세·키는 공개하지 않음."
+  },
+  "limitations": [
+    "자체 회귀7사례를 기준/최종 각1회 비교했다. 독립 고객 저장소의 탐지율·지연 분포를 보증하지 않는다.",
+    "큰 고정표본의 기존 실행은 중요 후보와 원문 일부를 놓쳤다. 최종2회를 같은 품질의 속도 향상으로 제시하지 않는다.",
+    "과거 추가 후보 일부와 SDK의16조건 전체 설명은 유지되지 않았다.",
+    "여러 변경을 묶은 결과다. 변경 한 가지의 인과 효과를 분리한 실험이 아니다.",
+    "입력/출력 usage에 보수 단가를 적용했고 캐시 할인을 반영하지 않았다. 실제 청구액이 아니다.",
+    "원자료는 비공개여서 공개 수치만으로 모델 응답과 코드 판단을 독립 재현할 수 없다."
+  ]
+}

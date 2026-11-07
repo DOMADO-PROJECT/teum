@@ -28,7 +28,8 @@ teum의 공개 화면과 브랜드 자산으로 만든 문서 자료입니다.<b
 | [review-flow.svg](../assets/diagrams/review-flow.svg) · [모바일형](../assets/diagrams/review-flow-mobile.svg) | 범위 선택 → 보안 점검 → 근거 검토 → 수정본 재점검 흐름 |
 | [architecture.svg](../assets/diagrams/architecture.svg) · [모바일형](../assets/diagrams/architecture-mobile.svg) | 웹·DB·작업 실행·격리 분석·외부 서비스의 경계 |
 | [database.svg](../assets/diagrams/database.svg) | 한글 역할 설명·PK·FK 표시·자료형·Crow’s Foot 기호로 표시한 public 테이블 16개 중 15개와 Auth 참조 |
-| [sdk-optimization.svg](../assets/diagrams/sdk-optimization.svg) · [세로형](../assets/diagrams/sdk-optimization-mobile.svg) | 첫 4/4 성공본과 최종 두 회차의 요청·토큰·시간·usage 추정 비용 비교 |
+| [sdk-optimization.svg](../assets/diagrams/sdk-optimization.svg) · [세로형](../assets/diagrams/sdk-optimization-mobile.svg) | 2026-11-07 실제 제품의 같은7사례 합계: 요청·토큰·AI 검토 시간·보수 추정 비용 |
+| [sdk-r1-r15.svg](../assets/diagrams/sdk-r1-r15.svg) · [세로형](../assets/diagrams/sdk-r1-r15-mobile.svg) | 원본 보존: 개발용 SDK 첫4/4 성공본과 r14/r15 평균 비교 |
 
 순수 SVG와 CSS로 구성했습니다.<br>
 스크립트·외부 이미지·외부 폰트 요청은 없습니다.<br><br>
@@ -92,9 +93,11 @@ NULL 허용과 기본키·UNIQUE 제약을 대조해 선택 여부와 개수를 
 실제 사용자·분석 내용·운영 설정은 포함하지 않았습니다.<br>
 정적 SVG이므로 DB 구조 변경 시 다시 대조해야 합니다.<br><br>
 
-SDK 그래프는 고정한 자사 코드 26개 파일·2,277줄의 실행 기록으로 만들었습니다.<br>
-각 지표에서 r5를 100으로 놓았으며 파란 막대는 r14/r15의 평균을 나타냅니다.<br>
-시간은 기록된 전체 실행 시간을 분·초로 표시하고 비용은 usage 기반 추정치입니다.<br>
+최신 제품 그래프는 같은 자체 품질7사례의 개선 전·최종 실행 합계로 만들었습니다.<br>
+각 지표에서 개선 전 제품을100으로 놓고 파란 막대는 최종 제품의 남은 비율을 나타냅니다. 각 버전1회이며 선택한 기준은 모두7/7입니다.<br>
+시간은 AI 검토 함수의 합계 시간이고 비용은 캐시 할인 없는 보수 추정입니다. 큰 표본 속도 향상이나 일반 탐지율을 보장하지 않습니다.<br>
+[공개 측정값](verification/ai-mvp-20261107.json)과 [설계·한계](AI_MVP_OPTIMIZATION_20261107.md)를 함께 확인할 수 있습니다.<br>
+기존 파일 주소는 유지했고, 이전26파일 SDK 그래프는 `sdk-r1-r15.svg`와 세로형에 원본 그대로 보존했습니다.<br>
 표시값은 반올림하며 절감률과 막대 길이는 반올림 전 원값으로 계산했습니다.<br>
 가로형과 세로형 SVG는 같은 값을 표시합니다.<br>
 기준·개선 후 수치와 감소율은 처음부터 고정해 읽을 수 있습니다.<br>

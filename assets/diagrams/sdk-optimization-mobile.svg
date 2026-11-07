@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="720" height="1220" viewBox="0 0 720 1220" role="img" aria-labelledby="sdk-title sdk-desc" xml:lang="ko" class="mobile">
-  <title id="sdk-title">teum. 제품 AI 검토 개선 — 같은 품질7사례 합계</title>
-  <desc id="sdk-desc">2026-11-07 실제 제품 Responses 경로에서 같은 자체 품질 대조7사례를 기준/최종 각1회 실행한 합계입니다. API 요청29→10회, 총토큰185,226→62,413개, AI 검토 시간302.418→201.854초, 보수 추정 비용USD0.638025→0.2749525입니다. 각각65.5%,66.3%,33.3%,56.9% 감소했고 선택한 품질 기준은 두 버전 모두7/7입니다. 일반 탐지율이나 전체 서비스 소요 시간의 보장이 아니며 큰 표본의 속도 향상을 주장하지 않습니다. 회색은 각 지표의 기준100, 파란색은 최종 남은 비율이며 감소율 숫자는 줄어든 비율입니다. 비용은 캐시 할인 없는 보수 추정이며 청구액이 아닙니다. 숫자는 고정하고 막대만 약2.2초 안에 최종 비율로 줄어든 뒤7초 유지합니다. 중간 길이는 관측치가 아니며 모션 감소 설정에서는 최종값을 정적으로 표시합니다. 기존 개발용 SDK r1~r15 그래프는 sdk-r1-r15.svg에 보존했습니다.</desc>
-  <metadata id="sdk-data">{&quot;measured_on&quot;:&quot;2026-11-07&quot;,&quot;source&quot;:&quot;docs/verification/ai-mvp-20261107.json&quot;,&quot;scope&quot;:&quot;product-responses&quot;,&quot;aggregation&quot;:&quot;sum of the same seven authored quality cases, one run per version&quot;,&quot;baseline_quality&quot;:&quot;7/7&quot;,&quot;final_quality&quot;:&quot;7/7&quot;,&quot;bar_scale&quot;:&quot;baseline=100, zero origin&quot;,&quot;large_sample_speedup_claimed&quot;:false,&quot;metrics&quot;:[{&quot;id&quot;:&quot;requests&quot;,&quot;label&quot;:&quot;API 요청&quot;,&quot;baseline&quot;:29,&quot;final&quot;:10,&quot;reduction_percent&quot;:65.51724137931035},{&quot;id&quot;:&quot;total_tokens&quot;,&quot;label&quot;:&quot;총토큰&quot;,&quot;baseline&quot;:185226,&quot;final&quot;:62413,&quot;reduction_percent&quot;:66.30440650880546},{&quot;id&quot;:&quot;elapsed_ms&quot;,&quot;label&quot;:&quot;AI 검토 시간&quot;,&quot;baseline&quot;:302418,&quot;final&quot;:201854,&quot;reduction_percent&quot;:33.253311641502826},{&quot;id&quot;:&quot;conservative_usd&quot;,&quot;label&quot;:&quot;보수 추정 비용 · USD&quot;,&quot;baseline&quot;:0.638025,&quot;final&quot;:0.2749525,&quot;reduction_percent&quot;:56.905685513890525}]}</metadata>
+  <title id="sdk-title">teum. 제품 AI 검토 측정 — 제한된7사례·품질 재검증 중</title>
+  <desc id="sdk-desc">정정: SDK와의 탐지 품질 동등성이 입증되지 않아 최적화 완료·최종 채택 판단을 철회하고 재검증 중입니다. 아래 수치는 제한된7사례의 당시 측정 기록입니다. 2026-11-07 실제 제품 Responses 경로에서 같은 자체 품질 대조7사례를 기준/최종 각1회 실행한 합계입니다. API 요청29→10회, 총토큰185,226→62,413개, AI 검토 시간302.418→201.854초, 보수 추정 비용USD0.638025→0.2749525입니다. 각각65.5%,66.3%,33.3%,56.9% 감소했고 선택한 품질 기준은 두 버전 모두7/7입니다. 일반 탐지율이나 전체 서비스 소요 시간의 보장이 아니며 큰 표본의 속도 향상을 주장하지 않습니다. 회색은 각 지표의 기준100, 파란색은 최종 남은 비율이며 감소율 숫자는 줄어든 비율입니다. 비용은 캐시 할인 없는 보수 추정이며 청구액이 아닙니다. 숫자는 고정하고 막대만 약2.2초 안에 최종 비율로 줄어든 뒤7초 유지합니다. 중간 길이는 관측치가 아니며 모션 감소 설정에서는 최종값을 정적으로 표시합니다. 기존 개발용 SDK r1~r15 그래프는 sdk-r1-r15.svg에 보존했습니다.</desc>
+  <metadata id="sdk-data">{&quot;measured_on&quot;:&quot;2026-11-07&quot;,&quot;source&quot;:&quot;docs/verification/ai-mvp-20261107.json&quot;,&quot;scope&quot;:&quot;product-responses&quot;,&quot;aggregation&quot;:&quot;sum of the same seven authored quality cases, one run per version&quot;,&quot;baseline_quality&quot;:&quot;7/7&quot;,&quot;final_quality&quot;:&quot;7/7&quot;,&quot;bar_scale&quot;:&quot;baseline=100, zero origin&quot;,&quot;large_sample_speedup_claimed&quot;:false,&quot;metrics&quot;:[{&quot;id&quot;:&quot;requests&quot;,&quot;label&quot;:&quot;API 요청&quot;,&quot;baseline&quot;:29,&quot;final&quot;:10,&quot;reduction_percent&quot;:65.51724137931035},{&quot;id&quot;:&quot;total_tokens&quot;,&quot;label&quot;:&quot;총토큰&quot;,&quot;baseline&quot;:185226,&quot;final&quot;:62413,&quot;reduction_percent&quot;:66.30440650880546},{&quot;id&quot;:&quot;elapsed_ms&quot;,&quot;label&quot;:&quot;AI 검토 시간&quot;,&quot;baseline&quot;:302418,&quot;final&quot;:201854,&quot;reduction_percent&quot;:33.253311641502826},{&quot;id&quot;:&quot;conservative_usd&quot;,&quot;label&quot;:&quot;보수 추정 비용 · USD&quot;,&quot;baseline&quot;:0.638025,&quot;final&quot;:0.2749525,&quot;reduction_percent&quot;:56.905685513890525}],&quot;sdk_detection_equivalence&quot;:&quot;NOT_ESTABLISHED&quot;,&quot;optimization_adoption&quot;:&quot;WITHDRAWN_PENDING_REVALIDATION&quot;}</metadata>
   <style>
     text{font-family:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;fill:#191f28}
     .muted{fill:#566270}.blue{fill:#1d65d1}.numeric{font-variant-numeric:tabular-nums}
@@ -23,14 +23,14 @@
   <rect x="1" y="1" width="718" height="1218" rx="10" fill="#fff" stroke="#e5e8eb"/>
   <text x="32" y="58" font-size="36" font-weight="750" letter-spacing="-1.2">teum.</text>
   <text x="156" y="56" class="blue" font-size="18" font-weight="650" letter-spacing="1.2">제품 AI</text>
-  <text x="688" y="56" class="muted" font-size="18" text-anchor="end">2026-11-07 · 실제 제품</text>
+  <text x="688" y="56" class="muted" font-size="18" text-anchor="end">2026-11-07 · 제한된 측정</text>
   <path d="M32 84H688" stroke="#e5e8eb"/>
-  <text x="32" y="132" class="muted" font-size="24">자체 품질 대조 7사례 · 합계</text>
+  <text x="32" y="132" class="muted" font-size="24">자체 회귀7사례 · 당시 측정</text>
   <text x="32" y="168" class="muted" font-size="22">각 버전 7/7 · 1회씩</text>
   <rect x="32" y="201" width="12" height="12" class="baseline"/>
   <text x="56" y="214" class="muted" font-size="22">개선 전 제품</text>
   <rect x="252" y="201" width="12" height="12" class="final"/>
-  <text x="276" y="214" class="muted" font-size="22">최종 제품</text>
+  <text x="276" y="214" class="muted" font-size="22">당시 변경본</text>
   <text x="32" y="260" class="label">기준 대비 비율 (%)</text>
   <text x="688" y="260" class="label" text-anchor="end">감소율</text>
 
@@ -80,7 +80,7 @@
   <text x="360" y="1050" class="label numeric" text-anchor="middle">50</text>
   <text x="688" y="1050" class="label numeric" text-anchor="middle">100</text>
   <path d="M32 1080H688" stroke="#e5e8eb"/>
-  <text x="32" y="1118" class="note">기준: 개선 전 제품 · 동일 7사례 합계</text>
-  <text x="32" y="1149" class="note">각 버전 7/7 · 1회씩 · 일반 탐지율 보장 아님</text>
-  <text x="32" y="1180" class="note">큰 표본 속도 개선 미확인 · 비용은 보수 추정</text>
+  <text x="32" y="1118" class="note">제한된7사례 · 각1회 · 비용은 보수 추정</text>
+  <text x="32" y="1149" class="note">SDK 탐지 품질 동등성 미검증</text>
+  <text x="32" y="1180" class="note">최적화 완료·채택 판단 철회</text>
 </svg>

@@ -461,5 +461,12 @@
     "여러 변경을 묶은 결과다. 변경 한 가지의 인과 효과를 분리한 실험이 아니다.",
     "입력/출력 usage에 보수 단가를 적용했고 캐시 할인을 반영하지 않았다. 실제 청구액이 아니다.",
     "원자료는 비공개여서 공개 수치만으로 모델 응답과 코드 판단을 독립 재현할 수 없다."
-  ]
+  ],
+  "interpretation_update": {
+    "date": "2026-11-07",
+    "measurement_scope": "Same seven authored regression cases; one run per version. Original measurements preserved.",
+    "sdk_detection_equivalence": "NOT_ESTABLISHED",
+    "optimization_completion_and_adoption": "WITHDRAWN_PENDING_INDEPENDENT_REVALIDATION",
+    "reason": "Additional known conditional findings were absent on the separate large fixed sample."
+  }
 }

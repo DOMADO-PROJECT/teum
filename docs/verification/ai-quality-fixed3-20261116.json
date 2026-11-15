@@ -90,7 +90,36 @@
     "unlaunched_follow_up_runs": 31,
     "candidate_public_and_private_expansion": "NOT_STARTED",
     "performance_comparison": "NOT_STARTED",
-    "premise_and_method_review": "IN_PROGRESS",
+    "premise_and_method_review": "COMPLETED_SCOPE_DIFFERENCE_IDENTIFIED",
     "previous_judgments_reclassified": false
+  },
+  "token_cost_priority": {
+    "recorded_at": "2026-11-16",
+    "status": "FEASIBILITY_REVIEW_COMPLETE_NEW_TRIAL_PREPARATION_ONLY",
+    "current_latency_accepted": true,
+    "numeric_time_or_token_target": null,
+    "mean_fixed_sample": {
+      "elapsed_ms": 597682.3333333334,
+      "input_tokens": 118442,
+      "output_tokens": 31256.666666666668,
+      "reasoning_tokens_included_in_output": 21130.333333333332,
+      "total_tokens": 149698.66666666666
+    },
+    "token_composition": {
+      "input_percent": 79.12027717904412,
+      "reasoning_percent": 14.11524484742683,
+      "visible_output_percent": 6.764477973529045
+    },
+    "four_minute_same_quality_feasibility": "NOT_DEMONSTRATED",
+    "one_hundred_thousand_current_structure": "INPUT_ALONE_EXCEEDS",
+    "current_production_comparison": "NOT_ESTABLISHED",
+    "next_change": "Keep full discovery source andhigh/high. Disable full automatic source prefetch for independent verification; retain initial reads and source tools.",
+    "new_actual_runs": 0,
+    "free_preparation_qa": "IN_PROGRESS",
+    "fast_tier_actual_runs": 0,
+    "fast_tier_trial": "HELD_TOKEN_COST_PRIORITY",
+    "independent_advisory_sha256": "d50dd0c583c68edf1986bb9b4d720875ad6aa2f329ee6d2722505c02d787b3e7",
+    "new_quality_or_savings_claim": false,
+    "prior_judgments_reclassified": false
   }
 }

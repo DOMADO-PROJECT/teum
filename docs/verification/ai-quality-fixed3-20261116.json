@@ -78,5 +78,19 @@
   "sdk_equivalence": "UNRESOLVED",
   "performance_comparison": "NOT_PERFORMED",
   "production_integration": "UNVERIFIED",
-  "adoption": false
+  "adoption": false,
+  "follow_up": {
+    "status": "STOP_ON_FIRST_UNRESOLVED",
+    "baseline_new_private_cases_passed": 3,
+    "baseline_new_private_cases_unresolved": 1,
+    "technical_execution": "COMPLETED",
+    "cause": "Input or qualified-reference premises insufficient for complete semantic adjudication",
+    "confirmed_model_semantic_error": false,
+    "reference_contradiction_established": false,
+    "unlaunched_follow_up_runs": 31,
+    "candidate_public_and_private_expansion": "NOT_STARTED",
+    "performance_comparison": "NOT_STARTED",
+    "premise_and_method_review": "IN_PROGRESS",
+    "previous_judgments_reclassified": false
+  }
 }

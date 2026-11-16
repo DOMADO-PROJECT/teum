@@ -162,5 +162,62 @@
       "adoption": false,
       "quality_equivalent_efficiency_comparison": false
     }
+  },
+  "production_config_comparison": {
+    "schema": "teum-public-production-config-comparison-1",
+    "status": "NATIVE_QUALITY_FAIL_FOLLOWUP_STOPPED",
+    "model": "gpt-6.1-sol",
+    "sample_files": 26,
+    "sample_lines": 2277,
+    "native_new_run": {
+      "repetitions": 1,
+      "reasoning": {
+        "investigation": "medium",
+        "verification": "high"
+      },
+      "total_limit_seconds": 240,
+      "requests": 5,
+      "elapsed_seconds": 188.575,
+      "input_tokens": 119554,
+      "output_tokens": 9792,
+      "reasoning_included_in_output_tokens": 3790,
+      "total_tokens": 129346,
+      "received_usage_estimate_usd": 0.3070194,
+      "quality": "FAIL",
+      "critical_reported": 1,
+      "critical_required": 3,
+      "normal_boundary_groups": "INCOMPLETELY_RECORDED"
+    },
+    "candidate_historical_fixed3": {
+      "repetitions": 3,
+      "reasoning": {
+        "investigation": "high",
+        "verification": "high"
+      },
+      "mean": {
+        "requests": 2.0,
+        "case_elapsed_ms": 597682.3333333334,
+        "input_tokens": 118442.0,
+        "output_tokens": 31256.666666666668,
+        "reasoning_in_output_tokens": 21130.333333333332,
+        "total_tokens": 149698.66666666666,
+        "conservative_usd": 0.6086716666666666,
+        "received_usage_estimate_usd": 0.5094202666666666
+      },
+      "critical_reported_each": 3,
+      "critical_required_each": 3,
+      "normal_boundary_groups_each": 5,
+      "quality_each": "PASS"
+    },
+    "new_candidate_run": "NOT_RUN_STOP_ON_FIRST_FAIL",
+    "paired_comparison": false,
+    "same_quality_savings_claim": false,
+    "production_engine_changed": false,
+    "scope": "Local analysis engine using the current deployed code configuration and user-confirmed model. Excludes collection, Workflow, DB and UI end-to-end latency.",
+    "limitations": [
+      "One new native observation versus three historical candidate observations; not randomised/contemporaneous or statistical superiority.",
+      "Default-tier usage cost estimates include observed cache conditions and are not invoices.",
+      "Known fixed input only; no general recall/accuracy percentage or full SDK equivalence."
+    ]
   }
 }

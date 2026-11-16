@@ -368,5 +368,81 @@
       "Final1 lies inside the old time/token ranges; repeat superiority remains unconfirmed.",
       "Final cache hit0 versus historical mean41226; received usage costs are estimates, not invoices."
     ]
+  },
+  "hybrid_confirmation_20261116": {
+    "schema": "teum-public-hybrid-confirmation-1",
+    "recorded_at": "2026-11-16",
+    "status": "FAIL_FIRST_CONFIRMATION_FOLLOWING_TWO_STOPPED",
+    "model": "gpt-6.1-sol",
+    "reasoning": {
+      "investigation": "medium",
+      "verification": "high"
+    },
+    "sample_files": 26,
+    "sample_lines": 2277,
+    "distinct_inputs": 1,
+    "new_actual_runs": 1,
+    "registered_repetitions": 3,
+    "same_engine_as_previous_single_pass": true,
+    "first_observation": {
+      "label": "v13-s01",
+      "execution": "COMPLETED",
+      "qa_status": "FAIL_INDEPENDENT_QA",
+      "core": {
+        "passed": 3,
+        "total": 3
+      },
+      "normal_boundaries": {
+        "passed": 2,
+        "partial": 3,
+        "total": 5
+      },
+      "requests": 2,
+      "case_elapsed_ms": 425206,
+      "input_tokens": 118459,
+      "output_tokens": 21463,
+      "total_tokens": 139922,
+      "reasoning_tokens_included_in_output": 11253,
+      "received_usage_estimate_usd": 0.5104685,
+      "conservative_usd": 0.5107775,
+      "new_unknown_reserved_usd": 0,
+      "normal_review_omissions": [
+        "B_ACTOR_CONNECTION_ACTOR_EXPIRY_REVIEW_NOT_RECORDED",
+        "B_REPOSITORY_FINAL_USER_REAUTH_REVIEW_NOT_RECORDED",
+        "B_PRIVILEGED_UPLOAD_CREDENTIAL_ISSUE_USE_CONNECTION_NOT_RECORDED"
+      ],
+      "observed_material_false_positives": 0,
+      "observed_unjustified_dismissals": 0,
+      "raw_sha256": "4fed021064fbde78c833de02563712ecb72e83b7539e475aba4f38352d586d4f",
+      "receipt_sha256": "bd73b968a53b8b686a4c55e6010ed5cd328e581ad7f22960828f3508b6dc82b9",
+      "runtime_sha256": "ac7fe7861eb87be1b9f3dbd8cb1fe6edc6f419f111484c7a4bf5089952201517"
+    },
+    "remaining_runs": [
+      {
+        "label": "v13-s02",
+        "status": "NOT_RUN_STOPPED",
+        "launches": 0,
+        "external_requests": 0
+      },
+      {
+        "label": "v13-s03",
+        "status": "NOT_RUN_STOPPED",
+        "launches": 0,
+        "external_requests": 0
+      }
+    ],
+    "new_three_mean": null,
+    "previous_single_included_in_new_three": false,
+    "same_candidate_stability_demonstrated": false,
+    "equivalent_quality_efficiency_demonstrated": false,
+    "production_integration": false,
+    "adoption": false,
+    "overall_optimization_complete": false,
+    "next_preparation": "Exact historical high/high three-pass core; product regression/runtime integration pending.",
+    "limitations": [
+      "Known single fixed input; no general accuracy or full SDK equivalence claim.",
+      "Missing judgment does not establish absence of the defense in code.",
+      "Prior three high/high passes and prior mixed single pass are preserved separately."
+    ]
   }
 }

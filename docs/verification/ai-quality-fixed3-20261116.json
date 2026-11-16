@@ -219,5 +219,154 @@
       "Default-tier usage cost estimates include observed cache conditions and are not invoices.",
       "Known fixed input only; no general recall/accuracy percentage or full SDK equivalence."
     ]
+  },
+  "hybrid_trial_20261116": {
+    "schema": "teum-known-fixed-hybrid-regression-1",
+    "recorded_at": "2026-11-16",
+    "status": "PASS_SINGLE_REGRESSION_EFFICIENCY_UNCONFIRMED",
+    "model": "gpt-6.1-sol",
+    "sample_files": 26,
+    "sample_lines": 2277,
+    "distinct_inputs": 1,
+    "new_actual_runs": 3,
+    "same_final_configuration_repetitions": 1,
+    "observations": [
+      {
+        "label": "v10-h01",
+        "model": "gpt-6.1-sol",
+        "reasoning": {
+          "investigation": "high",
+          "verification": "medium"
+        },
+        "execution": "COMPLETED",
+        "qa_status": "FAIL_INDEPENDENT_QA",
+        "core": {
+          "passed": 3,
+          "total": 3
+        },
+        "normal_boundaries": {
+          "passed": 4,
+          "total": 5,
+          "incomplete": "B-ACTOR PKCE challenge-to-verifier token exchange review"
+        },
+        "requests": 2,
+        "case_elapsed_ms": 358338,
+        "input_tokens": 118179,
+        "output_tokens": 16415,
+        "total_tokens": 134594,
+        "reasoning_in_output_tokens": 6730,
+        "received_usage_estimate_usd": 0.4592885,
+        "conservative_usd": 0.4595975000000001,
+        "cached_input_tokens": 0,
+        "new_unknown_reserved_usd": 0,
+        "raw_sha256": "98151aae04806ba8347ac9289792acf7148499254da125d43cef7342811163e0",
+        "receipt_sha256": "e5444b833f680fb4fb32b5756fcfc583c53364b5a715c6f8ce40c9fbada3aca3",
+        "runtime_sha256": "8b4c93a31a59512c2ff87085d31a81921c185a89a9cf4552970e11d7a3233113"
+      },
+      {
+        "label": "v11-mh01",
+        "model": "gpt-6.1-sol",
+        "reasoning": {
+          "investigation": "medium",
+          "verification": "high"
+        },
+        "execution": "COMPLETED",
+        "qa_status": "FAIL_INDEPENDENT_QA",
+        "core": {
+          "passed": 3,
+          "total": 3
+        },
+        "normal_boundaries": {
+          "passed": 3,
+          "total": 5,
+          "partial": 2
+        },
+        "requests": 2,
+        "case_elapsed_ms": 365245,
+        "input_tokens": 118146,
+        "output_tokens": 19178,
+        "total_tokens": 137324,
+        "reasoning_in_output_tokens": 9320,
+        "received_usage_estimate_usd": 0.486836,
+        "conservative_usd": 0.48714500000000005,
+        "cached_input_tokens": 0,
+        "new_unknown_reserved_usd": 0,
+        "raw_sha256": "fd98d00c0bba6e65db9f8083778c9530e19371e4db6a38548747e6a021a6ea1e",
+        "receipt_sha256": "5a0b41125dbf2c92d298701b5bdf34f7ee9d3bba82f7ddaf8a31157e40031c46",
+        "runtime_sha256": "28d39f6ff391fee55afa4a1a3b15edb51f06267ed5fd1260ce3c389a9ee1385e"
+      },
+      {
+        "label": "v12-q01",
+        "model": "gpt-6.1-sol",
+        "reasoning": {
+          "investigation": "medium",
+          "verification": "high"
+        },
+        "execution": "COMPLETED",
+        "qa_status": "PASS_INDEPENDENT_QA",
+        "core": {
+          "passed": 3,
+          "total": 3
+        },
+        "normal_boundaries": {
+          "passed": 5,
+          "total": 5
+        },
+        "requests": 2,
+        "case_elapsed_ms": 467743,
+        "input_tokens": 118528,
+        "output_tokens": 23247,
+        "total_tokens": 141775,
+        "reasoning_in_output_tokens": 12939,
+        "received_usage_estimate_usd": 0.528481,
+        "conservative_usd": 0.5287900000000001,
+        "cached_input_tokens": 0,
+        "new_unknown_reserved_usd": 0,
+        "raw_sha256": "90f0f15c82bd777091ee2c1ace988311ddbc88b1e1b51b8bb1db052eb058f2db",
+        "receipt_sha256": "b528df947db86b8bcb65647b3f33cf9be145a8ba073c8e16b66969405db1c091",
+        "runtime_sha256": "5e31965f71fd6264344f9701dec5ea9ea78da13815eb44d18feb79915dcdc995"
+      }
+    ],
+    "historical_quality_mean": {
+      "requests": 2.0,
+      "case_elapsed_ms": 597682.3333333334,
+      "input_tokens": 118442.0,
+      "output_tokens": 31256.666666666668,
+      "reasoning_in_output_tokens": 21130.333333333332,
+      "total_tokens": 149698.66666666666,
+      "conservative_usd": 0.6086716666666666,
+      "received_usage_estimate_usd": 0.5094202666666666
+    },
+    "historical_ranges": {
+      "case_elapsed_ms": {
+        "min": 417589,
+        "max": 732657
+      },
+      "total_tokens": {
+        "min": 141597,
+        "max": 156251
+      }
+    },
+    "final_within_historical_ranges": {
+      "case_elapsed_ms": true,
+      "total_tokens": true
+    },
+    "relative_observation_reduction_percent": {
+      "case_elapsed_ms": 21.740534408746683,
+      "total_tokens": 5.293077649322188,
+      "received_usage_estimate_usd": -3.7416519484109045
+    },
+    "efficiency_superiority_confirmed": false,
+    "production_integration": "NOT_INTEGRATED",
+    "adoption": false,
+    "sdk_equivalence": "UNRESOLVED",
+    "new_three_run_mean": null,
+    "limits": [
+      "One known input and failure-informed generic prompt repair; not blind generalization.",
+      "First two failed profiles preserved; different configurations are not pooled into a new three-repeat mean.",
+      "Historical3/native1/final1 are unpaired local AI-engine observations, not full service latency.",
+      "Final1 lies inside the old time/token ranges; repeat superiority remains unconfirmed.",
+      "Final cache hit0 versus historical mean41226; received usage costs are estimates, not invoices."
+    ]
   }
 }

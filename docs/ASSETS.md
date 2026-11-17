@@ -28,7 +28,7 @@ teum의 공개 화면과 브랜드 자산으로 만든 문서 자료입니다.<b
 | [review-flow.svg](../assets/diagrams/review-flow.svg) · [모바일형](../assets/diagrams/review-flow-mobile.svg) | 범위 선택 → 보안 점검 → 근거 검토 → 수정본 재점검 흐름 |
 | [architecture.svg](../assets/diagrams/architecture.svg) · [모바일형](../assets/diagrams/architecture-mobile.svg) | 웹·DB·작업 실행·격리 분석·외부 서비스의 경계 |
 | [database.svg](../assets/diagrams/database.svg) | 한글 역할 설명·PK·FK 표시·자료형·Crow’s Foot 기호로 표시한 public 테이블 16개 중 15개와 Auth 참조 |
-| [sdk-optimization.svg](../assets/diagrams/sdk-optimization.svg) · [세로형](../assets/diagrams/sdk-optimization-mobile.svg) | 2026-11-07 실제 제품의 같은7사례 합계: 요청·토큰·AI 검토 시간·보수 추정 비용 |
+| [sdk-optimization.svg](../assets/diagrams/sdk-optimization.svg) · [세로형](../assets/diagrams/sdk-optimization-mobile.svg) | 채택 철회한 과거 제품 AI 실험. 제한된 7사례의 요청·토큰·시간·보수 추정 비용 |
 | [sdk-r1-r15.svg](../assets/diagrams/sdk-r1-r15.svg) · [세로형](../assets/diagrams/sdk-r1-r15-mobile.svg) | 원본 보존: 개발용 SDK 첫4/4 성공본과 r14/r15 평균 비교 |
 
 순수 SVG와 CSS로 구성했습니다.<br>
@@ -93,8 +93,9 @@ NULL 허용과 기본키·UNIQUE 제약을 대조해 선택 여부와 개수를 
 실제 사용자·분석 내용·운영 설정은 포함하지 않았습니다.<br>
 정적 SVG이므로 DB 구조 변경 시 다시 대조해야 합니다.<br><br>
 
-최신 제품 그래프는 같은 자체 품질7사례의 개선 전·최종 실행 합계로 만들었습니다.<br>
-각 지표에서 개선 전 제품을100으로 놓고 파란 막대는 최종 제품의 남은 비율을 나타냅니다. 각 버전1회이며 선택한 기준은 모두7/7입니다.<br>
+과거 제품 AI 그래프는 같은 자체 7사례의 개선 전·당시 변경본 실행 합계로 만들었습니다.<br>
+각 지표에서 개선 전 제품을 100으로 놓고 파란 막대는 당시 변경본의 남은 비율을 나타냅니다.<br>
+각 버전 1회이며 제한된 7사례는 통과했지만, 큰 표본에서 핵심 위험을 놓쳐 채택을 철회했습니다.<br>
 시간은 AI 검토 함수의 합계 시간이고 비용은 캐시 할인 없는 보수 추정입니다. 큰 표본 속도 향상이나 일반 탐지율을 보장하지 않습니다.<br>
 [공개 측정값](verification/ai-mvp-20261107.json)과 [설계·한계](AI_MVP_OPTIMIZATION_20261107.md)를 함께 확인할 수 있습니다.<br>
 기존 파일 주소는 유지했고, 이전26파일 SDK 그래프는 `sdk-r1-r15.svg`와 세로형에 원본 그대로 보존했습니다.<br>
@@ -151,8 +152,10 @@ NULL 허용과 기본키·UNIQUE 제약을 대조해 선택 여부와 개수를 
 | [로컬 AI 성과](../assets/diagrams/ai-local-optimization.svg) · [모바일형](../assets/diagrams/ai-local-optimization-mobile.svg) | 같은 26파일·2,277줄, 이전 3단계안 3회 → 발견 통합안 3회 → 전송 개선안 2회 평균. 운영 미배포 |
 | [규칙 분석의 변화](../assets/diagrams/rules-optimization.svg) · [모바일형](../assets/diagrams/rules-optimization-mobile.svg) | 날짜를 고정한 초기·현재 지원 범위와 별도 캐시 관측 |
 
-새 도식은 하위 [AI 성과 문서](AI_LOCAL_MIXED_20261116.md)와 [규칙 분석 기록](RULES_EVOLUTION.md)에 배치했습니다.<br>
-기존 README의 흐름·아키텍처·AI 그래프와 원래 파일 주소는 유지했습니다.<br><br>
+README에는 최신 로컬 AI 성과를 먼저, 규칙 분석의 변화를 그 아래에 배치했습니다.<br>
+자세한 조건과 수치는 하위 [AI 성과 문서](AI_LOCAL_MIXED_20261116.md)와 [규칙 분석 기록](RULES_EVOLUTION.md)에 남겼습니다.<br>
+기존 제품 AI 그래프는 [채택 철회한 과거 실험](AI_MVP_OPTIMIZATION_20261107.md)에서 확인할 수 있습니다.<br>
+README의 나머지 구성과 모든 SVG의 파일 주소는 유지했습니다.<br><br>
 
 막대는 0에서 시작하고, 수치와 설명은 처음부터 읽을 수 있습니다.<br>
 애니메이션 중간의 막대 길이는 관측값이 아닙니다. 모션 감소 설정에서는 최종 상태를 표시합니다.<br>

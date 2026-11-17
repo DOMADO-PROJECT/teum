@@ -258,5 +258,187 @@
       "received_usage_estimate_usd": 9.495395026817398
     },
     "interpretation": "Known fixed input only. Total output and wall time vary; the small time difference is not a stable speed guarantee. Cache counts and prices are observed per response, not an isolated code effect or invoice."
+  },
+  "earlier_three_stage_observations": [
+    {
+      "label": "direct8-1",
+      "cohort": "historical_qualified_three_stage_fixed3",
+      "execution": "COMPLETED",
+      "requests": 3,
+      "engine_elapsed_ms": 580759,
+      "input_tokens": 175632,
+      "output_tokens": 29340,
+      "total_tokens": 204972,
+      "reasoning_tokens_in_output": 16263,
+      "received_usage_estimate_usd": 0.732018,
+      "raw_sha256": "ee176b19656c220d3eb66cdf87266892398ba4f43be4ff631d6c34f202038d6c",
+      "quality": {
+        "status": "PASS_FIXED_SAMPLE_ONLY",
+        "core_pass": 3,
+        "core_total": 3,
+        "boundary_pass": 5,
+        "boundary_total": 5,
+        "false_positive_findings_observed": 0,
+        "material_semantic_citation_errors_observed": 0
+      }
+    },
+    {
+      "label": "direct8-2",
+      "cohort": "historical_qualified_three_stage_fixed3",
+      "execution": "COMPLETED",
+      "requests": 3,
+      "engine_elapsed_ms": 661495,
+      "input_tokens": 175353,
+      "output_tokens": 32458,
+      "total_tokens": 207811,
+      "reasoning_tokens_in_output": 19434,
+      "received_usage_estimate_usd": 0.4812037,
+      "raw_sha256": "e13162de0df30d584b03566aa0d8121e26a6ba5ecd9d052eb7f820282dc9b5fb",
+      "quality": {
+        "status": "PASS_FIXED_SAMPLE_ONLY",
+        "core_pass": 3,
+        "core_total": 3,
+        "boundary_pass": 5,
+        "boundary_total": 5,
+        "false_positive_findings_observed": 0,
+        "material_semantic_citation_errors_observed": 0
+      }
+    },
+    {
+      "label": "direct8-3",
+      "cohort": "historical_qualified_three_stage_fixed3",
+      "execution": "COMPLETED",
+      "requests": 3,
+      "engine_elapsed_ms": 933569,
+      "input_tokens": 175220,
+      "output_tokens": 29454,
+      "total_tokens": 204674,
+      "reasoning_tokens_in_output": 18317,
+      "received_usage_estimate_usd": 0.4508312,
+      "raw_sha256": "e871a1d707193bf7d214bdfa5a5c42661d123270334f0763d7c4a0c6f0f3b9c5",
+      "quality": {
+        "status": "PASS_FIXED_SAMPLE_ONLY",
+        "core_pass": 3,
+        "core_total": 3,
+        "boundary_pass": 5,
+        "boundary_total": 5,
+        "false_positive_findings_observed": 0,
+        "material_semantic_citation_errors_observed": 0
+      }
+    }
+  ],
+  "progression": {
+    "comparison_kind": "retrospective_same_fixed_input_observations",
+    "observation_dates": "2026-11-15 to 2026-11-17",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high at every investigation and verification phase",
+    "service_tier": "default",
+    "same_fixed_input": {
+      "files": 26,
+      "lines": 2277,
+      "context_sha256": "6053edb66700820a44c146c6a458cb2c8e7006cd5b0e1f1060e4ebf57ea38b12",
+      "source_sha256": "de5e6d88af7ee508f063680476cbb9e5281e0095959de9699af45ea917c01d22",
+      "sample_wrapper_sha256": "7388fffa8d446903984efd1ba246d350ba8612cd3eb3769ece4fc802c63e5a08"
+    },
+    "stages": [
+      {
+        "id": "earlier_three_stage",
+        "label": "일반 발견·정책 발견·독립 반증",
+        "cohort": "historical_qualified_three_stage_fixed3",
+        "observations": 3,
+        "requests_per_run": 3,
+        "average": {
+          "engine_elapsed_ms": 725274.3333333334,
+          "input_tokens": 175401.66666666666,
+          "output_tokens": 30417.333333333332,
+          "total_tokens": 205819
+        },
+        "quality": {
+          "every_observation_passed": true,
+          "core_pass": 3,
+          "core_total": 3,
+          "boundary_pass": 5,
+          "boundary_total": 5
+        }
+      },
+      {
+        "id": "combined_high",
+        "label": "통합 발견·독립 반증",
+        "cohort": "historical_qualified_hh_fixed3",
+        "observations": 3,
+        "requests_per_run": 2,
+        "average": {
+          "engine_elapsed_ms": 597682.3333333334,
+          "input_tokens": 118442,
+          "output_tokens": 31256.666666666668,
+          "total_tokens": 149698.66666666666
+        },
+        "quality": {
+          "every_observation_passed": true,
+          "core_pass": 3,
+          "core_total": 3,
+          "boundary_pass": 5,
+          "boundary_total": 5
+        }
+      },
+      {
+        "id": "numbered_source",
+        "label": "전송 표기 개선",
+        "cohort": "new_local_hh_numbered_source",
+        "observations": 2,
+        "requests_per_run": 2,
+        "average": {
+          "engine_elapsed_ms": 583623.5,
+          "input_tokens": 111238,
+          "output_tokens": 25338,
+          "total_tokens": 136576
+        },
+        "quality": {
+          "every_observation_passed": true,
+          "core_pass": 3,
+          "core_total": 3,
+          "boundary_pass": 5,
+          "boundary_total": 5,
+          "second_observation_initial_fail_preserved": true,
+          "second_observation_final_pass": true
+        }
+      }
+    ],
+    "observed_reduction_percent": {
+      "earlier_to_combined": {
+        "requests": 33.33333333333333,
+        "engine_elapsed_ms": 17.592239809947774,
+        "input_tokens": 32.473845744529214,
+        "output_tokens": -2.759391574979187,
+        "total_tokens": 27.266838014630984
+      },
+      "combined_to_numbered": {
+        "requests": 0.0,
+        "engine_elapsed_ms": 2.3522250113912304,
+        "input_tokens": 6.082301886155249,
+        "output_tokens": 18.935693718673352,
+        "total_tokens": 8.766054473876403
+      },
+      "earlier_to_numbered": {
+        "requests": 33.33333333333333,
+        "engine_elapsed_ms": 19.53065575646549,
+        "input_tokens": 36.58099029845782,
+        "output_tokens": 16.6988120808311,
+        "total_tokens": 33.6426666148412
+      }
+    },
+    "interpretation": "The first structural change and the final wire-format change are separate steps. Fixed-sample quality passed per observation; means are descriptive, not an interleaved ABBA or causal performance experiment.",
+    "limitations": [
+      "Historical cohorts have 3, 3 and 2 observations, respectively.",
+      "Expanded holdout evaluation stopped at an unresolved reference case; full quality and SDK equivalence remain unestablished.",
+      "Planned interleaved ABBA performance comparison was not performed.",
+      "All times cover the local prepared-input AI engine, not product collection, Workflow, DB, UI or external QA.",
+      "Model output length, cache hits and processing time vary. No stable speed or general accuracy guarantee."
+    ],
+    "source_artifacts": [
+      "ai-quality-baseline-20261115.qa.json",
+      "ai-combined-high-fixed3-20261116.qa.json",
+      "original observations and comparison in this file"
+    ]
   }
 }

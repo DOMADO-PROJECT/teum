@@ -186,38 +186,46 @@ AI의 제안은 규칙 결과와 별도로 저장하며, 수정 예시는 자동
 엔진·규칙·파일의 점검 완료 범위를 대조해 비교하고, 조건이 맞지 않으면 판단을 보류합니다.<br>
 AI 후보의 자동 재점검 비교는 현재 지원 범위에서 제외했습니다.<br><br>
 
-## 05. AI 검토 비용 측정과 품질 재검증
+## 05. AI 최적화와 규칙 분석의 개선
 
-> **후속 로컬 실험 · 2026-11-17**<br>
-> 같은 모델·같은 고정 코드에서 이전 3단계안 3회, 발견 통합안 3회, 최신 전송 개선안 2회의 평균을 비교했습니다.<br>
-> 총 토큰은 **205,819 → 149,699 → 136,576개로 전체 약 33.6% 감소**했습니다.<br>
-> 앞선 구조 통합에서 27.3%, 마지막 전송 개선에서 추가 8.8% 줄어든 관측입니다.<br>
-> 평균 시간은 **12분 5초 → 9분 58초 → 9분 44초**, 모델 요청은 **회당 3 → 2 → 2회**였습니다.<br>
-> 각 회차는 핵심 위험 3/3·정상 방어 5/5의 독립 QA를 통과했습니다.<br>
-> 다른 코드의 품질이나 안정적인 속도 향상을 보장하는 결과는 아닙니다.<br>
-> 현재 [Vercel 무료 요금제의 함수 실행 한도 5분](https://vercel.com/docs/functions/limitations)을 넘겨 **이 개선안은 로컬에서 검증하고 운영 적용은 보류**했습니다.<br>
-> 운영에서는 규칙 분석을 제공하며, 샘플의 AI 결과는 준비된 예시입니다.<br>
-> **[연구 과정과 품질 재검증 →](docs/AI_RESEARCH_HISTORY.md) · [로컬 성과와 실측 →](docs/AI_LOCAL_MIXED_20261116.md)**<br><br>
+### 로컬 AI — 총 토큰 33.6% 감소 · 운영 적용 보류
 
-**정정: 큰 고정표본에서 기존 위험 후보 일부가 누락돼, 최적화 완료·최종 채택 판단을 철회했습니다. 독립 QA로 탐지 품질을 재검증 중입니다.**<br><br>
-2026-11-07 당시 제품의 Responses 경로를 재설계해 아래 수치를 측정했습니다.<br>
-제한된 자체 회귀7사례를 기존·당시 변경본에서 각각 한 번 실행했습니다.<br>
-두 버전 모두 7사례의 기준을 통과했고, 합계 시간 33.3%·총토큰 66.3%·보수 추정 비용 56.9% 감소를 관측했습니다.<br><br>
+같은 모델·같은 고정 코드에서 이전 3단계안 3회, 발견 통합안 3회, 최신 전송 개선안 2회의 평균을 비교했습니다.<br>
+총 토큰은 **205,819 → 149,699 → 136,576개로 전체 약 33.6% 감소**했습니다.<br>
+앞선 구조 통합에서 27.3%, 마지막 전송 개선에서 추가 8.8% 줄었습니다.<br>
+평균 시간은 **12분 5초 → 9분 58초 → 9분 44초**, 모델 요청은 **회당 3 → 2 → 2회**였습니다.<br>
+각 회차는 핵심 위험 3/3·정상 방어 5/5의 독립 QA를 통과했습니다.<br>
+다른 코드의 품질이나 안정적인 속도 향상을 보장하는 결과는 아닙니다.<br><br>
+
+현재 [Vercel 무료 요금제의 함수 실행 한도 5분](https://vercel.com/docs/functions/limitations)을 넘겨 **이 개선안은 로컬에서 검증하고 운영 적용은 보류**했습니다.<br>
+운영에서는 규칙 분석을 제공하며, 샘플의 AI 결과는 준비된 예시입니다.<br><br>
 
 <picture>
-  <source media="(max-width: 640px)" srcset="assets/diagrams/sdk-optimization-mobile.svg">
-  <img src="assets/diagrams/sdk-optimization.svg" width="1280" alt="실제 제품의 같은 자체 품질7사례 합계. 요청29→10회, 총토큰185,226→62,413, 시간302.418→201.854초, 보수 추정 비용0.638025→0.2749525달러. 두 버전 모두7/7이며 각1회 비교입니다. 큰 표본의 속도 향상은 확인하지 못했습니다.">
+  <source media="(max-width: 640px)" srcset="assets/diagrams/ai-local-optimization-mobile.svg">
+  <img src="assets/diagrams/ai-local-optimization.svg" width="1280" alt="운영 미배포 로컬 AI의 세 단계 비교. 평균 총 토큰 205,819→149,699→136,576개로 전체 33.6% 감소. 같은 26파일·2,277줄에서 각각 3회·3회·2회 관측했으며 매회 핵심 위험 3/3·정상 방어 5/5를 통과했습니다.">
 </picture>
 
-*[가로 SVG](assets/diagrams/sdk-optimization.svg) · [세로 SVG](assets/diagrams/sdk-optimization-mobile.svg) · 같은 7사례 합계·각 버전 1회 · 비용은 캐시 할인 없는 보수 추정치입니다.*<br><br>
+*[가로 SVG](assets/diagrams/ai-local-optimization.svg) · [세로 SVG](assets/diagrams/ai-local-optimization-mobile.svg) · 같은 고정 표본의 관측 평균이며 운영 성능을 나타내지 않습니다.*<br><br>
 
-조사와 계획의 중복 설명을 합치고, 독립 검증이 유지한 후보에만 수정 방향을 작성하도록 바꿨습니다.<br>
-예산 안의 원문을 각 단계에 먼저 전달해 읽기 왕복을 줄이고, 독립 검증·정확 인용·미확인 표시는 유지했습니다.<br>
-후보가 없는 4사례의 시간 감소는62.7%, 후보를 남긴 3사례는8.8%였습니다.<br>
-별도의 자사26파일 표본에서는 한 후보가 유지됐지만 과거 다른 후보들이 누락됐습니다. 같은 탐지 품질의 속도 개선으로 볼 수 없습니다.<br><br>
+**[연구 과정과 품질 재검증 →](docs/AI_RESEARCH_HISTORY.md) · [로컬 성과와 실측 →](docs/AI_LOCAL_MIXED_20261116.md)**<br>
+[채택 철회한 과거 AI 실험과 당시 그래프](docs/AI_MVP_OPTIMIZATION_20261107.md) · [개발용 SDK r1~r15 기록](docs/AI_SDK_R1_R15.md)<br>
 
-**[제품 재설계·비교표·실패 기록 →](docs/AI_MVP_OPTIMIZATION_20261107.md)** · [측정값 JSON](docs/verification/ai-mvp-20261107.json)<br>
-이전 [개발용 SDK r1~r15 실험](docs/AI_SDK_R1_R15.md)과 [당시 그래프](assets/diagrams/sdk-r1-r15.svg)는 별도 기록으로 보존했습니다. 서로 다른 비교의 절감률을 합치지 않습니다.<br>
+<br>
+
+### 현재 운영 — 규칙 분석의 변화
+
+2026-09-29의 초기 구성과 현재 지원 범위를 대조했습니다.<br>
+자체 JS/TS 규칙은 **3 → 39개**, Python은 **0 → 35개**, 비밀정보 탐지 규칙은 **3 → 227개**로 늘었습니다.<br>
+규칙 수의 증가가 탐지율을 뜻하지는 않습니다.<br><br>
+
+<picture>
+  <source media="(max-width: 640px)" srcset="assets/diagrams/rules-optimization-mobile.svg">
+  <img src="assets/diagrams/rules-optimization.svg" width="1280" alt="규칙 분석의 초기와 현재 비교. JS/TS 자체 규칙 3→39개, Python 0→35개, 비밀정보 규칙 3→227개. 별도의 같은 버전 캐시 관측에서는 자체 분석 재실행이 1→0회로 줄었습니다. 규칙 수는 탐지율이 아닙니다.">
+</picture>
+
+*[가로 SVG](assets/diagrams/rules-optimization.svg) · [세로 SVG](assets/diagrams/rules-optimization-mobile.svg) · 캐시 시간은 같은 버전·같은 입력의 단일 비교이며, 초기·현재의 전체 처리 시간 비교가 아닙니다.*<br><br>
+
+**[규칙의 초기·현재 구성과 캐시 실측 →](docs/RULES_EVOLUTION.md)**<br>
 
 <br>
 <br>

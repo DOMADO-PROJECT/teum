@@ -148,7 +148,7 @@ NULL 허용과 기본키·UNIQUE 제약을 대조해 선택 여부와 개수를 
 
 | 파일 | 비교 기준 |
 |---|---|
-| [로컬 AI 성과](../assets/diagrams/ai-local-optimization.svg) · [모바일형](../assets/diagrams/ai-local-optimization-mobile.svg) | 같은 26파일·2,277줄, 품질 기준안 3회 평균과 개선안 2회 평균. 운영 미배포 |
+| [로컬 AI 성과](../assets/diagrams/ai-local-optimization.svg) · [모바일형](../assets/diagrams/ai-local-optimization-mobile.svg) | 같은 26파일·2,277줄, 이전 3단계안 3회 → 발견 통합안 3회 → 전송 개선안 2회 평균. 운영 미배포 |
 | [규칙 분석의 변화](../assets/diagrams/rules-optimization.svg) · [모바일형](../assets/diagrams/rules-optimization-mobile.svg) | 날짜를 고정한 초기·현재 지원 범위와 별도 캐시 관측 |
 
 새 도식은 하위 [AI 성과 문서](AI_LOCAL_MIXED_20261116.md)와 [규칙 분석 기록](RULES_EVOLUTION.md)에 배치했습니다.<br>
@@ -158,3 +158,8 @@ NULL 허용과 기본키·UNIQUE 제약을 대조해 선택 여부와 개수를 
 애니메이션 중간의 막대 길이는 관측값이 아닙니다. 모션 감소 설정에서는 최종 상태를 표시합니다.<br>
 규칙 수는 탐지율이 아니며, 캐시 관측은 서로 다른 버전의 전체 서비스 속도 비교가 아닙니다.<br>
 자세한 비교 조건과 원본 수치는 각 하위 문서의 표·JSON에서 확인할 수 있습니다.<br>
+
+로컬 AI 도식은 세 단계의 평균을 같은 축에서 비교합니다.<br>
+총 토큰 205,819 → 149,699 → 136,576개, 회당 요청 3 → 2 → 2회와 평균 시간을 함께 표시합니다.<br>
+전체 토큰 33.6% 감소와 마지막 단계의 추가 8.8% 감소를 구분합니다.<br>
+과거 관측의 비교이며, 통제된 순서 교차 비교와 숨김 확장평가는 완료되지 않았습니다.<br>

@@ -142,3 +142,19 @@ NULL 허용과 기본키·UNIQUE 제약을 대조해 선택 여부와 개수를 
 
 [브랜드 심벌](../assets/brand/teum-mark.svg)은 기존 서비스의 ‘열린 틈’ 형상을 재사용했습니다.<br>
 문서·이미지 공개가 비공개 애플리케이션 코드나 브랜드에 대한 별도 사용 허락을 뜻하지는 않습니다.<br>
+
+
+## 04. 후속 연구와 개선 기록
+
+| 파일 | 비교 기준 |
+|---|---|
+| [로컬 AI 성과](../assets/diagrams/ai-local-optimization.svg) · [모바일형](../assets/diagrams/ai-local-optimization-mobile.svg) | 같은 26파일·2,277줄, 품질 기준안 3회 평균과 개선안 2회 평균. 운영 미배포 |
+| [규칙 분석의 변화](../assets/diagrams/rules-optimization.svg) · [모바일형](../assets/diagrams/rules-optimization-mobile.svg) | 날짜를 고정한 초기·현재 지원 범위와 별도 캐시 관측 |
+
+새 도식은 하위 [AI 성과 문서](AI_LOCAL_MIXED_20261116.md)와 [규칙 분석 기록](RULES_EVOLUTION.md)에 배치했습니다.<br>
+기존 README의 흐름·아키텍처·AI 그래프와 원래 파일 주소는 유지했습니다.<br><br>
+
+막대는 0에서 시작하고, 수치와 설명은 처음부터 읽을 수 있습니다.<br>
+애니메이션 중간의 막대 길이는 관측값이 아닙니다. 모션 감소 설정에서는 최종 상태를 표시합니다.<br>
+규칙 수는 탐지율이 아니며, 캐시 관측은 서로 다른 버전의 전체 서비스 속도 비교가 아닙니다.<br>
+자세한 비교 조건과 원본 수치는 각 하위 문서의 표·JSON에서 확인할 수 있습니다.<br>

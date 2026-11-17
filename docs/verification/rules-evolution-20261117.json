@@ -1,0 +1,188 @@
+{
+  "schema": "teum-rules-evolution-1",
+  "date": "2026-11-17",
+  "earliest_baseline": {
+    "commit": "04920aa10407b149534408acb45dc11543add2ad",
+    "date": "2026-09-29",
+    "static_rule_ids": 3,
+    "javascript_typescript": 3,
+    "python": 0,
+    "authored_secret_rule_ids": 3,
+    "enabled_mit_secret_rule_ids": 0,
+    "total_secret_rule_ids": 3,
+    "code_rules_sha256": "20797071a28371ca4923216e3bbd77a0a1e52fd36df3a946fa230164746b0715",
+    "secret_authored_sha256": "87f8dd83b2de1a899ca933ae4ef1a94ba81f6a3b1c9ad5b993770c99a20d0711"
+  },
+  "current_inventory": {
+    "commit": "53a103c6ab1e545f87dd64d8d7e86a82e122da29",
+    "date": "2026-11-17",
+    "static_rule_ids": 74,
+    "javascript_typescript": 39,
+    "python": 35,
+    "authored_secret_rule_ids": 9,
+    "enabled_mit_secret_rule_ids": 218,
+    "total_secret_rule_ids": 227,
+    "code_rules_sha256": "4362fa148cab2c983a68f8ac05af1128a8d98fdb2ffd3cdbf9beb50bffd1ffce",
+    "secret_authored_sha256": "52abbb9cb9d9cb21661cfdf4ddf0f418dbf6d0962de00044ca2af770b18168fa"
+  },
+  "inventory_history": [
+    {
+      "commit": "04920aa10407b149534408acb45dc11543add2ad",
+      "date": "2026-09-29",
+      "static_rule_ids": 3,
+      "javascript_typescript": 3,
+      "python": 0,
+      "authored_secret_rule_ids": 3,
+      "enabled_mit_secret_rule_ids": 0,
+      "total_secret_rule_ids": 3,
+      "code_rules_sha256": "20797071a28371ca4923216e3bbd77a0a1e52fd36df3a946fa230164746b0715",
+      "secret_authored_sha256": "87f8dd83b2de1a899ca933ae4ef1a94ba81f6a3b1c9ad5b993770c99a20d0711"
+    },
+    {
+      "commit": "de550ecad58956ec5696c2675d45c4ae9f2a9a7a",
+      "date": "2026-09-30",
+      "static_rule_ids": 9,
+      "javascript_typescript": 9,
+      "python": 0,
+      "authored_secret_rule_ids": 4,
+      "enabled_mit_secret_rule_ids": 0,
+      "total_secret_rule_ids": 4,
+      "code_rules_sha256": "1e30eda6b87242f51b4d6ec6c5923bb211274e163d2f828c9dd7b59fb517520c",
+      "secret_authored_sha256": "b6c80e6edf7943a43ae069209af51d1590721f24a6a8df2ab37a9e16210c833f"
+    },
+    {
+      "commit": "af1fa10dd32e4d1311c2fced4c62902ea95b83cf",
+      "date": "2026-10-07",
+      "static_rule_ids": 31,
+      "javascript_typescript": 20,
+      "python": 11,
+      "authored_secret_rule_ids": 4,
+      "enabled_mit_secret_rule_ids": 0,
+      "total_secret_rule_ids": 4,
+      "code_rules_sha256": "e656d1c00d80f2bd74271b69519959aa12cbcc097c6f50d4fe775dd40e1d0d10",
+      "secret_authored_sha256": "4af45ddab8de9a1b216aa0779db46bcc5bd75424f3777b731150f3e1238d6e2a"
+    },
+    {
+      "commit": "e152eefcc55deabfd0ae624ffdd536ddb08d8cfd",
+      "date": "2026-10-13",
+      "static_rule_ids": 48,
+      "javascript_typescript": 25,
+      "python": 23,
+      "authored_secret_rule_ids": 9,
+      "enabled_mit_secret_rule_ids": 0,
+      "total_secret_rule_ids": 9,
+      "code_rules_sha256": "e57ade6f39fb948a632200877ace06edfc1b4963504de15ccdf30b9a6f905f82",
+      "secret_authored_sha256": "52abbb9cb9d9cb21661cfdf4ddf0f418dbf6d0962de00044ca2af770b18168fa"
+    },
+    {
+      "commit": "53a103c6ab1e545f87dd64d8d7e86a82e122da29",
+      "date": "2026-11-17",
+      "static_rule_ids": 74,
+      "javascript_typescript": 39,
+      "python": 35,
+      "authored_secret_rule_ids": 9,
+      "enabled_mit_secret_rule_ids": 218,
+      "total_secret_rule_ids": 227,
+      "code_rules_sha256": "4362fa148cab2c983a68f8ac05af1128a8d98fdb2ffd3cdbf9beb50bffd1ffce",
+      "secret_authored_sha256": "52abbb9cb9d9cb21661cfdf4ddf0f418dbf6d0962de00044ca2af770b18168fa"
+    }
+  ],
+  "inventory_definition": {
+    "static_rules": "Unique YAML rule IDs. JavaScript and TypeScript share one pack; Python separate. A count increase is not accuracy or speed improvement.",
+    "secret_rules": "Authored regex families plus 218 enabled MIT Gitleaks defaults. Raw vendor has 222 entries; generated active file excludes 4, so do not use 222+9.",
+    "earliest_label": "2026-09-29 최초 구현. First tracked source, not a production benchmark."
+  },
+  "current_scope_changes": {
+    "initial": "JS/TS AST patterns 3; secret regex families 3; dependency stage unsupported; no native source-flow/ownership/server-data layer.",
+    "current": "JS/TS39 + Python35, authored secret9 + enabled MIT218; supported package lockfiles with live OSV; separate TypeScript input flow, declared object-ownership model, server-page data transfer evidence.",
+    "native_versions": {
+      "flow": "0.6",
+      "authorization": "0.9",
+      "server_data": "0.1"
+    },
+    "limits": "Supported static syntax/model only. RLS enforcement, arbitrary frameworks/ORM/SSR, exploit success and customer accuracy not verified."
+  },
+  "production_reuse_observation": {
+    "date": "2026-10-21",
+    "kind": "Same-version first analysis versus eligible cached recheck; NOT initial engine versus latest engine latency.",
+    "private_source": "docs/verification/server-component-data-flow-production-20261021.json",
+    "source_commit": "d625bdbd24ee4582380f770861e068dfc5623ecc",
+    "synthetic_input": {
+      "files": 3,
+      "source_bytes": 886,
+      "same_archive_and_input": true
+    },
+    "first": {
+      "origin": "analysis",
+      "native_prepare_commands": 1,
+      "native_analysis_commands": 1,
+      "sandbox_session_duration_ms": 11004
+    },
+    "cached_recheck": {
+      "origin": "cache",
+      "native_prepare_commands": 1,
+      "native_analysis_commands": 0,
+      "sandbox_session_duration_ms": 5534
+    },
+    "report_equal_except_origin": true,
+    "cached_raw_report_unchanged": true,
+    "whole_report_bytes": 5114,
+    "pairs": 1,
+    "overall_status": "partial on both; unknown/unverified conditions preserved",
+    "metric_limit": "Sandbox session duration, not pure model/analysis runtime, GitHub collection-to-report latency, multi-run mean, throughput, or invoice. Existing basic rules worker and fresh OSV still run."
+  },
+  "meaningful_quality_changes": [
+    {
+      "case": "Same-source manual Promise exec forwarding",
+      "before": "partial, 0 candidates",
+      "after": "completed, 1 candidate with call evidence"
+    },
+    {
+      "case": "Same-source manual Promise execFile control",
+      "before": "partial, 0 candidates with missing control visit",
+      "after": "completed, 0 candidates with required control evidence"
+    },
+    {
+      "case": "Fixed QueryConfig SQL text and separate parameter values",
+      "before": "False SQL candidate in original reproduction",
+      "after": "Fixed-text controls have 0, dangerous SQL-text cases retain 1; reproduction and 24-case family are distinct inputs"
+    },
+    {
+      "case": "I03 shared observation budget",
+      "before": "Adding B lost A candidate/control results in 2 of 12 parent cases",
+      "after": "A128+B retains A completed results; only B remains partial"
+    }
+  ],
+  "limitations": [
+    "Rule inventory is not precision/recall or detection-rate measurement.",
+    "No same-input earliest-version versus current-version whole-service latency benchmark.",
+    "Reuse observation is one same-version production pair on synthetic own input; both outputs remain partial.",
+    "Current functionality checked from main; reuse timings were recorded on 2026-10-21, not remeasured on 2026-11-17."
+  ],
+  "sources": [
+    {
+      "private_source_path": "docs/SCANNER_RULES.md",
+      "sha256": "b4b73b54846db880bff9e5558d3918bc25c6fd9870b7144951f41b01a75a5842"
+    },
+    {
+      "private_source_path": "docs/SCANNER_BENCHMARKS.md",
+      "sha256": "51e2edef99dbdc718217968894d6b5373cae30bf7442133ebc002eb52f46eda9"
+    },
+    {
+      "private_source_path": "docs/SERVER_COMPONENT_DATA_FLOW_PRODUCTION.md",
+      "sha256": "7f123a1d2bfdfa2a9d01aba74d86bb3e0a049061ed54eb8b760db29f801c9b04"
+    },
+    {
+      "private_source_path": "docs/verification/server-component-data-flow-production-20261021.json",
+      "sha256": "6f7e60729e02a47865b11c8c32aba75fa8ec9b3fc107d0b0a8ad67f7b6e1e4ad"
+    },
+    {
+      "private_source_path": "docs/NON_AI_SERVICE_CASES_20261020.md",
+      "sha256": "3c86d71f87204b215ccda9f08df38fafe87dcc71f9fe6ab85eaa1c287c005bd9"
+    },
+    {
+      "private_source_path": "docs/verification/non-ai-beta-boundaries-20261020.json",
+      "sha256": "557089ee8eb52555404c41a02e25a812e0317a56a6506d2a8bff269a68c4311f"
+    }
+  ]
+}
